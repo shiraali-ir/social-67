@@ -2,339 +2,628 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f1f5f9">
-  <title>۶۷ — شبکه اجتماعی</title>
-  <meta name="description" content="۶۷؛ شبکه اجتماعی پیام‌های کوتاه">
-  <style>
-    :root {
-      color-scheme: light;
-      --page: #f1f5f9;
-      --card: #ffffff;
-      --text: #172b4d;
-      --muted: #64748b;
-      --border: #dce3ec;
-      --accent: #172b4d;
-      --danger: #b42318;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: Tahoma, Arial, sans-serif;
-      background: var(--page);
-      color: var(--text);
-    }
-
-    button, textarea {
-      font: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .app {
-      height: 100%;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .header {
-      flex: 0 0 auto;
-      height: 58px;
-      padding: 0 4%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      font-size: 27px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .profile-button {
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 19px;
-    }
-
-    .feed {
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      scrollbar-width: none;
-      padding: 4px 0 20px;
-    }
-
-    .feed::-webkit-scrollbar {
-      display: none;
-    }
-
-    .message-list {
-      width: 92%;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .message-card {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      flex: 0 0 auto;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow-wrap: anywhere;
-    }
-
-    .message-text {
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.9;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .message-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .composer-area {
-      flex: 0 0 auto;
-      padding: 10px 4% max(10px, env(safe-area-inset-bottom));
-      background: var(--page);
-      border-top: 1px solid var(--border);
-    }
-
-    .composer {
-      width: 100%;
-      display: flex;
-      align-items: stretch;
-      gap: 9px;
-    }
-
-    .input-wrap {
-      flex: 1;
-      min-width: 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 9px 12px 7px;
-    }
-
-    #messageInput {
-      display: block;
-      width: 100%;
-      height: 48px;
-      resize: none;
-      border: 0;
-      outline: 0;
-      padding: 3px 0;
-      color: var(--text);
-      background: transparent;
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    #messageInput::placeholder {
-      color: #94a3b8;
-    }
-
-    .input-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    #counter.limit {
-      color: var(--danger);
-    }
-
-    .send-button {
-      align-self: stretch;
-      width: 48px;
-      flex: 0 0 48px;
-      border: 0;
-      border-radius: 14px;
-      background: var(--accent);
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .send-button:disabled {
-      opacity: .4;
-      cursor: default;
-    }
-
-    .empty {
-      color: var(--muted);
-      text-align: center;
-      padding: 30px 10px;
-      font-size: 14px;
-    }
-
-    @media (min-width: 700px) {
-      .message-list {
-        width: min(92%, 430px);
-      }
-
-      .composer {
-        max-width: 430px;
-        margin: 0 auto;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>67 Social</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --card: rgba(255,255,255,.82);
+  --text: #171717;
+  --muted: #777777;
+  --border: #e8e8e8;
+  --field: #fafafa;
+  --shadow: 0 8px 28px rgba(0,0,0,.09);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Vazirmatn, Vazir, Tahoma, sans-serif;
+  transition: background .2s, color .2s;
+}
+body.dark {
+  --bg: #090909;
+  --card: rgba(27,27,27,.9);
+  --text: #f5f5f5;
+  --muted: #b4b4b4;
+  --border: #333333;
+  --field: #171717;
+  --shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+.app { max-width: 900px; margin: auto; padding: 16px; }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.brand { font-size: 25px; font-weight: 900; }
+.icon-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font-size: 20px;
+}
+.page { display: none; }
+.page.active { display: block; }
+.panel {
+  max-width: 440px;
+  margin: 24px auto;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+h1 { font-size: 24px; margin: 0 0 10px; }
+.subtitle, .hint {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+.field { display: block; margin: 15px 0; }
+.field > span {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--field);
+  color: var(--text);
+  outline: none;
+}
+input:focus, textarea:focus { border-color: var(--muted); }
+textarea { min-height: 95px; resize: vertical; }
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: bold;
+}
+.btn.secondary {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+.text-button {
+  display: block;
+  margin: 12px auto 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  text-decoration: underline;
+}
+.message { font-size: 13px; line-height: 1.9; color: var(--muted); }
+.rules { font-size: 12px; line-height: 2; color: var(--muted); }
+.rules .ok { color: #198754; }
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+.avatar-option {
+  height: 55px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--field);
+  color: var(--text);
+  font-size: 27px;
+}
+.avatar-option.selected { border: 2px solid var(--text); }
+.profile-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e9e9e9;
+  font-size: 18px;
+  overflow: hidden;
+}
+.avatar.large { width: 76px; height: 76px; flex-basis: 76px; font-size: 40px; }
+.timeline-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.compose, .profile-card {
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 235px), 1fr));
+  gap: 16px;
+}
+/* کارت پست: مربع ۱:۱، متن دوخطی، بدون لایک و کامنت */
+.post-card {
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+.post-text {
+  font-size: clamp(18px, 2.4vw, 23px);
+  font-weight: 700;
+  line-height: 1.65;
+  text-align: center;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-footer {
+  display: flex;
+  direction: rtl;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.post-username {
+  max-width: calc(100% - 42px);
+  font-size: 13px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+.profile-bio {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.9;
+}
+.profile-date { color: var(--muted); font-size: 12px; margin-top: 8px; }
+@media (max-width: 520px) {
+  .app { padding: 12px; }
+  .panel { padding: 19px; }
+  .feed { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .post-card { padding: 12px; border-radius: 18px; }
+  .post-text { font-size: 17px; }
+  .post-username { font-size: 11px; }
+}
+</style>
 </head>
 <body>
-  <div class="app">
-    <header class="header">
-      <div class="brand">۶۷</div>
-      <button class="profile-button" type="button"
-        aria-label="پروفایل" title="پروفایل">♙</button>
-    </header>
+<div class="app">
+  <header>
+    <div class="brand">67 Social</div>
+    <div>
+      <button class="icon-button" id="themeButton" aria-label="تغییر تم">☾</button>
+      <button class="icon-button" id="accountButton" aria-label="پنل کاربری" hidden>♙</button>
+    </div>
+  </header>
 
-    <main class="feed" id="feed">
-      <div class="message-list" id="messageList">
-        <article class="message-card">
-          <p class="message-text">به ۶۷ خوش آمدی؛ جایی برای حرف‌های کوتاه.</p>
-          <div class="message-meta">
-            <span>کاربر ۱۰۰۱</span>
-            <span>نمونه</span>
-          </div>
-        </article>
-
-        <article class="message-card">
-          <p class="message-text">۶۷ کاراکتر؛ یک فکر، یک پیام.</p>
-          <div class="message-meta">
-            <span>کاربر ۱۰۰۲</span>
-            <span>نمونه</span>
-          </div>
-        </article>
-      </div>
-    </main>
-
-    <footer class="composer-area" id="composerArea">
-      <form class="composer" id="composer">
-        <div class="input-wrap">
-          <textarea
-            id="messageInput"
-            maxlength="67"
-            rows="2"
-            placeholder="پیامت را بنویس..."
-            aria-label="متن پیام"></textarea>
-          <div class="input-footer">
-            <span>حداکثر ۶۷ کاراکتر</span>
-            <span id="counter">۰ از ۶۷</span>
+  <section class="page active" id="signupPage">
+    <div class="panel">
+      <h1>ساخت حساب</h1>
+      <p class="subtitle">برای پیوستن به 67 Social اطلاعات زیر را وارد کنید.</p>
+      <form id="signupForm">
+        <label class="field">
+          <span>نام کاربری</span>
+          <input id="username" minlength="3" maxlength="9"
+                 pattern="[a-zA-Z][a-zA-Z0-9]{2,8}"
+                 autocomplete="username" required>
+          <div class="hint">۳ تا ۹ کاراکتر انگلیسی و عدد؛ شروع با حرف.</div>
+        </label>
+        <label class="field">
+          <span>ایمیل</span>
+          <input id="email" type="email" autocomplete="email" required>
+        </label>
+        <label class="field">
+          <span>رمز عبور</span>
+          <input id="password" type="password" minlength="12"
+                 autocomplete="new-password" required>
+        </label>
+        <div class="rules" id="passwordRules">
+          <div data-rule="lower">○ حرف کوچک انگلیسی</div>
+          <div data-rule="upper">○ حرف بزرگ انگلیسی</div>
+          <div data-rule="number">○ عدد</div>
+          <div data-rule="symbol">○ علامت مجاز مانند @ # $ _ &amp; - + ( ) ! ? /</div>
+          <div data-rule="length">○ حداقل ۱۲ کاراکتر</div>
+        </div>
+        <label class="field">
+          <span>تکرار رمز عبور</span>
+          <input id="confirmPassword" type="password"
+                 autocomplete="new-password" required>
+        </label>
+        <div class="field">
+          <span>محافظت ضدربات</span>
+          <div class="hint">
+            Cloudflare Turnstile باید با کلید سایت و بررسی سمت سرور فعال شود.
           </div>
         </div>
-        <button class="send-button" id="sendButton"
-          type="submit" aria-label="انتشار پیام" disabled>↑</button>
+        <button class="btn" type="submit">Sign Up</button>
+        <div class="message" id="signupMessage" role="status"></div>
       </form>
-    </footer>
-  </div>
+      <button class="text-button" data-go="loginPage">از قبل حساب دارید؟ ورود</button>
+    </div>
+  </section>
 
-  <script>
-    const input = document.getElementById("messageInput");
-    const counter = document.getElementById("counter");
-    const sendButton = document.getElementById("sendButton");
-    const messageList = document.getElementById("messageList");
-    const feed = document.getElementById("feed");
-    const composer = document.getElementById("composer");
+  <section class="page" id="verifyPage">
+    <div class="panel">
+      <h1>تأیید ایمیل</h1>
+      <p class="subtitle">کد ارسال‌شده به ایمیل خود را وارد کنید.</p>
+      <form id="verifyForm">
+        <label class="field">
+          <span>کد تأیید</span>
+          <input id="verificationCode" inputmode="numeric"
+                 autocomplete="one-time-code" required>
+        </label>
+        <button class="btn" type="submit">تأیید ایمیل</button>
+        <div class="message" id="verifyMessage" role="status"></div>
+      </form>
+    </div>
+  </section>
 
-    const toPersianDigits = value =>
-      String(value).replace(/\d/g, digit => "۰۱۲۳۴۵۶۷۸۹"[digit]);
+  <section class="page" id="profileSetupPage">
+    <div class="panel">
+      <h1>پروفایل خود را بسازید</h1>
+      <p class="subtitle">آواتار، نام و نام خانوادگی و بیوگرافی اختیاری.</p>
+      <div class="profile-heading">
+        <div class="avatar large" id="avatarPreview">🙂</div>
+        <strong>انتخاب آواتار</strong>
+      </div>
+      <div class="avatar-grid" id="avatarChoices"></div>
+      <form id="profileForm">
+        <label class="field">
+          <span>نام و نام خانوادگی</span>
+          <input id="fullName" maxlength="67" required>
+        </label>
+        <label class="field">
+          <span>بیوگرافی (اختیاری)</span>
+          <textarea id="bio" maxlength="250"
+                    placeholder="دربارهٔ خودتان بنویسید یا لینک دلخواهتان را قرار دهید..."></textarea>
+          <div class="hint">حداکثر ۲۵۰ کاراکتر.</div>
+        </label>
+        <button class="btn" type="submit">ذخیره و ورود به تایم‌لاین</button>
+      </form>
+    </div>
+  </section>
 
-    function getLength() {
-      return [...input.value].length;
-    }
+  <section class="page" id="loginPage">
+    <div class="panel">
+      <h1>ورود به حساب</h1>
+      <form id="loginForm">
+        <label class="field">
+          <span>نام کاربری یا ایمیل</span>
+          <input id="loginIdentifier" autocomplete="username" required>
+        </label>
+        <label class="field">
+          <span>رمز عبور</span>
+          <input id="loginPassword" type="password"
+                 autocomplete="current-password" required>
+        </label>
+        <button class="btn" type="submit">ورود</button>
+        <div class="message" id="loginMessage" role="status"></div>
+      </form>
+      <button class="text-button" data-go="signupPage">ساخت حساب جدید</button>
+    </div>
+  </section>
 
-    function updateComposer() {
-      const length = getLength();
-      counter.textContent = `${toPersianDigits(length)} از ۶۷`;
-      counter.classList.toggle("limit", length >= 67);
-      sendButton.disabled = input.value.trim().length === 0;
-    }
+  <section class="page" id="timelinePage">
+    <div class="timeline-heading">
+      <div>
+        <h1>تایم‌لاین</h1>
+        <div class="subtitle">پست‌های عمومی 67 Social</div>
+      </div>
+      <button class="icon-button" id="myProfileButton" aria-label="پروفایل من">♙</button>
+    </div>
+    <form class="compose" id="postForm">
+      <label class="field">
+        <span>پست جدید</span>
+        <textarea id="postText" maxlength="67" required
+                  placeholder="چه چیزی می‌خواهید بنویسید؟"></textarea>
+        <div class="hint">حداکثر ۶۷ کاراکتر برای نمایش دوخطی کارت.</div>
+      </label>
+      <button class="btn" type="submit">انتشار پست</button>
+      <div class="message" id="postMessage" role="status"></div>
+    </form>
+    <div class="feed" id="feed"></div>
+  </section>
 
-    input.addEventListener("input", updateComposer);
+  <section class="page" id="publicProfilePage">
+    <div class="profile-card">
+      <button class="btn secondary" data-go="timelinePage">بازگشت به تایم‌لاین</button>
+      <div class="profile-heading">
+        <div class="avatar large" id="publicAvatar">🙂</div>
+        <div>
+          <h1 id="publicName">نام و نام خانوادگی</h1>
+          <div id="publicUsername" class="hint">username</div>
+          <div id="publicDate" class="profile-date">تاریخ عضویت</div>
+        </div>
+      </div>
+      <div id="publicBio" class="profile-bio"></div>
+    </div>
+  </section>
 
-    composer.addEventListener("submit", event => {
-      event.preventDefault();
+  <section class="page" id="editProfilePage">
+    <div class="panel">
+      <h1>پنل کاربری</h1>
+      <p class="subtitle">ویرایش اطلاعات پروفایل</p>
+      <div class="avatar-grid" id="editAvatarChoices"></div>
+      <form id="editProfileForm">
+        <label class="field">
+          <span>نام و نام خانوادگی</span>
+          <input id="editFullName" maxlength="67" required>
+        </label>
+        <label class="field">
+          <span>بیوگرافی</span>
+          <textarea id="editBio" maxlength="250"></textarea>
+        </label>
+        <button class="btn" type="submit">ذخیره تغییرات</button>
+      </form>
+      <button class="btn secondary" data-go="timelinePage">بازگشت</button>
+      <button class="btn secondary" id="logoutButton">خروج از حساب</button>
+      <div class="message" id="editMessage" role="status"></div>
+    </div>
+  </section>
+</div>
 
-      const text = input.value.trim();
-      if (!text || [...text].length > 67) return;
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const pages = [...document.querySelectorAll('.page')];
+  const avatars = ['🙂','😎','🦊','🐱','🦁','🐼','🐸','🚀','🌙','⭐','🌿','🐧'];
+  const state = {
+    avatar: '🙂',
+    profile: {
+      username: 'username',
+      fullName: 'نام و نام خانوادگی',
+      bio: '',
+      createdAt: null
+    },
+    posts: [
+      {text:'این یک متن نمونه\nبرای کارت پست است',username:'username',avatar:'🙂'},
+      {text:'اینجا نوشتهٔ یک کاربر\nدر تایم‌لاین قرار می‌گیرد',username:'user123',avatar:'🦊'},
+      {text:'کارت همیشه مربعی\nو متن خوانا می‌ماند',username:'social67',avatar:'🦁'}
+    ]
+  };
 
-      const card = document.createElement("article");
-      card.className = "message-card";
+  function showPage(id) {
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    $('accountButton').hidden =
+      !['timelinePage','publicProfilePage','editProfilePage'].includes(id);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
 
-      const message = document.createElement("p");
-      message.className = "message-text";
-      message.textContent = text;
+  document.querySelectorAll('[data-go]').forEach(button => {
+    button.addEventListener('click', () => showPage(button.dataset.go));
+  });
 
-      const meta = document.createElement("div");
-      meta.className = "message-meta";
+  $('themeButton').addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const dark = document.body.classList.contains('dark');
+    $('themeButton').textContent = dark ? '☀' : '☾';
+    localStorage.setItem('67-social-theme', dark ? 'dark' : 'light');
+  });
 
-      const user = document.createElement("span");
-      user.textContent = "پیش‌نمایش محلی";
+  if (localStorage.getItem('67-social-theme') === 'dark') {
+    document.body.classList.add('dark');
+    $('themeButton').textContent = '☀';
+  }
 
-      const status = document.createElement("span");
-      status.textContent = "ذخیره نشده";
+  function renderAvatarChoices(containerId) {
+    const container = $(containerId);
+    container.replaceChildren();
 
-      meta.append(user, status);
-      card.append(message, meta);
-      messageList.prepend(card);
+    avatars.forEach(avatar => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'avatar-option' +
+        (avatar === state.avatar ? ' selected' : '');
+      button.textContent = avatar;
+      button.setAttribute('aria-label', 'انتخاب آواتار ' + avatar);
 
-      input.value = "";
-      updateComposer();
-      feed.scrollTop = 0;
-      input.focus();
+      button.addEventListener('click', () => {
+        state.avatar = avatar;
+        $('avatarPreview').textContent = avatar;
+        renderAvatarChoices('avatarChoices');
+        renderAvatarChoices('editAvatarChoices');
+      });
+
+      container.appendChild(button);
+    });
+  }
+
+  function renderFeed() {
+    const feed = $('feed');
+    feed.replaceChildren();
+
+    state.posts.forEach(post => {
+      const card = document.createElement('article');
+      card.className = 'post-card';
+
+      const text = document.createElement('div');
+      text.className = 'post-text';
+      text.textContent = post.text;
+
+      const footer = document.createElement('div');
+      footer.className = 'post-footer';
+
+      const username = document.createElement('div');
+      username.className = 'post-username';
+      username.textContent = post.username;
+
+      const avatar = document.createElement('div');
+      avatar.className = 'avatar';
+      avatar.textContent = post.avatar;
+
+      footer.append(username, avatar);
+      card.append(text, footer);
+      feed.appendChild(card);
+    });
+  }
+
+  function updatePublicProfile() {
+    $('publicAvatar').textContent = state.avatar;
+    $('publicName').textContent = state.profile.fullName;
+    $('publicUsername').textContent = state.profile.username;
+    $('publicBio').textContent = state.profile.bio;
+    $('publicDate').textContent = state.profile.createdAt
+      ? 'عضویت از ' + state.profile.createdAt
+      : 'تاریخ عضویت پس از اتصال به API نمایش داده می‌شود.';
+  }
+
+  const symbols = /[@#$&_+\(\)!?\/-]/;
+
+  function checkPassword() {
+    const password = $('password').value;
+    const checks = {
+      lower: /[a-z]/.test(password),
+      upper: /[A-Z]/.test(password),
+      number: /[0-9]/.test(password),
+      symbol: symbols.test(password),
+      length: password.length >= 12
+    };
+
+    document.querySelectorAll('[data-rule]').forEach(row => {
+      const ok = checks[row.dataset.rule];
+      row.classList.toggle('ok', ok);
+      row.textContent =
+        (ok ? '✓ ' : '○ ') +
+        row.textContent.replace(/^[✓○]\s*/, '');
     });
 
-    // هماهنگی ارتفاع صفحه با صفحه‌کلید مجازی در مرورگرهای پشتیبان
-    if (window.visualViewport) {
-      const app = document.querySelector(".app");
+    return Object.values(checks).every(Boolean);
+  }
 
-      const syncViewport = () => {
-        app.style.height = `${window.visualViewport.height}px`;
-      };
+  $('password').addEventListener('input', checkPassword);
 
-      window.visualViewport.addEventListener("resize", syncViewport);
-      window.visualViewport.addEventListener("scroll", syncViewport);
-      syncViewport();
+  $('signupForm').addEventListener('submit', event => {
+    event.preventDefault();
+
+    const username = $('username').value.trim().toLowerCase();
+    const password = $('password').value;
+    const confirm = $('confirmPassword').value;
+
+    if (!/^[a-z][a-z0-9]{2,8}$/.test(username)) {
+      $('signupMessage').textContent =
+        'نام کاربری باید ۳ تا ۹ کاراکتر انگلیسی و عدد باشد و با حرف شروع شود.';
+      return;
     }
 
-    updateComposer();
-  </script>
+    if (!checkPassword()) {
+      $('signupMessage').textContent =
+        'رمز عبور شرایط نمایش‌داده‌شده را رعایت نمی‌کند.';
+      return;
+    }
+
+    if (password !== confirm) {
+      $('signupMessage').textContent =
+        'رمز عبور و تکرار آن یکسان نیستند.';
+      return;
+    }
+
+    $('signupMessage').textContent =
+      'ظاهر فرم آماده است؛ برای ثبت‌نام واقعی باید API و تأیید ایمیل به این صفحه متصل شوند.';
+    showPage('verifyPage');
+    $('verifyMessage').textContent =
+      'این صفحه فعلاً نمایشی است؛ تأیید واقعی باید از بک‌اند انجام شود.';
+  });
+
+  $('verifyForm').addEventListener('submit', event => {
+    event.preventDefault();
+    $('verifyMessage').textContent =
+      'تأیید کد تا زمان هماهنگ‌شدن API فعال نیست.';
+  });
+
+  $('profileForm').addEventListener('submit', event => {
+    event.preventDefault();
+    state.profile.fullName = $('fullName').value.trim();
+    state.profile.bio = $('bio').value.trim();
+    state.profile.avatar = state.avatar;
+    updatePublicProfile();
+    renderFeed();
+    showPage('timelinePage');
+  });
+
+  $('accountButton').addEventListener('click', () => {
+    $('editFullName').value = state.profile.fullName;
+    $('editBio').value = state.profile.bio;
+    renderAvatarChoices('editAvatarChoices');
+    showPage('editProfilePage');
+  });
+
+  $('myProfileButton').addEventListener('click', () => {
+    updatePublicProfile();
+    showPage('publicProfilePage');
+  });
+
+  $('editProfileForm').addEventListener('submit', event => {
+    event.preventDefault();
+    state.profile.fullName = $('editFullName').value.trim();
+    state.profile.bio = $('editBio').value.trim();
+    updatePublicProfile();
+    $('editMessage').textContent =
+      'تغییرات در این پیش‌نمایش اعمال شد؛ ذخیرهٔ دائمی به API نیاز دارد.';
+  });
+
+  $('postForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const text = $('postText').value.trim();
+    if (!text) return;
+
+    state.posts.unshift({
+      text,
+      username: state.profile.username,
+      avatar: state.avatar
+    });
+
+    renderFeed();
+    $('postText').value = '';
+    $('postMessage').textContent =
+      'پست فقط در پیش‌نمایش اضافه شد و هنوز در سرور ذخیره نشده است.';
+  });
+
+  $('logoutButton').addEventListener('click', () => {
+    showPage('signupPage');
+  });
+
+  renderAvatarChoices('avatarChoices');
+  renderAvatarChoices('editAvatarChoices');
+  renderFeed();
+})();
+</script>
 </body>
 </html>
