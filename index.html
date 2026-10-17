@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f1f5f9">
+  <title>۶۷ — شبکه اجتماعی</title>
+  <meta name="description" content="۶۷؛ شبکه اجتماعی پیام‌های کوتاه">
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f1f5f9;
+      --card: #ffffff;
+      --text: #172b4d;
+      --muted: #64748b;
+      --border: #dce3ec;
+      --accent: #172b4d;
+      --danger: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--page);
+      color: var(--text);
+    }
+
+    button, textarea {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app {
+      height: 100%;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .header {
+      flex: 0 0 auto;
+      height: 58px;
+      padding: 0 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .profile-button {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 19px;
+    }
+
+    .feed {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+      padding: 4px 0 20px;
+    }
+
+    .feed::-webkit-scrollbar {
+      display: none;
+    }
+
+    .message-list {
+      width: 92%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .message-card {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      flex: 0 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-wrap: anywhere;
+    }
+
+    .message-text {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .message-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .composer-area {
+      flex: 0 0 auto;
+      padding: 10px 4% max(10px, env(safe-area-inset-bottom));
+      background: var(--page);
+      border-top: 1px solid var(--border);
+    }
+
+    .composer {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      gap: 9px;
+    }
+
+    .input-wrap {
+      flex: 1;
+      min-width: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 9px 12px 7px;
+    }
+
+    #messageInput {
+      display: block;
+      width: 100%;
+      height: 48px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      padding: 3px 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    #messageInput::placeholder {
+      color: #94a3b8;
+    }
+
+    .input-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    #counter.limit {
+      color: var(--danger);
+    }
+
+    .send-button {
+      align-self: stretch;
+      width: 48px;
+      flex: 0 0 48px;
+      border: 0;
+      border-radius: 14px;
+      background: var(--accent);
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .send-button:disabled {
+      opacity: .4;
+      cursor: default;
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 14px;
+    }
+
+    @media (min-width: 700px) {
+      .message-list {
+        width: min(92%, 430px);
+      }
+
+      .composer {
+        max-width: 430px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">۶۷</div>
+      <button class="profile-button" type="button"
+        aria-label="پروفایل" title="پروفایل">♙</button>
+    </header>
+
+    <main class="feed" id="feed">
+      <div class="message-list" id="messageList">
+        <article class="message-card">
+          <p class="message-text">به ۶۷ خوش آمدی؛ جایی برای حرف‌های کوتاه.</p>
+          <div class="message-meta">
+            <span>کاربر ۱۰۰۱</span>
+            <span>نمونه</span>
+          </div>
+        </article>
+
+        <article class="message-card">
+          <p class="message-text">۶۷ کاراکتر؛ یک فکر، یک پیام.</p>
+          <div class="message-meta">
+            <span>کاربر ۱۰۰۲</span>
+            <span>نمونه</span>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="composer-area" id="composerArea">
+      <form class="composer" id="composer">
+        <div class="input-wrap">
+          <textarea
+            id="messageInput"
+            maxlength="67"
+            rows="2"
+            placeholder="پیامت را بنویس..."
+            aria-label="متن پیام"></textarea>
+          <div class="input-footer">
+            <span>حداکثر ۶۷ کاراکتر</span>
+            <span id="counter">۰ از ۶۷</span>
+          </div>
+        </div>
+        <button class="send-button" id="sendButton"
+          type="submit" aria-label="انتشار پیام" disabled>↑</button>
+      </form>
+    </footer>
+  </div>
+
+  <script>
+    const input = document.getElementById("messageInput");
+    const counter = document.getElementById("counter");
+    const sendButton = document.getElementById("sendButton");
+    const messageList = document.getElementById("messageList");
+    const feed = document.getElementById("feed");
+    const composer = document.getElementById("composer");
+
+    const toPersianDigits = value =>
+      String(value).replace(/\d/g, digit => "۰۱۲۳۴۵۶۷۸۹"[digit]);
+
+    function getLength() {
+      return [...input.value].length;
+    }
+
+    function updateComposer() {
+      const length = getLength();
+      counter.textContent = `${toPersianDigits(length)} از ۶۷`;
+      counter.classList.toggle("limit", length >= 67);
+      sendButton.disabled = input.value.trim().length === 0;
+    }
+
+    input.addEventListener("input", updateComposer);
+
+    composer.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const text = input.value.trim();
+      if (!text || [...text].length > 67) return;
+
+      const card = document.createElement("article");
+      card.className = "message-card";
+
+      const message = document.createElement("p");
+      message.className = "message-text";
+      message.textContent = text;
+
+      const meta = document.createElement("div");
+      meta.className = "message-meta";
+
+      const user = document.createElement("span");
+      user.textContent = "پیش‌نمایش محلی";
+
+      const status = document.createElement("span");
+      status.textContent = "ذخیره نشده";
+
+      meta.append(user, status);
+      card.append(message, meta);
+      messageList.prepend(card);
+
+      input.value = "";
+      updateComposer();
+      feed.scrollTop = 0;
+      input.focus();
+    });
+
+    // هماهنگی ارتفاع صفحه با صفحه‌کلید مجازی در مرورگرهای پشتیبان
+    if (window.visualViewport) {
+      const app = document.querySelector(".app");
+
+      const syncViewport = () => {
+        app.style.height = `${window.visualViewport.height}px`;
+      };
+
+      window.visualViewport.addEventListener("resize", syncViewport);
+      window.visualViewport.addEventListener("scroll", syncViewport);
+      syncViewport();
+    }
+
+    updateComposer();
+  </script>
+</body>
+</html>
