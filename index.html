@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -114,8 +113,6 @@ textarea { min-height: 95px; resize: vertical; }
   text-decoration: underline;
 }
 .message { font-size: 13px; line-height: 1.9; color: var(--muted); }
-.rules { font-size: 12px; line-height: 2; color: var(--muted); }
-.rules .ok { color: #198754; }
 .avatar-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -252,16 +249,10 @@ textarea { min-height: 95px; resize: vertical; }
         </label>
         <label class="field">
           <span>رمز عبور</span>
-          <input id="password" type="password" minlength="12"
+          <input id="password" type="password" minlength="8" maxlength="15"
                  autocomplete="new-password" required>
+          <div class="hint">رمز عبور باید بین ۸ تا ۱۵ کاراکتر باشد.</div>
         </label>
-        <div class="rules" id="passwordRules">
-          <div data-rule="lower">○ حرف کوچک انگلیسی</div>
-          <div data-rule="upper">○ حرف بزرگ انگلیسی</div>
-          <div data-rule="number">○ عدد</div>
-          <div data-rule="symbol">○ علامت مجاز مانند @ # $ _ &amp; - + ( ) ! ? /</div>
-          <div data-rule="length">○ حداقل ۱۲ کاراکتر</div>
-        </div>
         <label class="field">
           <span>تکرار رمز عبور</span>
           <input id="confirmPassword" type="password"
@@ -505,31 +496,6 @@ textarea { min-height: 95px; resize: vertical; }
       : 'تاریخ عضویت پس از اتصال به API نمایش داده می‌شود.';
   }
 
-  const symbols = /[@#$&_+\(\)!?\/-]/;
-
-  function checkPassword() {
-    const password = $('password').value;
-    const checks = {
-      lower: /[a-z]/.test(password),
-      upper: /[A-Z]/.test(password),
-      number: /[0-9]/.test(password),
-      symbol: symbols.test(password),
-      length: password.length >= 12
-    };
-
-    document.querySelectorAll('[data-rule]').forEach(row => {
-      const ok = checks[row.dataset.rule];
-      row.classList.toggle('ok', ok);
-      row.textContent =
-        (ok ? '✓ ' : '○ ') +
-        row.textContent.replace(/^[✓○]\s*/, '');
-    });
-
-    return Object.values(checks).every(Boolean);
-  }
-
-  $('password').addEventListener('input', checkPassword);
-
   $('signupForm').addEventListener('submit', event => {
     event.preventDefault();
 
@@ -543,9 +509,9 @@ textarea { min-height: 95px; resize: vertical; }
       return;
     }
 
-    if (!checkPassword()) {
+    if (password.length < 8 || password.length > 15) {
       $('signupMessage').textContent =
-        'رمز عبور شرایط نمایش‌داده‌شده را رعایت نمی‌کند.';
+        'رمز عبور باید بین ۸ تا ۱۵ کاراکتر باشد.';
       return;
     }
 
@@ -625,5 +591,6 @@ textarea { min-height: 95px; resize: vertical; }
   renderFeed();
 })();
 </script>
+<script src="social-67-frontend-additions.js"></script>
 </body>
 </html>
