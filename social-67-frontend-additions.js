@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const API = 'https://social67.shiraali.ir';
-  const TURNSTILE_SITE_KEY = 'PUT_YOUR_TURNSTILE_SITE_KEY_HERE';
+  const TURNSTILE_SITE_KEY = '0x4AAAAAAFZ561QShBA6Mxo1';
   const $ = id => document.getElementById(id);
   const status = (el, text, good = false) => {
     if (!el) return;
@@ -51,8 +51,12 @@
   // Turnstile widgets are created dynamically; do not silently bypass them.
   const loadTurnstile = () => new Promise((resolve, reject) => {
     if (window.turnstile) return resolve();
-    if (TURNSTILE_SITE_KEY === 'PUT_YOUR_TURNSTILE_SITE_KEY_HERE')
-      return reject(new Error('کلید عمومی Cloudflare Turnstile هنوز در کد قرار نگرفته است.'));
+    if (
+      !TURNSTILE_SITE_KEY ||
+      TURNSTILE_SITE_KEY === 'PUT_YOUR_TURNSTILE_SITE_KEY_HERE'
+    ) {
+      return reject(new Error('کلید عمومی Cloudflare Turnstile تنظیم نشده است.'));
+    }
     const existing = document.querySelector('script[data-turnstile-loader]');
     if (existing) { existing.addEventListener('load', resolve, { once: true }); existing.addEventListener('error', reject, { once: true }); return; }
     const script = document.createElement('script');
