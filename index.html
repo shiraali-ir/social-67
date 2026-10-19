@@ -5,592 +5,643 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>67 Social</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #ffffff;
-  --card: rgba(255,255,255,.82);
-  --text: #171717;
-  --muted: #777777;
-  --border: #e8e8e8;
-  --field: #fafafa;
-  --shadow: 0 8px 28px rgba(0,0,0,.09);
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Vazirmatn, Vazir, Tahoma, sans-serif;
-  transition: background .2s, color .2s;
-}
-body.dark {
-  --bg: #090909;
-  --card: rgba(27,27,27,.9);
-  --text: #f5f5f5;
-  --muted: #b4b4b4;
-  --border: #333333;
-  --field: #171717;
-  --shadow: 0 8px 28px rgba(0,0,0,.4);
-}
-button, input, textarea { font: inherit; }
-button { cursor: pointer; }
-.app { max-width: 900px; margin: auto; padding: 16px; }
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 25px;
-}
-.brand { font-size: 25px; font-weight: 900; }
-.icon-button {
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: var(--card);
-  color: var(--text);
-  box-shadow: var(--shadow);
-  font-size: 20px;
-}
-.page { display: none; }
-.page.active { display: block; }
-.panel {
-  max-width: 440px;
-  margin: 24px auto;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-}
-h1 { font-size: 24px; margin: 0 0 10px; }
-.subtitle, .hint {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.9;
-}
-.field { display: block; margin: 15px 0; }
-.field > span {
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 7px;
-}
-input, textarea {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  background: var(--field);
-  color: var(--text);
-  outline: none;
-}
-input:focus, textarea:focus { border-color: var(--muted); }
-textarea { min-height: 95px; resize: vertical; }
-.btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: 0;
-  border-radius: 13px;
-  background: var(--text);
-  color: var(--bg);
-  font-weight: bold;
-}
-.btn.secondary {
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-}
-.text-button {
-  display: block;
-  margin: 12px auto 0;
-  border: 0;
-  background: none;
-  color: var(--text);
-  text-decoration: underline;
-}
-.message { font-size: 13px; line-height: 1.9; color: var(--muted); }
-.avatar-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin: 15px 0;
-}
-.avatar-option {
-  height: 55px;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  background: var(--field);
-  color: var(--text);
-  font-size: 27px;
-}
-.avatar-option.selected { border: 2px solid var(--text); }
-.profile-heading {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin: 20px 0;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #e9e9e9;
-  font-size: 18px;
-  overflow: hidden;
-}
-.avatar.large { width: 76px; height: 76px; flex-basis: 76px; font-size: 40px; }
-.timeline-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-.compose, .profile-card {
-  padding: 16px;
-  margin-bottom: 20px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-}
-.feed {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 235px), 1fr));
-  gap: 16px;
-}
-/* کارت پست: مربع ۱:۱، متن دوخطی، بدون لایک و کامنت */
-.post-card {
-  aspect-ratio: 1 / 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 18px;
-  border: 1px solid var(--border);
-  border-radius: 23px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-  overflow: hidden;
-}
-.post-text {
-  font-size: clamp(18px, 2.4vw, 23px);
-  font-weight: 700;
-  line-height: 1.65;
-  text-align: center;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.post-footer {
-  display: flex;
-  direction: rtl;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-.post-username {
-  max-width: calc(100% - 42px);
-  font-size: 13px;
-  font-weight: bold;
-  overflow-wrap: anywhere;
-}
-.profile-bio {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  line-height: 1.9;
-}
-.profile-date { color: var(--muted); font-size: 12px; margin-top: 8px; }
-@media (max-width: 520px) {
-  .app { padding: 12px; }
-  .panel { padding: 19px; }
-  .feed { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .post-card { padding: 12px; border-radius: 18px; }
-  .post-text { font-size: 17px; }
-  .post-username { font-size: 11px; }
-}
+:root{--bg:#fff;--card:rgba(255,255,255,.85);--text:#171717;--muted:#777;--border:#e8e8e8;--field:#fafafa;--shadow:0 8px 28px rgba(0,0,0,.09);--ok:#198754;--bad:#d93025}
+body.dark{color-scheme:dark;--bg:#090909;--card:rgba(27,27,27,.9);--text:#f5f5f5;--muted:#b4b4b4;--border:#333;--field:#171717;--shadow:0 8px 28px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif;color-scheme:light;transition:background .2s,color .2s}
+button,input,textarea{font:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.app{max-width:900px;margin:auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}
+.brand{font-size:25px;font-weight:900}
+.icon-button{width:42px;height:42px;border:1px solid var(--border);border-radius:50%;background:var(--card);color:var(--text);box-shadow:var(--shadow);font-size:20px;margin-inline-start:6px}
+.page{display:none}.page.active{display:block}
+.panel{max-width:440px;margin:24px auto;padding:24px;border:1px solid var(--border);border-radius:24px;background:var(--card);box-shadow:var(--shadow)}
+h1{font-size:24px;margin:0 0 10px}
+.subtitle,.hint{color:var(--muted);font-size:13px;line-height:1.9}
+.field{display:block;margin:15px 0}
+.field>span{display:block;font-size:14px;font-weight:bold;margin-bottom:7px}
+input,textarea{display:block;width:100%;padding:12px;border:1px solid var(--border);border-radius:13px;background:var(--field);color:var(--text);outline:none}
+input[type=password],input[type=email],#username,#loginIdentifier,#forgotUsername{direction:ltr;text-align:left}
+input:focus,textarea:focus{border-color:var(--muted)}
+textarea{min-height:95px;resize:vertical}
+.btn{width:100%;padding:12px;margin-top:10px;border:0;border-radius:13px;background:var(--text);color:var(--bg);font-weight:bold}
+.btn.secondary{border:1px solid var(--border);background:transparent;color:var(--text)}
+.btn:disabled{opacity:.5;cursor:wait}
+.text-button{display:block;margin:12px auto 0;border:0;background:none;color:var(--text);text-decoration:underline}
+.message{font-size:13px;line-height:1.9;color:var(--muted);min-height:1.9em}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+/* انتخاب آواتار */
+.profile-heading{display:flex;align-items:center;gap:15px;margin:20px 0}
+.avatar{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;border-radius:50%;background:var(--field);border:1px solid var(--border);font-size:18px;overflow:hidden}
+.avatar.large{width:76px;height:76px;flex-basis:76px;font-size:40px}
+.cat-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+.cat-tabs button{flex:0 0 auto;padding:6px 12px;border:1px solid var(--border);border-radius:99px;background:transparent;color:var(--text);font-size:13px}
+.cat-tabs button.on{background:var(--text);color:var(--bg)}
+.avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:10px 0;max-height:230px;overflow-y:auto;padding:2px}
+.avatar-option{aspect-ratio:1;border:1px solid var(--border);border-radius:14px;background:var(--field);font-size:25px;padding:0}
+.avatar-option.selected{border:2px solid var(--text)}
+/* تایم‌لاین */
+.timeline-heading{display:flex;align-items:center;justify-content:space-between;margin:20px 0}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tab{flex:1;padding:11px;border:1px solid var(--border);border-radius:13px;background:transparent;color:var(--text);font-weight:bold}
+.tab.on{background:var(--text);color:var(--bg)}
+.compose,.profile-card{padding:16px;margin-bottom:20px;border:1px solid var(--border);border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
+.counter{font-size:12px;color:var(--muted);text-align:left}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr));gap:16px}
+.post-card{position:relative;aspect-ratio:1/1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:18px;border:1px solid var(--border);border-radius:23px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.post-text{font-size:clamp(18px,2.4vw,23px);font-weight:700;line-height:1.65;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-footer{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;border:0;background:none;color:var(--text);padding:0;width:100%;text-align:start}
+.post-username{max-width:calc(100% - 56px);font-size:13px;font-weight:bold;overflow-wrap:anywhere}
+.ring-wrap{position:relative;width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center}
+.ring-wrap svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ring-wrap circle{fill:none;stroke-width:3}
+.ring-bg{stroke:var(--border)}.ring-fg{stroke:var(--text);transition:stroke-dashoffset .6s linear}
+.post-del{position:absolute;top:8px;inset-inline-start:8px;width:28px;height:28px;border:0;border-radius:50%;background:var(--field);color:var(--muted)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+.profile-bio{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9}
+.profile-date{color:var(--muted);font-size:12px;margin-top:8px}
+@media (max-width:520px){.app{padding:12px}.panel{padding:19px}.feed{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.post-card{padding:12px;border-radius:18px}.post-text{font-size:17px}.post-username{font-size:11px}.avatar-grid{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body>
 <div class="app">
-  <header>
-    <div class="brand">67 Social</div>
-    <div>
-      <button class="icon-button" id="themeButton" aria-label="تغییر تم">☾</button>
-      <button class="icon-button" id="accountButton" aria-label="پنل کاربری" hidden>♙</button>
-    </div>
-  </header>
+<header>
+  <div class="brand">67 Social</div>
+  <div>
+    <button class="icon-button" id="themeButton" aria-label="تغییر تم">☾</button>
+    <button class="icon-button" id="accountButton" aria-label="پنل کاربری" hidden>♙</button>
+  </div>
+</header>
 
-  <section class="page active" id="signupPage">
-    <div class="panel">
-      <h1>ساخت حساب</h1>
-      <p class="subtitle">برای پیوستن به 67 Social اطلاعات زیر را وارد کنید.</p>
-      <form id="signupForm">
-        <label class="field">
-          <span>نام کاربری</span>
-          <input id="username" minlength="3" maxlength="9"
-                 pattern="[a-zA-Z][a-zA-Z0-9]{2,8}"
-                 autocomplete="username" required>
-          <div class="hint">۳ تا ۹ کاراکتر انگلیسی و عدد؛ شروع با حرف.</div>
-        </label>
-        <label class="field">
-          <span>ایمیل</span>
-          <input id="email" type="email" autocomplete="email" required>
-        </label>
-        <label class="field">
-          <span>رمز عبور</span>
-          <input id="password" type="password" minlength="8" maxlength="15"
-                 autocomplete="new-password" required>
-          <div class="hint">رمز عبور باید بین ۸ تا ۱۵ کاراکتر باشد.</div>
-        </label>
-        <label class="field">
-          <span>تکرار رمز عبور</span>
-          <input id="confirmPassword" type="password"
-                 autocomplete="new-password" required>
-        </label>
-        <div class="field">
-          <span>محافظت ضدربات</span>
-          <div class="hint">
-            Cloudflare Turnstile باید با کلید سایت و بررسی سمت سرور فعال شود.
-          </div>
-        </div>
-        <button class="btn" type="submit">Sign Up</button>
-        <div class="message" id="signupMessage" role="status"></div>
-      </form>
-      <button class="text-button" data-go="loginPage">از قبل حساب دارید؟ ورود</button>
-    </div>
-  </section>
+<!-- ثبت‌نام -->
+<section class="page active" id="signupPage"><div class="panel">
+  <h1>ساخت حساب</h1>
+  <p class="subtitle">برای پیوستن به 67 Social اطلاعات زیر را وارد کنید.</p>
+  <form id="signupForm" novalidate>
+    <label class="field"><span>نام کاربری</span>
+      <input id="username" maxlength="9" autocomplete="username" autocapitalize="none" required>
+      <div class="hint" id="usernameHint">۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی (a-z) و عدد (0-9).</div></label>
+    <label class="field"><span>ایمیل (فقط Gmail)</span>
+      <input id="email" type="email" autocomplete="email" required>
+      <div class="hint" id="emailHint">فقط نشانی @gmail.com پذیرفته می‌شود.</div></label>
+    <label class="field"><span>رمز عبور</span>
+      <input id="password" type="password" maxlength="15" autocomplete="new-password" required>
+      <div class="hint" id="passwordHint">۸ تا ۱۵ کاراکتر شامل حرف کوچک، حرف بزرگ، عدد و نماد (مثل ! @ #).</div></label>
+    <label class="field"><span>تکرار رمز عبور</span>
+      <input id="confirmPassword" type="password" maxlength="15" autocomplete="new-password" required></label>
+    <div class="field"><span>بررسی امنیتی</span><div id="tsSignup"></div></div>
+    <button class="btn" type="submit">Sign Up</button>
+    <div class="message" id="signupMessage" role="status"></div>
+  </form>
+  <button class="text-button" data-go="loginPage">از قبل حساب دارید؟ ورود</button>
+</div></section>
 
-  <section class="page" id="verifyPage">
-    <div class="panel">
-      <h1>تأیید ایمیل</h1>
-      <p class="subtitle">کد ارسال‌شده به ایمیل خود را وارد کنید.</p>
-      <form id="verifyForm">
-        <label class="field">
-          <span>کد تأیید</span>
-          <input id="verificationCode" inputmode="numeric"
-                 autocomplete="one-time-code" required>
-        </label>
-        <button class="btn" type="submit">تأیید ایمیل</button>
-        <div class="message" id="verifyMessage" role="status"></div>
-      </form>
-    </div>
-  </section>
+<!-- تأیید ایمیل ثبت‌نام -->
+<section class="page" id="verifyPage"><div class="panel">
+  <h1>تأیید ایمیل</h1>
+  <p class="subtitle" id="verifySubtitle">کد ۶ رقمی ارسال‌شده به ایمیل را وارد کنید.</p>
+  <form id="verifyForm">
+    <label class="field"><span>کد تأیید</span>
+      <input id="verificationCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required></label>
+    <button class="btn" type="submit">تأیید و ادامه</button>
+    <div class="message" id="verifyMessage" role="status"></div>
+  </form>
+  <button class="text-button" id="resendCode" type="button">ارسال دوبارهٔ کد</button>
+  <button class="text-button" data-go="signupPage" type="button">بازگشت</button>
+</div></section>
 
-  <section class="page" id="profileSetupPage">
-    <div class="panel">
-      <h1>پروفایل خود را بسازید</h1>
-      <p class="subtitle">آواتار، نام و نام خانوادگی و بیوگرافی اختیاری.</p>
-      <div class="profile-heading">
-        <div class="avatar large" id="avatarPreview">🙂</div>
-        <strong>انتخاب آواتار</strong>
-      </div>
-      <div class="avatar-grid" id="avatarChoices"></div>
-      <form id="profileForm">
-        <label class="field">
-          <span>نام و نام خانوادگی</span>
-          <input id="fullName" maxlength="67" required>
-        </label>
-        <label class="field">
-          <span>بیوگرافی (اختیاری)</span>
-          <textarea id="bio" maxlength="250"
-                    placeholder="دربارهٔ خودتان بنویسید یا لینک دلخواهتان را قرار دهید..."></textarea>
-          <div class="hint">حداکثر ۲۵۰ کاراکتر.</div>
-        </label>
-        <button class="btn" type="submit">ذخیره و ورود به تایم‌لاین</button>
-      </form>
-    </div>
-  </section>
+<!-- تکمیل پروفایل -->
+<section class="page" id="profileSetupPage"><div class="panel">
+  <h1>پروفایل خود را بسازید</h1>
+  <p class="subtitle">آواتار انتخاب کنید و نام و بیوگرافی بنویسید.</p>
+  <div class="profile-heading"><div class="avatar large" id="setupPreview">🙂</div><strong>انتخاب آواتار</strong></div>
+  <div id="setupPicker"></div>
+  <form id="profileForm">
+    <label class="field"><span>نام نمایشی</span><input id="fullName" required></label>
+    <label class="field"><span>بیوگرافی (اختیاری)</span><textarea id="bio" placeholder="دربارهٔ خودتان بنویسید..."></textarea>
+      <div class="counter" id="bioCount">0/67</div></label>
+    <button class="btn" type="submit">ذخیره و ورود به تایم‌لاین</button>
+    <div class="message" id="profileMessage" role="status"></div>
+  </form>
+</div></section>
 
-  <section class="page" id="loginPage">
-    <div class="panel">
-      <h1>ورود به حساب</h1>
-      <form id="loginForm">
-        <label class="field">
-          <span>نام کاربری یا ایمیل</span>
-          <input id="loginIdentifier" autocomplete="username" required>
-        </label>
-        <label class="field">
-          <span>رمز عبور</span>
-          <input id="loginPassword" type="password"
-                 autocomplete="current-password" required>
-        </label>
-        <button class="btn" type="submit">ورود</button>
-        <div class="message" id="loginMessage" role="status"></div>
-      </form>
-      <button class="text-button" data-go="signupPage">ساخت حساب جدید</button>
-    </div>
-  </section>
+<!-- ورود -->
+<section class="page" id="loginPage"><div class="panel">
+  <h1>ورود به حساب</h1>
+  <form id="loginForm">
+    <label class="field"><span>نام کاربری یا ایمیل</span>
+      <input id="loginIdentifier" autocomplete="username" autocapitalize="none" required></label>
+    <label class="field"><span>رمز عبور</span>
+      <input id="loginPassword" type="password" autocomplete="current-password" required></label>
+    <div class="field"><span>بررسی امنیتی</span><div id="tsLogin"></div></div>
+    <button class="btn" type="submit">ورود</button>
+    <div class="message" id="loginMessage" role="status"></div>
+  </form>
+  <button class="text-button" data-go="forgotPage">فراموشی رمز عبور</button>
+  <button class="text-button" data-go="signupPage">ساخت حساب جدید</button>
+</div></section>
 
-  <section class="page" id="timelinePage">
-    <div class="timeline-heading">
-      <div>
-        <h1>تایم‌لاین</h1>
-        <div class="subtitle">پست‌های عمومی 67 Social</div>
-      </div>
-      <button class="icon-button" id="myProfileButton" aria-label="پروفایل من">♙</button>
-    </div>
-    <form class="compose" id="postForm">
-      <label class="field">
-        <span>پست جدید</span>
-        <textarea id="postText" maxlength="67" required
-                  placeholder="چه چیزی می‌خواهید بنویسید؟"></textarea>
-        <div class="hint">حداکثر ۶۷ کاراکتر برای نمایش دوخطی کارت.</div>
-      </label>
-      <button class="btn" type="submit">انتشار پست</button>
-      <div class="message" id="postMessage" role="status"></div>
-    </form>
-    <div class="feed" id="feed"></div>
-  </section>
+<!-- کد ورود -->
+<section class="page" id="loginCodePage"><div class="panel">
+  <h1>کد ورود</h1>
+  <p class="subtitle" id="loginCodeSubtitle">کد ۶ رقمی ارسال‌شده به ایمیل را وارد کنید.</p>
+  <form id="loginCodeForm">
+    <label class="field"><span>کد تأیید</span>
+      <input id="loginCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required></label>
+    <button class="btn" type="submit">تأیید و ورود</button>
+    <div class="message" id="loginCodeMessage" role="status"></div>
+  </form>
+  <button class="text-button" data-go="loginPage" type="button">بازگشت به ورود</button>
+</div></section>
 
-  <section class="page" id="publicProfilePage">
-    <div class="profile-card">
-      <button class="btn secondary" data-go="timelinePage">بازگشت به تایم‌لاین</button>
-      <div class="profile-heading">
-        <div class="avatar large" id="publicAvatar">🙂</div>
-        <div>
-          <h1 id="publicName">نام و نام خانوادگی</h1>
-          <div id="publicUsername" class="hint">username</div>
-          <div id="publicDate" class="profile-date">تاریخ عضویت</div>
-        </div>
-      </div>
-      <div id="publicBio" class="profile-bio"></div>
-    </div>
-  </section>
+<!-- فراموشی رمز ۱: نام کاربری و ایمیل -->
+<section class="page" id="forgotPage"><div class="panel">
+  <h1>فراموشی رمز عبور</h1>
+  <p class="subtitle">نام کاربری و ایمیل حساب را وارد کنید. اگر هر دو مال یک حساب باشند، کد به ایمیل ارسال می‌شود.</p>
+  <form id="forgotForm">
+    <label class="field"><span>نام کاربری</span><input id="forgotUsername" maxlength="9" autocapitalize="none" required></label>
+    <label class="field"><span>ایمیل</span><input id="forgotEmail" type="email" required></label>
+    <button class="btn" type="submit">ارسال کد</button>
+    <div class="message" id="forgotMessage" role="status"></div>
+  </form>
+  <button class="text-button" data-go="loginPage" type="button">بازگشت به ورود</button>
+</div></section>
 
-  <section class="page" id="editProfilePage">
-    <div class="panel">
-      <h1>پنل کاربری</h1>
-      <p class="subtitle">ویرایش اطلاعات پروفایل</p>
-      <div class="avatar-grid" id="editAvatarChoices"></div>
-      <form id="editProfileForm">
-        <label class="field">
-          <span>نام و نام خانوادگی</span>
-          <input id="editFullName" maxlength="67" required>
-        </label>
-        <label class="field">
-          <span>بیوگرافی</span>
-          <textarea id="editBio" maxlength="250"></textarea>
-        </label>
-        <button class="btn" type="submit">ذخیره تغییرات</button>
-      </form>
-      <button class="btn secondary" data-go="timelinePage">بازگشت</button>
-      <button class="btn secondary" id="logoutButton">خروج از حساب</button>
-      <div class="message" id="editMessage" role="status"></div>
+<!-- فراموشی رمز ۲: کد -->
+<section class="page" id="resetCodePage"><div class="panel">
+  <h1>وارد کردن کد</h1>
+  <p class="subtitle">کد ۶ رقمی ارسال‌شده به ایمیل را وارد کنید. کد تا ۱۰ دقیقه معتبر است.</p>
+  <form id="resetCodeForm">
+    <label class="field"><span>کد تأیید</span>
+      <input id="resetCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required></label>
+    <button class="btn" type="submit">تأیید کد</button>
+    <div class="message" id="resetCodeMessage" role="status"></div>
+  </form>
+  <button class="text-button" data-go="forgotPage" type="button">بازگشت</button>
+</div></section>
+
+<!-- فراموشی رمز ۳: رمز جدید -->
+<section class="page" id="resetNewPage"><div class="panel">
+  <h1>رمز عبور جدید</h1>
+  <form id="resetNewForm">
+    <label class="field"><span>رمز جدید</span>
+      <input id="newPassword" type="password" maxlength="15" autocomplete="new-password" required>
+      <div class="hint" id="newPasswordHint">۸ تا ۱۵ کاراکتر شامل حرف کوچک، حرف بزرگ، عدد و نماد (مثل ! @ #).</div></label>
+    <label class="field"><span>تکرار رمز جدید</span>
+      <input id="newPassword2" type="password" maxlength="15" autocomplete="new-password" required></label>
+    <button class="btn" type="submit">ثبت</button>
+    <div class="message" id="resetNewMessage" role="status"></div>
+  </form>
+</div></section>
+
+<!-- تایم‌لاین -->
+<section class="page" id="timelinePage">
+  <div class="timeline-heading">
+    <div><h1>تایم‌لاین</h1><div class="subtitle">پست‌های 67 Social</div></div>
+    <button class="icon-button" id="myProfileButton" aria-label="پروفایل من">♙</button>
+  </div>
+  <form class="compose" id="postForm">
+    <label class="field" style="margin:0"><span>پست جدید</span>
+      <textarea id="postText" placeholder="چه چیزی می‌خواهید بنویسید؟" style="min-height:70px"></textarea>
+      <div class="counter" id="postCount">0/67</div>
+      <div class="hint">هر پست ۲۴ ساعت می‌ماند و بعد از همه‌جا حذف می‌شود.</div></label>
+    <button class="btn" type="submit">انتشار پست</button>
+    <div class="message" id="postMessage" role="status"></div>
+  </form>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-scope="all" role="tab">همه</button>
+    <button class="tab" data-scope="friends" role="tab">دوستان</button>
+  </div>
+  <div class="feed" id="feed"></div>
+  <button class="btn secondary" id="moreButton" hidden>بارگذاری بیشتر</button>
+</section>
+
+<!-- پروفایل -->
+<section class="page" id="profilePage">
+  <div class="profile-card">
+    <button class="btn secondary" data-go="timelinePage" style="margin:0 0 6px">بازگشت به تایم‌لاین</button>
+    <div class="profile-heading">
+      <div class="avatar large" id="pAvatar">🙂</div>
+      <div><h1 id="pName"></h1><div id="pUser" class="hint"></div><div id="pDate" class="profile-date"></div></div>
     </div>
-  </section>
+    <div id="pBio" class="profile-bio"></div>
+    <button class="btn" id="friendButton" hidden></button>
+    <button class="btn" id="editProfileButton" hidden>ویرایش پروفایل</button>
+    <div class="message" id="pMessage" role="status"></div>
+  </div>
+  <div class="feed" id="profileFeed"></div>
+</section>
+
+<!-- ویرایش پروفایل -->
+<section class="page" id="editProfilePage"><div class="panel">
+  <h1>پنل کاربری</h1>
+  <div class="profile-heading"><div class="avatar large" id="editPreview">🙂</div><strong>آواتار</strong></div>
+  <div id="editPicker"></div>
+  <form id="editProfileForm">
+    <label class="field"><span>نام نمایشی</span><input id="editFullName" required></label>
+    <label class="field"><span>بیوگرافی</span><textarea id="editBio"></textarea>
+      <div class="counter" id="editBioCount">0/67</div></label>
+    <button class="btn" type="submit">ذخیره تغییرات</button>
+  </form>
+  <button class="btn secondary" data-go="timelinePage">بازگشت</button>
+  <button class="btn secondary" id="logoutButton">خروج از حساب</button>
+  <div class="message" id="editMessage" role="status"></div>
+</div></section>
 </div>
 
 <script>
 (() => {
-  const $ = id => document.getElementById(id);
-  const pages = [...document.querySelectorAll('.page')];
-  const avatars = ['🙂','😎','🦊','🐱','🦁','🐼','🐸','🚀','🌙','⭐','🌿','🐧'];
-  const state = {
-    avatar: '🙂',
-    profile: {
-      username: 'username',
-      fullName: 'نام و نام خانوادگی',
-      bio: '',
-      createdAt: null
-    },
-    posts: [
-      {text:'این یک متن نمونه\nبرای کارت پست است',username:'username',avatar:'🙂'},
-      {text:'اینجا نوشتهٔ یک کاربر\nدر تایم‌لاین قرار می‌گیرد',username:'user123',avatar:'🦊'},
-      {text:'کارت همیشه مربعی\nو متن خوانا می‌ماند',username:'social67',avatar:'🦁'}
-    ]
+'use strict';
+const API = 'https://social67.shiraali.ir';
+const TURNSTILE_SITE_KEY = '0x4AAAAAAFZ561QShBA6Mxo1';
+const MAX = 67;
+const $ = id => document.getElementById(id);
+const pages = [...document.querySelectorAll('.page')];
+let me = null, scope = 'all', cursor = null, ctx = {};
+
+/* ---------- آواتارها (بدون آپلود عکس؛ فقط ایموجی) ---------- */
+const CATS = {
+  'چهره': '🙂 😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙃 😉 😌 😍 🥰 😘 😋 😛 😜 🤪 🤨 🧐 🤓 😎 🥸 🤩 🥳 😏 😒 😔 😟 😕 🙁 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤯 😳 🥵 🥶 😱 😨 😰 😥 🤗 🤔 🤭 🫡 🤫 😶 😐 😑 😬 🙄 😯 😮 😲 🥱 😴 🤤 😵 🤐 🥴 🤢 🤧 😷 🤒 🤕 🤑 🤠 😈 👻 💀 👽 🤖 🎃 😺 😸 😻 🙈 🙉 🙊',
+  'آدم‌ها': '🧑‍💻 🧑‍🎨 🧑‍🚀 🧑‍🍳 🧑‍🔬 🧑‍🎤 🧑‍🏫 🧑‍⚕️ 🧑‍🚒 🧑‍✈️ 🧙 🧛 🧜 🧚 🧞 🧝 🦸 🦹 🥷 🧑‍🎄 👸 🤴 🫅 👮 💂 🕵️ 👷 🧑‍🌾 🧑‍🔧 🧑‍🏭 🤵 👰 🧑‍🍼 👶 🧒 🧓 💃 🕺 🧘 🏄 🚴 🤸 ⛹️ 🏋️ 🤺 🏇 🧗 🏊',
+  'حیوانات': '🐶 🐱 🐭 🐹 🐰 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐸 🐵 🐔 🐧 🐦 🦆 🦅 🦉 🦇 🐺 🐗 🐴 🦄 🐝 🪲 🦋 🐌 🐞 🐜 🐢 🐍 🦎 🐙 🦑 🦀 🐠 🐬 🐳 🦈 🐊 🐘 🦒 🦓 🦘 🐪 🦥 🦦 🦔 🐿️ 🦜 🦚 🦩 🦢 🐓 🦃 🐉 🦖 🦕 🐋 🦭 🦫',
+  'طبیعت': '🌵 🎄 🌲 🌳 🌴 🍀 🌿 🍁 🍂 🌸 🌹 🌺 🌻 🌼 🌷 🪻 🍄 🐚 🪨 🌙 ⭐ 🌟 ✨ ⚡ 🔥 💧 🌈 ☀️ ☁️ 🌊 🌍 🪐 🌋 🏔️ 🏝️ 🌅 ☄️ 🌪️ ⛄',
+  'خوراکی': '🍎 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍑 🍒 🥭 🍍 🥝 🍅 🥑 🥦 🥕 🌽 🌶️ 🥐 🍞 🧀 🍔 🍕 🌭 🌮 🍟 🍣 🍜 🍩 🍪 🎂 🍰 🍫 🍿 🍭 🍦 🥤 ☕ 🍵 🧋',
+  'ورزش و بازی': '⚽ 🏀 🏈 ⚾ 🎾 🏐 🏓 🥊 🎮 🕹️ 🎯 🎲 ♟️ 🧩 🎸 🎹 🥁 🎻 🎧 🎤 🎨 🎬 📷 🎭 🎪 🏆 🥇',
+  'اشیا و نمادها': '🚀 ✈️ 🚗 🏍️ 🚲 ⛵ 🚁 🛸 💎 👑 🎩 🕶️ 🧢 💡 📚 🔮 🎁 🔑 🧭 ⚙️ 🛡️ ⚔️ 🪄 🧿 🎈 🎉 ❤️ 🧡 💛 💚 💙 💜 🖤 🤍 💯 🔱 ☯️ ♾️ 🏴‍☠️ 🏳️‍🌈',
+  'دست‌ها': '👍 👏 🙌 ✌️ 🤘 🤟 👌 🤞 🤙 👋 🫶 🙏 💪 🖖 ☝️ ✊ 👊 🫰 🤝'
+};
+function avatarPicker(root, getValue, setValue) {
+  let cat = Object.keys(CATS)[0];
+  const draw = () => {
+    root.replaceChildren();
+    const tabs = document.createElement('div'); tabs.className = 'cat-tabs';
+    for (const name of Object.keys(CATS)) {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = name;
+      b.className = name === cat ? 'on' : '';
+      b.onclick = () => { cat = name; draw(); };
+      tabs.appendChild(b);
+    }
+    const grid = document.createElement('div'); grid.className = 'avatar-grid';
+    for (const e of CATS[cat].split(' ')) {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = e;
+      b.className = 'avatar-option' + (e === getValue() ? ' selected' : '');
+      b.setAttribute('aria-label', 'آواتار ' + e);
+      b.onclick = () => { setValue(e); draw(); };
+      grid.appendChild(b);
+    }
+    root.append(tabs, grid);
   };
+  draw(); return draw;
+}
+let setupAvatar = '🙂', editAvatar = '🙂';
+const drawSetup = avatarPicker($('setupPicker'), () => setupAvatar, v => { setupAvatar = v; $('setupPreview').textContent = v; });
+const drawEdit = avatarPicker($('editPicker'), () => editAvatar, v => { editAvatar = v; $('editPreview').textContent = v; });
 
-  function showPage(id) {
-    pages.forEach(p => p.classList.toggle('active', p.id === id));
-    $('accountButton').hidden =
-      !['timelinePage','publicProfilePage','editProfilePage'].includes(id);
-    window.scrollTo({top:0,behavior:'smooth'});
+/* ---------- ابزارها ---------- */
+const ERR = {
+  gmail_only: 'فقط نشانی @gmail.com پذیرفته می‌شود.',
+  email_unavailable: 'یک حساب یا ثبت‌نام در انتظار با این ایمیل وجود دارد.',
+  username_unavailable: 'این نام کاربری قبلاً انتخاب شده یا رزرو است.',
+  invalid_username: 'نام کاربری باید ۳ تا ۹ کاراکتر و فقط شامل حروف کوچک انگلیسی و اعداد ۰ تا ۹ باشد.',
+  invalid_password: 'رمز عبور باید ۸ تا ۱۵ کاراکتر و شامل حرف کوچک، حرف بزرگ، عدد و نماد باشد.',
+  turnstile_failed: 'بررسی امنیتی انجام نشد؛ دوباره تلاش کنید.',
+  email_send_failed: 'ارسال ایمیل انجام نشد؛ کمی بعد دوباره تلاش کنید.',
+  email_rate_limited: 'تعداد درخواست‌ها زیاد است؛ کمی بعد دوباره تلاش کنید.',
+  rate_limited: 'تعداد درخواست‌ها زیاد است؛ کمی بعد دوباره تلاش کنید.',
+  invalid_credentials: 'نام کاربری/ایمیل یا رمز عبور نادرست است.',
+  invalid_verification_code: 'کد نادرست است.',
+  verification_code_expired: 'کد منقضی شده است؛ کد تازه بگیرید.',
+  verification_code_locked: 'به‌دلیل تلاش‌های ناموفق، کد قفل شد؛ کد تازه بگیرید.',
+  signup_expired: 'مهلت ثبت‌نام تمام شده؛ دوباره ثبت‌نام کنید.',
+  username_reservation_expired: 'مهلت رزرو نام کاربری تمام شده؛ دوباره ثبت‌نام کنید.',
+  invalid_or_expired_code: 'کد نادرست یا منقضی شده است.',
+  invalid_reset_code: 'کد نادرست است.',
+  password_reset_locked: 'به‌دلیل تلاش‌های ناموفق، بازیابی موقتاً قفل شد.',
+  password_reset_code_cooldown: 'برای درخواست کد تازه کمی صبر کنید.',
+  password_reset_code_rate_limited: 'تعداد درخواست کد زیاد است؛ بعداً تلاش کنید.',
+  password_reset_change_rate_limited: 'تعداد تغییر رمز زیاد است؛ بعداً تلاش کنید.',
+  invalid_message: 'پست باید حداکثر ۶۷ کاراکتر و غیرخالی باشد.',
+  text_too_long: 'متن بیش از ۶۷ کاراکتر است.',
+  unauthorized: 'نشست شما تمام شده؛ دوباره وارد شوید.'
+};
+function errText(e) {
+  let t = ERR[e.message] || 'درخواست انجام نشد؛ دوباره تلاش کنید.';
+  const ra = e.data?.retry_after;
+  if (ra) t += ` (حدود ${Math.ceil(ra / 60)} دقیقه دیگر)`;
+  if (e.data?.attempts_remaining != null) t += ` ${e.data.attempts_remaining} تلاش باقی مانده.`;
+  return t;
+}
+async function api(path, opt = {}) {
+  const r = await fetch(API + path, {credentials: 'include', ...opt, headers: {'Content-Type': 'application/json'}});
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok || d.ok === false) { const e = new Error(d.error || 'request_failed'); e.data = d; e.status = r.status; throw e; }
+  return d;
+}
+const send = (path, data) => api(path, {method: 'POST', body: JSON.stringify(data)});
+const say = (id, text, ok = false) => { const el = $(id); el.textContent = text; el.className = 'message ' + (text ? (ok ? 'ok' : 'bad') : ''); };
+function show(id) {
+  pages.forEach(p => p.classList.toggle('active', p.id === id));
+  $('accountButton').hidden = !me;
+  window.scrollTo({top: 0});
+}
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
+  if (b.dataset.go === 'timelinePage') return goTimeline();
+  show(b.dataset.go);
+}));
+// ارسال فرم با قفل دکمه تا پایان درخواست
+function form(id, msgId, handler) {
+  $(id).addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const btn = $(id).querySelector('button[type=submit]');
+    btn.disabled = true; say(msgId, '');
+    try { await handler(); } catch (e) { say(msgId, errText(e)); }
+    finally { btn.disabled = false; }
+  });
+}
+// محدود کردن متن به ۶۷ کاراکتر واقعی (ایموجی یک کاراکتر حساب می‌شود)
+function limit(inputId, counterId) {
+  const el = $(inputId), c = counterId && $(counterId);
+  const run = () => {
+    let chars = Array.from(el.value);
+    if (chars.length > MAX) { chars = chars.slice(0, MAX); el.value = chars.join(''); }
+    if (c) c.textContent = chars.length + '/' + MAX;
+  };
+  el.addEventListener('input', run); run();
+}
+limit('postText', 'postCount'); limit('bio', 'bioCount'); limit('editBio', 'editBioCount');
+limit('fullName'); limit('editFullName');
+const digits = id => $(id).addEventListener('input', () => { $(id).value = $(id).value.replace(/\D/g, '').slice(0, 6); });
+['verificationCode', 'loginCode', 'resetCode'].forEach(digits);
+
+/* ---------- Turnstile ---------- */
+const widgets = {}, tsTargets = {};
+const tsReady = new Promise(res => {
+  const s = document.createElement('script');
+  s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  s.async = true; s.onload = res; s.onerror = () => res(); document.head.appendChild(s);
+});
+async function mountTs(key, target) {
+  await tsReady; if (!window.turnstile) return;
+  tsTargets[key] = target;
+  const w = widgets[key] = {token: ''};
+  w.id = turnstile.render(target, {sitekey: TURNSTILE_SITE_KEY, theme: document.body.classList.contains('dark') ? 'dark' : 'light', callback: t => { w.token = t; }, 'expired-callback': () => { w.token = ''; }, 'error-callback': () => { w.token = ''; }});
+}
+const tsToken = k => widgets[k]?.token || '';
+const tsReset = k => { if (widgets[k]) { widgets[k].token = ''; turnstile.reset(widgets[k].id); } };
+mountTs('signup', '#tsSignup'); mountTs('login', '#tsLogin');
+function remountTs() {
+  if (!window.turnstile) return;
+  Object.keys(widgets).forEach(k => { try { turnstile.remove(widgets[k].id); } catch {} mountTs(k, tsTargets[k]); });
+}
+
+/* ---------- تم: سفید / سیاه، به انتخاب کاربر ---------- */
+function setTheme(dark, remount) {
+  document.body.classList.toggle('dark', dark);
+  $('themeButton').textContent = dark ? '☀' : '☾';
+  $('themeButton').setAttribute('aria-label', dark ? 'تم سفید' : 'تم سیاه');
+  document.querySelector('meta[name=theme-color]').setAttribute('content', dark ? '#090909' : '#ffffff');
+  try { localStorage.setItem('67-social-theme', dark ? 'dark' : 'light'); } catch {}
+  if (remount) remountTs();
+}
+$('themeButton').onclick = () => setTheme(!document.body.classList.contains('dark'), true);
+try { if (localStorage.getItem('67-social-theme') === 'dark') setTheme(true); } catch {}
+
+/* ---------- قانون رمز عبور ---------- */
+const pwProblem = p =>
+  p.length < 8 || p.length > 15 ? 'رمز عبور باید بین ۸ تا ۱۵ کاراکتر باشد.' :
+  !/^[\x21-\x7E]+$/.test(p) ? 'فقط حروف و اعداد و نمادهای انگلیسی مجاز است (بدون فاصله).' :
+  !/[a-z]/.test(p) ? 'حداقل یک حرف کوچک انگلیسی لازم است.' :
+  !/[A-Z]/.test(p) ? 'حداقل یک حرف بزرگ انگلیسی لازم است.' :
+  !/[0-9]/.test(p) ? 'حداقل یک عدد لازم است.' :
+  !/[^A-Za-z0-9]/.test(p) ? 'حداقل یک نماد (مثل ! @ # $) لازم است.' : '';
+function livePassword(inputId, hintId) {
+  $(inputId).addEventListener('input', () => {
+    const v = $(inputId).value, h = $(hintId), p = v ? pwProblem(v) : '';
+    h.textContent = !v ? '۸ تا ۱۵ کاراکتر شامل حرف کوچک، حرف بزرگ، عدد و نماد (مثل ! @ #).' : p || '✓ رمز عبور مناسب است.';
+    h.className = 'hint ' + (!v ? '' : p ? 'bad' : 'ok');
+  });
+}
+livePassword('password', 'passwordHint'); livePassword('newPassword', 'newPasswordHint');
+
+/* ---------- بررسی زندهٔ نام کاربری و ایمیل ---------- */
+function liveCheck(inputId, hintId, test, url, okText, badText) {
+  let timer, seq = 0;
+  $(inputId).addEventListener('input', () => {
+    clearTimeout(timer); const v = $(inputId).value.trim(), n = ++seq, h = $(hintId);
+    if (!test(v)) { h.textContent = badText; h.className = 'hint bad'; return; }
+    h.textContent = 'در حال بررسی…'; h.className = 'hint';
+    timer = setTimeout(async () => {
+      try {
+        const r = await api(url + encodeURIComponent(inputId === 'email' ? v.toLowerCase() : v)); if (n !== seq) return;
+        h.textContent = r.available ? okText : '✕ در دسترس نیست.'; h.className = 'hint ' + (r.available ? 'ok' : 'bad');
+      } catch { if (n === seq) { h.textContent = 'بررسی فعلاً ممکن نیست.'; h.className = 'hint'; } }
+    }, 400);
+  });
+}
+liveCheck('username', 'usernameHint', v => /^[a-z0-9]{3,9}$/.test(v), '/check-username?username=', '✓ این نام کاربری آزاد است.', '✕ ۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی و عدد.');
+liveCheck('email', 'emailHint', v => /^[^\s@]+@gmail\.com$/i.test(v), '/check-email?email=', '✓ این ایمیل آزاد است.', '✕ فقط ایمیل @gmail.com مجاز است.');
+
+/* ---------- ثبت‌نام ← کد ایمیل ← تکمیل پروفایل ← تایم‌لاین ---------- */
+form('signupForm', 'signupMessage', async () => {
+  const username = $('username').value.trim(), email = $('email').value.trim().toLowerCase();
+  const password = $('password').value;
+  if (!/^[a-z0-9]{3,9}$/.test(username)) throw new Error('invalid_username');
+  if (!/^[^\s@]+@gmail\.com$/.test(email)) throw new Error('gmail_only');
+  const pp = pwProblem(password); if (pp) return say('signupMessage', pp);
+  if (password !== $('confirmPassword').value) return say('signupMessage', 'رمز عبور و تکرار آن یکسان نیستند.');
+  if (!tsToken('signup')) return say('signupMessage', 'ابتدا بررسی امنیتی را کامل کنید.');
+  try {
+    const d = await send('/signup', {username, email, password, turnstile_token: tsToken('signup')});
+    ctx.email = d.email || email;
+    $('verifySubtitle').textContent = `کد ۶ رقمی ارسال‌شده به ${ctx.email} را وارد کنید. کد تا ۱۵ دقیقه معتبر است.`;
+    $('verificationCode').value = ''; say('verifyMessage', '');
+    show('verifyPage');
+  } finally { tsReset('signup'); }
+});
+form('verifyForm', 'verifyMessage', async () => {
+  const code = $('verificationCode').value;
+  if (!/^\d{6}$/.test(code)) return say('verifyMessage', 'کد باید دقیقاً ۶ رقم باشد.');
+  const d = await send('/verify-email', {email: ctx.email, code});
+  me = d.user; setupAvatar = me.avatar_id || '🙂';
+  $('setupPreview').textContent = setupAvatar; drawSetup();
+  $('fullName').value = ''; $('bio').value = ''; $('bioCount').textContent = '0/' + MAX;
+  show('profileSetupPage');
+});
+$('resendCode').onclick = async () => {
+  try { await send('/resend-signup-code', {email: ctx.email}); say('verifyMessage', 'اگر ثبت‌نام در انتظار باشد، کد تازه ارسال شد. پوشهٔ هرزنامه را هم ببینید.', true); }
+  catch (e) { say('verifyMessage', errText(e)); }
+};
+form('profileForm', 'profileMessage', async () => {
+  const display_name = $('fullName').value.trim();
+  if (!display_name) return say('profileMessage', 'نام نمایشی را وارد کنید.');
+  const d = await send('/profile', {display_name, avatar_id: setupAvatar, bio: $('bio').value.trim()});
+  me = d.user; goTimeline();
+});
+
+/* ---------- ورود ← کد ایمیل ← تایم‌لاین ---------- */
+form('loginForm', 'loginMessage', async () => {
+  if (!tsToken('login')) return say('loginMessage', 'ابتدا بررسی امنیتی را کامل کنید.');
+  try {
+    const d = await send('/request-login-code', {identifier: $('loginIdentifier').value.trim(), password: $('loginPassword').value, turnstile_token: tsToken('login')});
+    ctx.loginEmail = d.email;
+    $('loginCodeSubtitle').textContent = `کد ۶ رقمی ارسال‌شده به ${d.email} را وارد کنید. کد تا ۱۵ دقیقه معتبر است.`;
+    $('loginCode').value = ''; say('loginCodeMessage', ''); $('loginPassword').value = '';
+    show('loginCodePage');
+  } finally { tsReset('login'); }
+});
+form('loginCodeForm', 'loginCodeMessage', async () => {
+  const code = $('loginCode').value;
+  if (!/^\d{6}$/.test(code)) return say('loginCodeMessage', 'کد باید دقیقاً ۶ رقم باشد.');
+  const d = await send('/verify-login-code', {email: ctx.loginEmail, code});
+  me = d.user; goTimeline();
+});
+
+/* ---------- فراموشی رمز: نام کاربری+ایمیل ← کد ← رمز جدید ← ورود ---------- */
+form('forgotForm', 'forgotMessage', async () => {
+  const username = $('forgotUsername').value.trim().toLowerCase(), email = $('forgotEmail').value.trim().toLowerCase();
+  await send('/request-password-reset', {username, email});
+  ctx.reset = {username, email}; $('resetCode').value = ''; say('resetCodeMessage', 'اگر نام کاربری و ایمیل مال یک حساب باشند، کد ارسال شده است.', true);
+  show('resetCodePage');
+});
+form('resetCodeForm', 'resetCodeMessage', async () => {
+  const code = $('resetCode').value;
+  if (!/^\d{6}$/.test(code)) return say('resetCodeMessage', 'کد باید دقیقاً ۶ رقم باشد.');
+  await send('/reset-password', {...ctx.reset, code, check_only: true});
+  ctx.reset.code = code; $('newPassword').value = ''; $('newPassword2').value = ''; say('resetNewMessage', '');
+  show('resetNewPage');
+});
+form('resetNewForm', 'resetNewMessage', async () => {
+  const p = $('newPassword').value;
+  const pp = pwProblem(p); if (pp) return say('resetNewMessage', pp);
+  if (p !== $('newPassword2').value) return say('resetNewMessage', 'رمز جدید و تکرار آن یکسان نیستند.');
+  await send('/reset-password', {...ctx.reset, password: p});
+  ctx.reset = null; show('loginPage'); say('loginMessage', 'رمز عبور تغییر کرد. با رمز جدید وارد شوید.', true);
+});
+
+/* ---------- حلقهٔ زمان پست (۲۴ ساعت) ---------- */
+const POST_LIFE = 86400;
+let skew = 0;                         // اختلاف ساعت مرورگر با سرور
+const syncClock = serverNow => { if (serverNow) skew = serverNow - Date.now() / 1000; };
+function tickRings() {
+  const t = Date.now() / 1000 + skew;
+  document.querySelectorAll('.ring-wrap').forEach(w => {
+    const used = Math.min(1, Math.max(0, (t - Number(w.dataset.created)) / POST_LIFE));
+    if (used >= 1) { const c = w.closest('.post-card'); if (c) c.remove(); return; }
+    w.querySelector('.ring-fg').setAttribute('stroke-dashoffset', (used * 100).toFixed(2));
+  });
+}
+setInterval(tickRings, 30000);
+setTimeout(tickRings, 0);
+
+/* ---------- تایم‌لاین ---------- */
+function postCard(p, onDeleted) {
+  const card = document.createElement('article'); card.className = 'post-card';
+  const text = document.createElement('div'); text.className = 'post-text'; text.textContent = p.body;
+  const foot = document.createElement('button'); foot.type = 'button'; foot.className = 'post-footer';
+  foot.setAttribute('aria-label', 'پروفایل ' + p.username);
+  const name = document.createElement('div'); name.className = 'post-username'; name.textContent = p.username;
+  const av = document.createElement('div'); av.className = 'avatar'; av.textContent = p.avatar_id || '🙂';
+  const wrap = document.createElement('div'); wrap.className = 'ring-wrap'; wrap.dataset.created = p.created_at;
+  wrap.innerHTML = '<svg viewBox="0 0 46 46" aria-hidden="true"><circle class="ring-bg" cx="23" cy="23" r="21" pathLength="100"/><circle class="ring-fg" cx="23" cy="23" r="21" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/></svg>';
+  wrap.appendChild(av);
+  foot.append(name, wrap); foot.onclick = () => openProfile(p.username);
+  card.append(text, foot);
+  if (p.mine) {
+    const del = document.createElement('button'); del.type = 'button'; del.className = 'post-del'; del.textContent = '✕';
+    del.setAttribute('aria-label', 'حذف پست');
+    del.onclick = async () => {
+      if (!confirm('این پست حذف شود؟')) return;
+      try { await api('/posts?id=' + encodeURIComponent(p.id), {method: 'DELETE'}); card.remove(); onDeleted && onDeleted(); } catch (e) { alert(errText(e)); }
+    };
+    card.appendChild(del);
   }
+  return card;
+}
+function emptyNote(feed, text) { const d = document.createElement('div'); d.className = 'empty'; d.textContent = text; feed.appendChild(d); }
+async function loadFeed(reset) {
+  const feedEl = $('feed');
+  if (reset) { cursor = null; feedEl.replaceChildren(); }
+  $('moreButton').hidden = true;
+  try {
+    const q = `/feed?scope=${scope}` + (cursor ? '&before=' + cursor : '');
+    const d = await api(q); syncClock(d.now);
+    d.posts.forEach(p => feedEl.appendChild(postCard(p)));
+    tickRings();
+    if (d.posts.length) cursor = d.posts[d.posts.length - 1].created_at;
+    if (reset && !d.posts.length) emptyNote(feedEl, scope === 'friends' ? 'هنوز پستی از دوستانتان نیست. از پروفایل کاربران درخواست دوستی بدهید.' : 'هنوز پستی نیست. اولین پست را شما بنویسید.');
+    $('moreButton').hidden = !d.has_more;
+  } catch (e) { if (e.status === 401) return logoutLocal(); emptyNote(feedEl, errText(e)); }
+}
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+  scope = t.dataset.scope;
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+  loadFeed(true);
+});
+$('moreButton').onclick = () => loadFeed(false);
+function goTimeline() { show('timelinePage'); loadFeed(true); }
+form('postForm', 'postMessage', async () => {
+  const body = $('postText').value.replace(/\s+/g, ' ').trim();
+  if (!body) return say('postMessage', ERR.invalid_message);
+  await send('/posts', {body});
+  $('postText').value = ''; $('postCount').textContent = '0/' + MAX;
+  say('postMessage', 'پست منتشر شد.', true);
+  if (scope === 'all') loadFeed(true);
+});
 
-  document.querySelectorAll('[data-go]').forEach(button => {
-    button.addEventListener('click', () => showPage(button.dataset.go));
-  });
+/* ---------- پروفایل و دوستی ---------- */
+async function openProfile(username) {
+  try {
+    const d = await api('/user?username=' + encodeURIComponent(username)), u = d.user;
+    $('pAvatar').textContent = u.avatar_id || '🙂';
+    $('pName').textContent = u.display_name; $('pUser').textContent = '@' + u.username;
+    $('pBio').textContent = u.bio;
+    $('pDate').textContent = 'عضویت از ' + new Date(u.created_at * 1000).toLocaleDateString('fa-IR');
+    say('pMessage', '');
+    const fb = $('friendButton'), eb = $('editProfileButton');
+    fb.hidden = u.is_me; eb.hidden = !u.is_me;
+    const paint = f => { fb.textContent = f ? 'لغو دوستی' : 'درخواست دوستی'; fb.className = 'btn' + (f ? ' secondary' : ''); fb.dataset.friend = f ? '1' : ''; };
+    paint(u.is_friend);
+    fb.onclick = async () => {
+      fb.disabled = true;
+      try { const r = await send('/friend', {username: u.username, action: fb.dataset.friend ? 'remove' : 'add'}); paint(r.is_friend); say('pMessage', r.is_friend ? 'اکنون پست‌های او در تایم‌لاین «دوستان» نمایش داده می‌شود.' : 'دوستی لغو شد.', true); }
+      catch (e) { say('pMessage', errText(e)); } finally { fb.disabled = false; }
+    };
+    const pf = $('profileFeed'); pf.replaceChildren();
+    const f = await api('/feed?username=' + encodeURIComponent(u.username));
+    syncClock(f.now); f.posts.forEach(p => pf.appendChild(postCard(p))); tickRings();
+    if (!f.posts.length) emptyNote(pf, 'این کاربر هنوز پستی ندارد.');
+    show('profilePage');
+  } catch (e) { alert(errText(e)); }
+}
+$('myProfileButton').onclick = () => me && openProfile(me.username);
 
-  $('themeButton').addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const dark = document.body.classList.contains('dark');
-    $('themeButton').textContent = dark ? '☀' : '☾';
-    localStorage.setItem('67-social-theme', dark ? 'dark' : 'light');
-  });
+function openEdit() {
+  editAvatar = me.avatar_id || '🙂'; $('editPreview').textContent = editAvatar; drawEdit();
+  $('editFullName').value = me.display_name || ''; $('editBio').value = me.bio || '';
+  $('editBio').dispatchEvent(new Event('input')); say('editMessage', ''); show('editProfilePage');
+}
+$('accountButton').onclick = openEdit;
+$('editProfileButton').onclick = openEdit;
+$('editProfileForm').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const display_name = $('editFullName').value.trim();
+  if (!display_name) return say('editMessage', 'نام نمایشی را وارد کنید.');
+  try { const d = await send('/profile', {display_name, avatar_id: editAvatar, bio: $('editBio').value.trim()}); me = d.user; say('editMessage', 'تغییرات ذخیره شد.', true); }
+  catch (e) { say('editMessage', errText(e)); }
+});
 
-  if (localStorage.getItem('67-social-theme') === 'dark') {
-    document.body.classList.add('dark');
-    $('themeButton').textContent = '☀';
-  }
-
-  function renderAvatarChoices(containerId) {
-    const container = $(containerId);
-    container.replaceChildren();
-
-    avatars.forEach(avatar => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'avatar-option' +
-        (avatar === state.avatar ? ' selected' : '');
-      button.textContent = avatar;
-      button.setAttribute('aria-label', 'انتخاب آواتار ' + avatar);
-
-      button.addEventListener('click', () => {
-        state.avatar = avatar;
-        $('avatarPreview').textContent = avatar;
-        renderAvatarChoices('avatarChoices');
-        renderAvatarChoices('editAvatarChoices');
-      });
-
-      container.appendChild(button);
-    });
-  }
-
-  function renderFeed() {
-    const feed = $('feed');
-    feed.replaceChildren();
-
-    state.posts.forEach(post => {
-      const card = document.createElement('article');
-      card.className = 'post-card';
-
-      const text = document.createElement('div');
-      text.className = 'post-text';
-      text.textContent = post.text;
-
-      const footer = document.createElement('div');
-      footer.className = 'post-footer';
-
-      const username = document.createElement('div');
-      username.className = 'post-username';
-      username.textContent = post.username;
-
-      const avatar = document.createElement('div');
-      avatar.className = 'avatar';
-      avatar.textContent = post.avatar;
-
-      footer.append(username, avatar);
-      card.append(text, footer);
-      feed.appendChild(card);
-    });
-  }
-
-  function updatePublicProfile() {
-    $('publicAvatar').textContent = state.avatar;
-    $('publicName').textContent = state.profile.fullName;
-    $('publicUsername').textContent = state.profile.username;
-    $('publicBio').textContent = state.profile.bio;
-    $('publicDate').textContent = state.profile.createdAt
-      ? 'عضویت از ' + state.profile.createdAt
-      : 'تاریخ عضویت پس از اتصال به API نمایش داده می‌شود.';
-  }
-
-  $('signupForm').addEventListener('submit', event => {
-    event.preventDefault();
-
-    const username = $('username').value.trim().toLowerCase();
-    const password = $('password').value;
-    const confirm = $('confirmPassword').value;
-
-    if (!/^[a-z][a-z0-9]{2,8}$/.test(username)) {
-      $('signupMessage').textContent =
-        'نام کاربری باید ۳ تا ۹ کاراکتر انگلیسی و عدد باشد و با حرف شروع شود.';
-      return;
-    }
-
-    if (password.length < 8 || password.length > 15) {
-      $('signupMessage').textContent =
-        'رمز عبور باید بین ۸ تا ۱۵ کاراکتر باشد.';
-      return;
-    }
-
-    if (password !== confirm) {
-      $('signupMessage').textContent =
-        'رمز عبور و تکرار آن یکسان نیستند.';
-      return;
-    }
-
-    $('signupMessage').textContent =
-      'ظاهر فرم آماده است؛ برای ثبت‌نام واقعی باید API و تأیید ایمیل به این صفحه متصل شوند.';
-    showPage('verifyPage');
-    $('verifyMessage').textContent =
-      'این صفحه فعلاً نمایشی است؛ تأیید واقعی باید از بک‌اند انجام شود.';
-  });
-
-  $('verifyForm').addEventListener('submit', event => {
-    event.preventDefault();
-    $('verifyMessage').textContent =
-      'تأیید کد تا زمان هماهنگ‌شدن API فعال نیست.';
-  });
-
-  $('profileForm').addEventListener('submit', event => {
-    event.preventDefault();
-    state.profile.fullName = $('fullName').value.trim();
-    state.profile.bio = $('bio').value.trim();
-    state.profile.avatar = state.avatar;
-    updatePublicProfile();
-    renderFeed();
-    showPage('timelinePage');
-  });
-
-  $('accountButton').addEventListener('click', () => {
-    $('editFullName').value = state.profile.fullName;
-    $('editBio').value = state.profile.bio;
-    renderAvatarChoices('editAvatarChoices');
-    showPage('editProfilePage');
-  });
-
-  $('myProfileButton').addEventListener('click', () => {
-    updatePublicProfile();
-    showPage('publicProfilePage');
-  });
-
-  $('editProfileForm').addEventListener('submit', event => {
-    event.preventDefault();
-    state.profile.fullName = $('editFullName').value.trim();
-    state.profile.bio = $('editBio').value.trim();
-    updatePublicProfile();
-    $('editMessage').textContent =
-      'تغییرات در این پیش‌نمایش اعمال شد؛ ذخیرهٔ دائمی به API نیاز دارد.';
-  });
-
-  $('postForm').addEventListener('submit', event => {
-    event.preventDefault();
-    const text = $('postText').value.trim();
-    if (!text) return;
-
-    state.posts.unshift({
-      text,
-      username: state.profile.username,
-      avatar: state.avatar
-    });
-
-    renderFeed();
-    $('postText').value = '';
-    $('postMessage').textContent =
-      'پست فقط در پیش‌نمایش اضافه شد و هنوز در سرور ذخیره نشده است.';
-  });
-
-  $('logoutButton').addEventListener('click', () => {
-    showPage('signupPage');
-  });
-
-  renderAvatarChoices('avatarChoices');
-  renderAvatarChoices('editAvatarChoices');
-  renderFeed();
+/* ---------- خروج و بازیابی نشست ---------- */
+function logoutLocal() { me = null; show('loginPage'); }
+$('logoutButton').onclick = async () => { try { await send('/logout', {}); } catch {} logoutLocal(); };
+(async () => {
+  try { const d = await api('/me'); me = d.user; goTimeline(); } catch { show('signupPage'); }
+})();
 })();
 </script>
-<script src="./social-67-frontend-login-email-code.js"></script>
 </body>
 </html>
