@@ -4,11 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<title>67 Social</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
+<title>Social 67</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Vazirmatn-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* فونت وزیرمتن (رایگان، مجوز OFL) — فایل‌ها در پوشهٔ fonts کنار index.html */
+@font-face{font-family:"Vazirmatn";src:url("fonts/Vazirmatn-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("fonts/Vazirmatn-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("fonts/Vazirmatn-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("fonts/Vazirmatn-Black.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
 :root{--bg:#fff;--card:rgba(255,255,255,.85);--text:#171717;--muted:#777;--border:#e8e8e8;--field:#fafafa;--shadow:0 8px 28px rgba(0,0,0,.09);--ok:#198754;--bad:#d93025}
 body.dark{color-scheme:dark;--bg:#090909;--card:rgba(27,27,27,.9);--text:#f5f5f5;--muted:#b4b4b4;--border:#333;--field:#171717;--shadow:0 8px 28px rgba(0,0,0,.4)}
 *{box-sizing:border-box}
@@ -20,16 +27,16 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .brand{font-size:25px;font-weight:900}
 .icon-button{width:42px;height:42px;border:1px solid var(--border);border-radius:50%;background:var(--card);color:var(--text);box-shadow:var(--shadow);font-size:20px;margin-inline-start:6px}
 .page{display:none}.page.active{display:block}
-.panel{max-width:440px;margin:24px auto;padding:24px;border:1px solid var(--border);border-radius:24px;background:var(--card);box-shadow:var(--shadow)}
+.panel{max-width:440px;margin:24px auto;padding:24px;border:1px solid var(--border);border-radius:30px;background:var(--card);box-shadow:var(--shadow)}
 h1{font-size:24px;margin:0 0 10px}
 .subtitle,.hint{color:var(--muted);font-size:13px;line-height:1.9}
 .field{display:block;margin:15px 0}
 .field>span{display:block;font-size:14px;font-weight:bold;margin-bottom:7px}
-input,textarea{display:block;width:100%;padding:12px;border:1px solid var(--border);border-radius:13px;background:var(--field);color:var(--text);outline:none}
+input,textarea{display:block;width:100%;padding:12px;border:1px solid var(--border);border-radius:18px;background:var(--field);color:var(--text);outline:none}
 input[type=password],input[type=email],#username,#loginIdentifier,#forgotUsername{direction:ltr;text-align:left}
 input:focus,textarea:focus{border-color:var(--muted)}
 textarea{min-height:95px;resize:vertical}
-.btn{width:100%;padding:12px;margin-top:10px;border:0;border-radius:13px;background:var(--text);color:var(--bg);font-weight:bold}
+.btn{width:100%;padding:12px;margin-top:10px;border:0;border-radius:99px;background:var(--text);color:var(--bg);font-weight:bold}
 .btn.secondary{border:1px solid var(--border);background:transparent;color:var(--text)}
 .btn:disabled{opacity:.5;cursor:wait}
 .text-button{display:block;margin:12px auto 0;border:0;background:none;color:var(--text);text-decoration:underline}
@@ -43,18 +50,18 @@ textarea{min-height:95px;resize:vertical}
 .cat-tabs button{flex:0 0 auto;padding:6px 12px;border:1px solid var(--border);border-radius:99px;background:transparent;color:var(--text);font-size:13px}
 .cat-tabs button.on{background:var(--text);color:var(--bg)}
 .avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:10px 0;max-height:230px;overflow-y:auto;padding:2px}
-.avatar-option{aspect-ratio:1;border:1px solid var(--border);border-radius:14px;background:var(--field);font-size:25px;padding:0}
+.avatar-option{aspect-ratio:1;border:1px solid var(--border);border-radius:50%;background:var(--field);font-size:25px;padding:0}
 .avatar-option.selected{border:2px solid var(--text)}
 /* تایم‌لاین */
 .timeline-heading{display:flex;align-items:center;justify-content:space-between;margin:20px 0}
 .tabs{display:flex;gap:8px;margin-bottom:16px}
-.tab{flex:1;padding:11px;border:1px solid var(--border);border-radius:13px;background:transparent;color:var(--text);font-weight:bold}
+.tab{flex:1;padding:11px;border:1px solid var(--border);border-radius:99px;background:transparent;color:var(--text);font-weight:bold}
 .tab.on{background:var(--text);color:var(--bg)}
-.compose,.profile-card{padding:16px;margin-bottom:20px;border:1px solid var(--border);border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
+.compose,.profile-card{padding:16px;margin-bottom:20px;border:1px solid var(--border);border-radius:30px;background:var(--card);box-shadow:var(--shadow)}
 .counter{font-size:12px;color:var(--muted);text-align:left}
 .feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr));gap:16px}
-.post-card{position:relative;aspect-ratio:1/1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:18px;border:1px solid var(--border);border-radius:23px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
-.post-text{font-size:clamp(18px,2.4vw,23px);font-weight:700;line-height:1.65;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-card{position:relative;aspect-ratio:1/1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:18px;border:1px solid var(--border);border-radius:30px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.post-text{margin-block:auto;padding-block:6px;font-size:clamp(21px,2.6vw,27px);font-weight:800;line-height:1.5;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .post-footer{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;border:0;background:none;color:var(--text);padding:0;width:100%;text-align:start}
 .post-username{max-width:calc(100% - 56px);font-size:13px;font-weight:bold;overflow-wrap:anywhere}
 .ring-wrap{position:relative;width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center}
@@ -65,23 +72,154 @@ textarea{min-height:95px;resize:vertical}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
 .profile-bio{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9}
 .profile-date{color:var(--muted);font-size:12px;margin-top:8px}
-@media (max-width:520px){.app{padding:12px}.panel{padding:19px}.feed{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.post-card{padding:12px;border-radius:18px}.post-text{font-size:17px}.post-username{font-size:11px}.avatar-grid{grid-template-columns:repeat(5,1fr)}}
+/* سربرگ تایم‌لاین */
+body.in-app header{display:none}
+.tl-top{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:10px;padding:10px 0 12px;margin:-4px 0 14px;background:var(--bg);border-bottom:1px solid var(--border)}
+.me-avatar{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--text);background:var(--field);color:var(--text);font-size:24px;display:grid;place-items:center;padding:0}
+.tl-top .tabs{margin:0;justify-self:center;width:min(100%,250px);gap:0;padding:4px;border-radius:99px;background:var(--field);border:1px solid var(--border)}
+.tl-top .tab{border:0;border-radius:99px;padding:8px;background:transparent;color:var(--muted)}
+.tl-top .tab.on{background:var(--bg);color:var(--text);box-shadow:0 1px 6px rgba(0,0,0,.12)}
+body.dark .tl-top .tab.on{background:#262626}
+.fab{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));right:max(18px,calc(50% - 432px));z-index:20;width:60px;height:60px;border-radius:50%;border:0;background:var(--text);color:var(--bg);display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.fab svg{width:25px;height:25px}
+/* نوشتهٔ «نمایش پست جدید» */
+.new-posts{position:sticky;top:76px;z-index:4;display:block;margin:-4px auto 14px;padding:9px 20px;border:0;border-radius:99px;background:var(--text);color:var(--bg);font-weight:700;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.18);animation:np .25s ease}
+@keyframes np{from{opacity:0;transform:translateY(-8px)}}
+/* دکمهٔ دوستی: سفید ← سیاه/«دوستی»، دوست ← سفید/«دوست»؛ در تم سیاه برعکس */
+.friend-btn{background:var(--text);color:var(--bg);border:1.5px solid var(--text);transition:background .2s,color .2s}
+.friend-btn.is-friend{background:var(--bg);color:var(--text)}
+/* پروفایل: عکس و مشخصات در وسط */
+#profilePage .profile-card{border:0;background:transparent;box-shadow:none;padding:4px 0 8px;max-width:560px;margin-inline:auto;text-align:center}
+#profilePage .profile-heading{flex-direction:column;gap:10px;margin:4px 0 10px}
+#profilePage .avatar.large{width:116px;height:116px;flex-basis:auto;font-size:62px}
+#profilePage #pName{font-size:26px;margin:0}
+#profilePage #pUser{direction:ltr;font-size:14px}
+#profilePage .profile-bio{font-size:15px;margin:2px 0 6px}
+#profilePage .profile-date{margin:0 0 14px}
+#profilePage #friendButton{max-width:420px;margin-inline:auto;display:block}
+#profilePage #friendButton[hidden]{display:none}
+.posts-title{font-size:17px;margin:18px auto 12px;padding:0 4px;max-width:720px;text-align:center}
+/* جست‌وجو */
+.search-box{display:none;justify-self:stretch}
+.search-box input{padding:10px 16px;border-radius:99px;font-size:15px}
+.tl-top.searching .tabs{display:none}.tl-top.searching .search-box{display:block}
+#searchButton{justify-self:end}
+/* شیت پایین (نوشتن پست و تنظیمات) */
+.sheet-wrap{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet-wrap.open{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:var(--kb,0px);max-width:900px;margin:auto;padding:10px 18px calc(16px + env(safe-area-inset-bottom));background:var(--bg);color:var(--text);border-radius:30px 30px 0 0;border:1px solid var(--border);border-bottom:0;transform:translateY(105%);transition:transform .25s ease;max-height:85vh;overflow-y:auto}
+.sheet-wrap.open .sheet{transform:none}
+.grip{width:42px;height:5px;border-radius:9px;background:var(--border);margin:0 auto 12px}
+.sheet h2{font-size:18px;margin:0 0 12px}
+#postText{min-height:150px;text-align:center;line-height:1.7;border:0;background:transparent;font-size:19px;padding:6px 2px;resize:none}
+#postText:focus,#postText:focus-visible{border:0;outline:none}
+.post-card.mine .post-text{padding-inline:20px}
+.sheet-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--border);padding-top:10px}
+.send-btn{width:auto;margin:0;padding:10px 28px;border-radius:99px}
+.opt-label{font-size:13px;font-weight:700;color:var(--muted);margin:14px 0 8px}
+.opts{display:flex;gap:10px}
+.opt{flex:1;padding:10px 8px;border:1.5px solid var(--border);border-radius:22px;background:transparent;color:var(--text);font-weight:700;font-size:14px}
+.opt.on{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
+.opt .sw{display:block;height:44px;border-radius:14px;margin-bottom:8px;border:1px solid var(--border)}
+.opt .sw.w{background:#fff}.opt .sw.b{background:#0a0a0a}
+.opt .g{display:grid;gap:4px;height:30px;margin-bottom:8px}
+.opt .g i{background:var(--field);border:1px solid var(--border);border-radius:5px}
+.set-row{display:flex;justify-content:space-between;align-items:center;width:100%;padding:14px 2px;border:0;border-bottom:1px solid var(--border);background:none;color:var(--text);font-weight:700}
+.set-row.danger{color:var(--bad);border-bottom:0}
+/* پروفایل */
+.profile-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.round-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--field);color:var(--text);display:grid;place-items:center;padding:0;font-size:19px}
+.round-btn svg{width:21px;height:21px}
+/* تعداد کارت در هر ردیف */
+.feed.cols-1{grid-template-columns:minmax(0,1fr)}
+.feed.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.feed.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.feed.cols-1 .post-card{aspect-ratio:2/1}
+.feed.cols-3 .post-card{padding:10px;border-radius:20px}
+.feed.cols-3 .post-text{font-size:clamp(14px,1.9vw,20px);-webkit-line-clamp:3}
+.feed.cols-3 .ring-wrap{width:32px;height:32px;flex-basis:32px}
+.feed.cols-3 .avatar{width:22px;height:22px;flex-basis:22px;font-size:13px}
+.feed.cols-3 .post-username{font-size:10px;max-width:calc(100% - 38px)}
+.feed.cols-3 .post-del{width:22px;height:22px;font-size:11px;top:5px}
+#timelinePage{padding-bottom:90px}
+@media (max-width:520px){.app{padding:12px}.panel{padding:19px}.feed{gap:10px}.feed.cols-3{gap:7px}.post-card{padding:13px;border-radius:26px}.post-text{font-size:19px;-webkit-line-clamp:3}.post-username{font-size:11px}.avatar-grid{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:520px){.feed.cols-3 .post-text{font-size:13px;-webkit-line-clamp:3}.feed.cols-1 .post-text{font-size:25px;-webkit-line-clamp:4}}
+
+/* کارت پست: ۵ ردیف فرضی؛ ۴ ردیف متن (هر خط حداکثر ۱۷ کاراکتر) + ۱ ردیف نام و آواتار */
+.post-card{container-type:size;display:grid;grid-template-columns:minmax(0,1fr);justify-content:stretch;align-content:stretch;grid-template-rows:repeat(5,minmax(0,1fr));--row:calc((100cqh - 2 * var(--pad)) / 5);--pad:18px;padding:var(--pad)}
+.post-text{grid-row:1/5;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;white-space:pre;-webkit-line-clamp:unset;line-height:1;font-weight:500;
+  font-size:min(calc(var(--row) * .6), calc((100cqw - 2 * var(--pad)) / 10.5))}
+.post-text.bold{font-weight:700}
+button,input,textarea,select{font-family:inherit}
+.feed.cols-1 .post-card{aspect-ratio:1/1}
+.post-text>span{display:block;height:var(--row);line-height:var(--row);max-width:100%}
+.post-footer{grid-row:5;align-self:center;height:var(--row);min-height:0;width:100%}
+.post-text{width:100%}
+.post-card{--ring:min(46px,var(--row))}
+.post-card .ring-wrap,.feed.cols-3 .post-card .ring-wrap{width:var(--ring);height:var(--ring);flex-basis:var(--ring)}
+.post-card .ring-wrap .avatar,.feed.cols-3 .post-card .ring-wrap .avatar{width:calc(var(--ring) * .85);height:calc(var(--ring) * .85);flex-basis:auto;font-size:calc(var(--ring) * .54)}
+.card-pop .post-card{--ring:calc(var(--row) * .9)}
+.post-card .post-username,.feed.cols-3 .post-card .post-username{font-size:clamp(9px,calc(var(--row) * .3),16px)}
+.card-pop .post-card .post-username{font-size:calc(var(--row) * .3)}
+.post-card.mine .post-text{padding-inline:0}
+.feed .post-card .post-text,.feed.cols-1 .post-text,.feed.cols-3 .post-text{font-size:min(calc(var(--row) * .6), calc((100cqw - 2 * var(--pad)) / 10.5));-webkit-line-clamp:unset}
+.feed.cols-3 .post-card{--pad:10px}
+@media (max-width:520px){.post-card{--pad:13px}}
+.post-card{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+/* پاپ‌آپ کارت (دابل‌تپ / دابل‌کلیک) */
+.card-pop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .18s}
+.card-pop.open{opacity:1;pointer-events:auto}
+.card-pop .post-card{background:var(--bg);width:min(92vw,92vh);height:min(92vw,92vh);aspect-ratio:1/1;--pad:calc(min(92vw,92vh) * .06);border-radius:calc(min(92vw,92vh) * .09);transform:scale(.94);transition:transform .18s}
+.card-pop.open .post-card{transform:none}
+.card-pop .post-del{display:none}
+.pop-x{position:absolute;top:calc(min(92vw,92vh) * .035);left:calc(min(92vw,92vh) * .035);width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:#8c8c8c;font-size:26px;line-height:40px;padding:0;z-index:2}
+[hidden]{display:none!important}
+input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
+@media (min-width:760px){
+  .feed.cols-1{max-width:560px;margin-inline:auto}
+  .feed.cols-2{max-width:720px;margin-inline:auto}
+  .sheet{top:50%;bottom:auto;max-width:520px;border-radius:30px;border-bottom:1px solid var(--border);transform:translateY(-46%) scale(.97);opacity:0;transition:transform .2s,opacity .2s;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  .sheet-wrap.open .sheet{transform:translateY(-50%);opacity:1}
+  .grip{display:none}
+  .tl-top{grid-template-columns:52px 1fr 52px}
+}
+
+/* حلقهٔ زمان خاکستری + عنوان «پست‌ها» بزرگ‌تر و خاکستری */
+.ring-fg{stroke:#8c8c8c}
+body.dark .ring-fg{stroke:#9a9a9a}
+.posts-title{font-size:22px;color:#7a7a7a}
+body.dark .posts-title{color:#9a9a9a}
+
+/* ایموجی آواتار: حداکثر اندازه‌ای که کامل دیده شود (۶۴٪ قطر دایره) */
+#profilePage .avatar.large{width:150px;height:150px;font-size:96px;line-height:1}
+.avatar.large{font-size:49px;line-height:1}
+/* حلقهٔ زمان چسبیده به دایرهٔ پروفایل در پست */
+.ring-wrap .avatar{width:39px;height:39px;flex-basis:39px;border:0;font-size:25px;line-height:1}
+.feed.cols-3 .ring-wrap .avatar{width:27px;height:27px;flex-basis:27px;font-size:17px}
+
+/* جست‌وجو: بدون ✕؛ دکمهٔ ذره‌بین داخل کادر، سمت مقابل نوشته */
+.search-box{position:relative}
+.search-box input{padding-inline:16px 50px}
+.search-go{position:absolute;top:50%;inset-inline-end:5px;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:50%;background:var(--text);color:var(--bg);display:grid;place-items:center;padding:0;cursor:pointer}
+.search-go svg{width:18px;height:18px}
+.tl-top.searching #searchButton{display:none}
+.tl-top.searching .search-box{grid-column:2 / 4}
+
+/* دکمهٔ ذره‌بین شیشه‌ای، هم‌رنگ تم */
+.search-go{background:rgba(255,255,255,.55);color:#111;border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 2px 8px rgba(0,0,0,.08)}
+body.dark .search-go{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 8px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand">67 Social</div>
-  <div>
-    <button class="icon-button" id="themeButton" aria-label="تغییر تم">☾</button>
-    <button class="icon-button" id="accountButton" aria-label="پنل کاربری" hidden>♙</button>
-  </div>
+  <div class="brand">Social 67</div>
 </header>
 
 <!-- ثبت‌نام -->
 <section class="page active" id="signupPage"><div class="panel">
   <h1>ساخت حساب</h1>
-  <p class="subtitle">برای پیوستن به 67 Social اطلاعات زیر را وارد کنید.</p>
+  <p class="subtitle">برای پیوستن به Social 67 اطلاعات زیر را وارد کنید.</p>
   <form id="signupForm" novalidate>
     <label class="field"><span>نام کاربری</span>
       <input id="username" maxlength="9" autocomplete="username" autocapitalize="none" required>
@@ -201,45 +339,45 @@ textarea{min-height:95px;resize:vertical}
 
 <!-- تایم‌لاین -->
 <section class="page" id="timelinePage">
-  <div class="timeline-heading">
-    <div><h1>تایم‌لاین</h1><div class="subtitle">پست‌های 67 Social</div></div>
-    <button class="icon-button" id="myProfileButton" aria-label="پروفایل من">♙</button>
+  <div class="tl-top">
+    <button class="me-avatar" id="myProfileButton" aria-label="پروفایل من">🙂</button>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-scope="all" role="tab">همه</button>
+      <button class="tab" data-scope="friends" role="tab">دوستان</button>
+    </div>
+    <div class="search-box" id="searchBox"><input id="searchInput" type="search" maxlength="67" placeholder="جست‌وجو در پست‌ها" aria-label="جست‌وجو در پست‌ها" autocomplete="off"><button class="search-go" id="searchGo" type="button" aria-label="جست‌وجو"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
+    <button class="round-btn" id="searchButton" type="button" aria-label="جست‌وجو"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
   </div>
-  <form class="compose" id="postForm">
-    <label class="field" style="margin:0"><span>پست جدید</span>
-      <textarea id="postText" placeholder="چه چیزی می‌خواهید بنویسید؟" style="min-height:70px"></textarea>
-      <div class="counter" id="postCount">0/67</div>
-      <div class="hint">هر پست ۲۴ ساعت می‌ماند و بعد از همه‌جا حذف می‌شود.</div></label>
-    <button class="btn" type="submit">انتشار پست</button>
-    <div class="message" id="postMessage" role="status"></div>
-  </form>
-  <div class="tabs" role="tablist">
-    <button class="tab on" data-scope="all" role="tab">همه</button>
-    <button class="tab" data-scope="friends" role="tab">دوستان</button>
-  </div>
-  <div class="feed" id="feed"></div>
+  <button class="new-posts" id="newPostsButton" type="button" hidden>↑ نمایش پست جدید</button>
+  <div class="feed cols-2" id="feed"></div>
   <button class="btn secondary" id="moreButton" hidden>بارگذاری بیشتر</button>
+  <button class="fab" id="composeButton" type="button" aria-label="نوشتن پست"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
 </section>
 
 <!-- پروفایل -->
 <section class="page" id="profilePage">
   <div class="profile-card">
-    <button class="btn secondary" data-go="timelinePage" style="margin:0 0 6px">بازگشت به تایم‌لاین</button>
+    <div class="profile-top">
+      <button class="round-btn" data-go="timelinePage" type="button" aria-label="بازگشت به تایم‌لاین">→</button>
+      <button class="round-btn" id="settingsButton" type="button" aria-label="Settings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></button>
+    </div>
     <div class="profile-heading">
       <div class="avatar large" id="pAvatar">🙂</div>
-      <div><h1 id="pName"></h1><div id="pUser" class="hint"></div><div id="pDate" class="profile-date"></div></div>
+      <div><h1 id="pName"></h1><div id="pUser" class="hint"></div></div>
     </div>
     <div id="pBio" class="profile-bio"></div>
+    <div id="pDate" class="profile-date"></div>
     <button class="btn" id="friendButton" hidden></button>
     <button class="btn" id="editProfileButton" hidden>ویرایش پروفایل</button>
     <div class="message" id="pMessage" role="status"></div>
   </div>
-  <div class="feed" id="profileFeed"></div>
+  <h2 class="posts-title">پست‌ها</h2>
+  <div class="feed cols-2" id="profileFeed"></div>
 </section>
 
 <!-- ویرایش پروفایل -->
 <section class="page" id="editProfilePage"><div class="panel">
-  <h1>پنل کاربری</h1>
+  <h1>ویرایش پروفایل</h1>
   <div class="profile-heading"><div class="avatar large" id="editPreview">🙂</div><strong>آواتار</strong></div>
   <div id="editPicker"></div>
   <form id="editProfileForm">
@@ -254,6 +392,42 @@ textarea{min-height:95px;resize:vertical}
 </div></section>
 </div>
 
+<!-- نوشتن پست -->
+<div class="sheet-wrap" id="composeSheet" aria-hidden="true">
+  <form class="sheet" id="postForm" role="dialog" aria-label="نوشتن پست">
+    <div class="grip"></div>
+    <textarea id="postText" rows="4" dir="auto" placeholder="چه خبر؟" aria-label="متن پست"></textarea>
+    <div class="sheet-foot">
+      <span class="counter" id="postCount">0/67</span>
+      <button class="btn send-btn" type="submit">ارسال</button>
+    </div>
+    <div class="message" id="postMessage" role="status"></div>
+  </form>
+</div>
+
+<!-- تنظیمات -->
+<div class="sheet-wrap" id="settingsSheet" aria-hidden="true">
+  <div class="sheet" role="dialog" aria-label="تنظیمات">
+    <div class="grip"></div>
+    <h2>تنظیمات</h2>
+    <div class="opt-label">تم</div>
+    <div class="opts">
+      <button class="opt" type="button" data-theme="light"><span class="sw w"></span>سفید</button>
+      <button class="opt" type="button" data-theme="dark"><span class="sw b"></span>سیاه</button>
+    </div>
+    <div class="opt-label">تعداد کارت‌ها در هر ردیف</div>
+    <div class="opts">
+      <button class="opt" type="button" data-cols="1"><span class="g" style="grid-template-columns:1fr"><i></i></span>۱ کارت</button>
+      <button class="opt" type="button" data-cols="2"><span class="g" style="grid-template-columns:1fr 1fr"><i></i><i></i></span>۲ کارت</button>
+      <button class="opt" type="button" data-cols="3"><span class="g" style="grid-template-columns:1fr 1fr 1fr"><i></i><i></i><i></i></span>۳ کارت</button>
+    </div>
+    <div style="margin-top:8px">
+      <button class="set-row" type="button" id="settingsEdit">ویرایش پروفایل <span>←</span></button>
+      <button class="set-row danger" type="button" id="settingsLogout">خروج از حساب</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (() => {
 'use strict';
@@ -262,7 +436,7 @@ const TURNSTILE_SITE_KEY = '0x4AAAAAAFZ561QShBA6Mxo1';
 const MAX = 67;
 const $ = id => document.getElementById(id);
 const pages = [...document.querySelectorAll('.page')];
-let me = null, scope = 'all', cursor = null, ctx = {};
+let me = null, scope = 'all', cursor = null, ctx = {}, query = '';
 
 /* ---------- آواتارها (بدون آپلود عکس؛ فقط ایموجی) ---------- */
 const CATS = {
@@ -337,7 +511,8 @@ function errText(e) {
   return t;
 }
 async function api(path, opt = {}) {
-  const r = await fetch(API + path, {credentials: 'include', ...opt, headers: {'Content-Type': 'application/json'}});
+  const headers = opt.body ? {'Content-Type': 'application/json'} : {};
+  const r = await fetch(API + path, {credentials: 'include', ...opt, headers});
   const d = await r.json().catch(() => ({}));
   if (!r.ok || d.ok === false) { const e = new Error(d.error || 'request_failed'); e.data = d; e.status = r.status; throw e; }
   return d;
@@ -346,7 +521,8 @@ const send = (path, data) => api(path, {method: 'POST', body: JSON.stringify(dat
 const say = (id, text, ok = false) => { const el = $(id); el.textContent = text; el.className = 'message ' + (text ? (ok ? 'ok' : 'bad') : ''); };
 function show(id) {
   pages.forEach(p => p.classList.toggle('active', p.id === id));
-  $('accountButton').hidden = !me;
+  document.body.classList.toggle('in-app', ['timelinePage', 'profilePage'].includes(id));
+  closeSheets();
   window.scrollTo({top: 0});
 }
 document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
@@ -373,8 +549,35 @@ function limit(inputId, counterId) {
   };
   el.addEventListener('input', run); run();
 }
-limit('postText', 'postCount'); limit('bio', 'bioCount'); limit('editBio', 'editBioCount');
+limit('bio', 'bioCount'); limit('editBio', 'editBioCount');
 limit('fullName'); limit('editFullName');
+
+const LINE_MAX = 17, LINES_MAX = 4;
+/* نوشتن پست: ۴ خط × ۱۷ کاراکتر؛ اینتر فقط بعد از حداقل یک کاراکتر در همان خط */
+function shapePost(v) {
+  let lines = v.replace(/\r/g, '').split('\n');
+  while (lines.length && !lines[0].trim()) lines.shift();          // اینتر در آغاز اثری ندارد
+  lines = lines.filter((l, i) => i === lines.length - 1 || l.trim()); // خط خالی وسط حذف
+  lines = lines.slice(0, LINES_MAX).map(l => Array.from(l).slice(0, LINE_MAX).join(''));
+  let left = MAX;                                                    // جمع همهٔ کاراکترها حداکثر ۶۷
+  lines = lines.map(l => { const c = Array.from(l).slice(0, Math.max(0, left)); left -= c.length; return c.join(''); });
+  return lines.join('\n');
+}
+function postCountText() {
+  const v = $('postText').value, n = Array.from(v.replace(/\n/g, '')).length;
+  $('postCount').textContent = n + '/' + MAX;
+}
+$('postText').addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const el = e.target, before = el.value.slice(0, el.selectionStart), cur = before.split('\n').pop();
+  if (!cur.trim() || el.value.split('\n').length >= LINES_MAX || Array.from(el.value.replace(/\n/g, '')).length >= MAX) e.preventDefault();
+});
+$('postText').addEventListener('input', e => {
+  const el = e.target, v = shapePost(el.value);
+  if (v !== el.value) { const p = el.selectionStart - (el.value.length - v.length); el.value = v; el.selectionStart = el.selectionEnd = Math.max(0, p); }
+  postCountText();
+});
+postCountText();
 const digits = id => $(id).addEventListener('input', () => { $(id).value = $(id).value.replace(/\D/g, '').slice(0, 6); });
 ['verificationCode', 'loginCode', 'resetCode'].forEach(digits);
 
@@ -399,17 +602,46 @@ function remountTs() {
   Object.keys(widgets).forEach(k => { try { turnstile.remove(widgets[k].id); } catch {} mountTs(k, tsTargets[k]); });
 }
 
-/* ---------- تم: سفید / سیاه، به انتخاب کاربر ---------- */
+/* ---------- شیت‌ها ---------- */
+function openSheet(id) { const w = $(id); w.classList.add('open'); w.setAttribute('aria-hidden', 'false'); }
+function closeSheet(id) {
+  const w = $(id); if (!w.classList.contains('open')) return;
+  w.classList.remove('open'); w.setAttribute('aria-hidden', 'true');
+  if (document.activeElement && w.contains(document.activeElement)) document.activeElement.blur();
+}
+function closeSheets() { ['composeSheet', 'settingsSheet'].forEach(closeSheet); }
+document.querySelectorAll('.sheet-wrap').forEach(w => w.addEventListener('click', e => { if (e.target === w) closeSheet(w.id); }));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheets(); });
+// بالا نگه داشتن شیت روی کیبورد موبایل
+if (window.visualViewport) {
+  const kb = () => document.documentElement.style.setProperty('--kb', Math.max(0, innerHeight - visualViewport.height - visualViewport.offsetTop) + 'px');
+  visualViewport.addEventListener('resize', kb); visualViewport.addEventListener('scroll', kb);
+}
+
+/* ---------- تم: فقط سفید / سیاه؛ پیش‌فرض سفید؛ تغییر فقط از تنظیمات پروفایل ---------- */
 function setTheme(dark, remount) {
   document.body.classList.toggle('dark', dark);
-  $('themeButton').textContent = dark ? '☀' : '☾';
-  $('themeButton').setAttribute('aria-label', dark ? 'تم سفید' : 'تم سیاه');
   document.querySelector('meta[name=theme-color]').setAttribute('content', dark ? '#090909' : '#ffffff');
+  document.querySelectorAll('[data-theme]').forEach(b => b.classList.toggle('on', (b.dataset.theme === 'dark') === dark));
   try { localStorage.setItem('67-social-theme', dark ? 'dark' : 'light'); } catch {}
   if (remount) remountTs();
 }
-$('themeButton').onclick = () => setTheme(!document.body.classList.contains('dark'), true);
-try { if (localStorage.getItem('67-social-theme') === 'dark') setTheme(true); } catch {}
+document.querySelectorAll('[data-theme]').forEach(b => b.onclick = () => setTheme(b.dataset.theme === 'dark', true));
+let savedTheme = 'light';
+try { savedTheme = localStorage.getItem('67-social-theme') || 'light'; } catch {}
+setTheme(savedTheme === 'dark');
+
+/* ---------- تعداد کارت‌ها در هر ردیف: ۱، ۲ یا ۳؛ پیش‌فرض ۲ ---------- */
+function setCols(n) {
+  n = [1, 2, 3].includes(n) ? n : 2;
+  ['feed', 'profileFeed'].forEach(id => { const f = $(id); f.classList.remove('cols-1', 'cols-2', 'cols-3'); f.classList.add('cols-' + n); });
+  document.querySelectorAll('[data-cols]').forEach(b => b.classList.toggle('on', Number(b.dataset.cols) === n));
+  try { localStorage.setItem('67-social-cols', String(n)); } catch {}
+}
+document.querySelectorAll('[data-cols]').forEach(b => b.onclick = () => setCols(Number(b.dataset.cols)));
+let savedCols = 2;
+try { savedCols = Number(localStorage.getItem('67-social-cols')) || 2; } catch {}
+setCols(savedCols);
 
 /* ---------- قانون رمز عبور ---------- */
 const pwProblem = p =>
@@ -532,16 +764,60 @@ function tickRings() {
   document.querySelectorAll('.ring-wrap').forEach(w => {
     const used = Math.min(1, Math.max(0, (t - Number(w.dataset.created)) / POST_LIFE));
     if (used >= 1) { const c = w.closest('.post-card'); if (c) c.remove(); return; }
-    w.querySelector('.ring-fg').setAttribute('stroke-dashoffset', (used * 100).toFixed(2));
+    w.querySelector('.ring-fg').setAttribute('stroke-dashoffset', (-used * 100).toFixed(2));
   });
 }
 setInterval(tickRings, 30000);
 setTimeout(tickRings, 0);
 
 /* ---------- تایم‌لاین ---------- */
+/* متن کارت: حداکثر ۴ خط × ۱۷ کاراکتر؛ تا ۹ کاراکتر بولد */
+function cardLines(body) {
+  const out = [];
+  String(body || '').split('\n').forEach(l => {
+    const c = Array.from(l.trim());
+    if (!c.length) return;
+    for (let i = 0; i < c.length; i += LINE_MAX) out.push(c.slice(i, i + LINE_MAX).join(''));
+  });
+  return out.slice(0, LINES_MAX);
+}
+function fillText(el, body) {
+  const lines = cardLines(body);
+  el.replaceChildren(...lines.map(l => { const s = document.createElement('span'); s.textContent = l; return s; }));
+  el.classList.toggle('bold', Array.from(lines.join('')).length <= 9);
+}
+/* دابل‌تپ / دابل‌کلیک → پاپ‌آپ ۱:۱ تا ۹۲٪ صفحه */
+function openCardPop(card) {
+  let pop = $('cardPop');
+  if (!pop) {
+    pop = document.createElement('div'); pop.id = 'cardPop'; pop.className = 'card-pop';
+    pop.addEventListener('click', e => { if (!e.target.closest('.post-card') || e.target.closest('.pop-x')) closeCardPop(); });
+    document.body.appendChild(pop);
+  }
+  const big = card.cloneNode(true); big.classList.remove('mine');
+  big.querySelectorAll('.post-del').forEach(b => b.remove());
+  const x = document.createElement('button'); x.type = 'button'; x.className = 'pop-x'; x.setAttribute('aria-label', 'بستن'); x.textContent = '✕';
+  big.appendChild(x);
+  const f = big.querySelector('.post-footer'), u = card.dataset.user;
+  if (f && u) f.onclick = () => { closeCardPop(); openProfile(u); };
+  pop.replaceChildren(big); requestAnimationFrame(() => pop.classList.add('open'));
+}
+function closeCardPop() { const p = $('cardPop'); if (p) { p.classList.remove('open'); setTimeout(() => p.replaceChildren(), 200); } }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCardPop(); });
+function bindDoubleTap(card) {
+  let last = 0;
+  const ok = e => !e.target.closest('.post-footer,.post-del');
+  card.addEventListener('dblclick', e => { if (ok(e)) { e.preventDefault(); openCardPop(card); } });
+  card.addEventListener('touchend', e => {
+    if (!ok(e)) return;
+    const t = Date.now();
+    if (t - last < 320) { e.preventDefault(); last = 0; openCardPop(card); } else last = t;
+  });
+}
+
 function postCard(p, onDeleted) {
   const card = document.createElement('article'); card.className = 'post-card';
-  const text = document.createElement('div'); text.className = 'post-text'; text.textContent = p.body;
+  const text = document.createElement('div'); text.className = 'post-text'; fillText(text, p.body);
   const foot = document.createElement('button'); foot.type = 'button'; foot.className = 'post-footer';
   foot.setAttribute('aria-label', 'پروفایل ' + p.username);
   const name = document.createElement('div'); name.className = 'post-username'; name.textContent = p.username;
@@ -550,8 +826,9 @@ function postCard(p, onDeleted) {
   wrap.innerHTML = '<svg viewBox="0 0 46 46" aria-hidden="true"><circle class="ring-bg" cx="23" cy="23" r="21" pathLength="100"/><circle class="ring-fg" cx="23" cy="23" r="21" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/></svg>';
   wrap.appendChild(av);
   foot.append(name, wrap); foot.onclick = () => openProfile(p.username);
-  card.append(text, foot);
+  card.append(text, foot); card.dataset.user = p.username; bindDoubleTap(card);
   if (p.mine) {
+    card.classList.add('mine');
     const del = document.createElement('button'); del.type = 'button'; del.className = 'post-del'; del.textContent = '✕';
     del.setAttribute('aria-label', 'حذف پست');
     del.onclick = async () => {
@@ -568,12 +845,14 @@ async function loadFeed(reset) {
   if (reset) { cursor = null; feedEl.replaceChildren(); }
   $('moreButton').hidden = true;
   try {
-    const q = `/feed?scope=${scope}` + (cursor ? '&before=' + cursor : '');
+    const q = `/feed?scope=${scope}` + (query ? '&q=' + encodeURIComponent(query) : '') + (cursor ? '&before=' + cursor : '');
     const d = await api(q); syncClock(d.now);
-    d.posts.forEach(p => feedEl.appendChild(postCard(p)));
+    d.posts.sort((x, y) => y.created_at - x.created_at).forEach(p => feedEl.appendChild(postCard(p)));
+    if (reset) { seenIds = new Set(d.posts.map(p => String(p.id))); topCreated = d.posts[0]?.created_at || 0; hideNewPosts(); }
+    else d.posts.forEach(p => seenIds.add(String(p.id)));
     tickRings();
     if (d.posts.length) cursor = d.posts[d.posts.length - 1].created_at;
-    if (reset && !d.posts.length) emptyNote(feedEl, scope === 'friends' ? 'هنوز پستی از دوستانتان نیست. از پروفایل کاربران درخواست دوستی بدهید.' : 'هنوز پستی نیست. اولین پست را شما بنویسید.');
+    if (reset && !d.posts.length) emptyNote(feedEl, query ? 'پستی با «' + query + '» پیدا نشد.' : scope === 'friends' ? 'هنوز پستی از دوستانتان نیست. از پروفایل کاربران، دکمهٔ «دوستی» را بزنید.' : 'هنوز پستی نیست. اولین پست را شما بنویسید.');
     $('moreButton').hidden = !d.has_more;
   } catch (e) { if (e.status === 401) return logoutLocal(); emptyNote(feedEl, errText(e)); }
 }
@@ -583,14 +862,73 @@ document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
   loadFeed(true);
 });
 $('moreButton').onclick = () => loadFeed(false);
-function goTimeline() { show('timelinePage'); loadFeed(true); }
+/* ---------- جست‌وجو در پست‌ها (متن، نام کاربری و نام نمایشی؛ در تب فعلی) ---------- */
+const SEARCH_ICON = $('searchButton').innerHTML;
+let searchTimer;
+function setSearching(on) {
+  document.querySelector('.tl-top').classList.toggle('searching', on);
+  
+  $('searchButton').setAttribute('aria-label', on ? 'بستن جست‌وجو' : 'جست‌وجو');
+  $('searchInput').placeholder = 'جست‌وجو در «' + (scope === 'friends' ? 'دوستان' : 'همه') + '»';
+  if (on) { $('searchInput').focus(); return; }
+  clearTimeout(searchTimer); $('searchInput').value = ''; $('searchInput').blur();
+  if (query) { query = ''; loadFeed(true); }
+}
+$('searchButton').onclick = () => setSearching(!document.querySelector('.tl-top').classList.contains('searching'));
+$('searchInput').addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    const v = Array.from($('searchInput').value.replace(/\s+/g, ' ').trim()).slice(0, MAX).join('');
+    if (v !== query) { query = v; loadFeed(true); }
+  }, 350);
+});
+function runSearch() {
+  clearTimeout(searchTimer);
+  const v = Array.from($('searchInput').value.replace(/\s+/g, ' ').trim()).slice(0, MAX).join('');
+  if (!v) { setSearching(false); return; }
+  if (v !== query) { query = v; loadFeed(true); }
+  $('searchInput').blur();
+}
+$('searchGo').addEventListener('pointerdown', e => e.preventDefault());
+$('searchGo').onclick = runSearch;
+$('searchInput').addEventListener('blur', () => { setTimeout(() => { if (!$('searchInput').value.trim() && document.activeElement !== $('searchInput')) setSearching(false); }, 150); });
+$('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); $('searchInput').blur(); } });
+/* ---------- پست جدید: فقط اعلام می‌شود؛ تایم‌لاین تا لمس نوشته رفرش نمی‌شود ---------- */
+let seenIds = new Set(), topCreated = 0, newPostsTimer = null, checking = false;
+const NEW_POSTS_EVERY = 30000;
+function hideNewPosts() { $('newPostsButton').hidden = true; }
+async function checkNewPosts() {
+  if (checking || document.hidden || !me || !$('timelinePage').classList.contains('active')) return;
+  checking = true;
+  const sc = scope, qq = query;
+  try {
+    const d = await api(`/feed?scope=${sc}` + (qq ? '&q=' + encodeURIComponent(qq) : ''));
+    if (sc !== scope || qq !== query) return;          // تب یا جست‌وجو در این فاصله عوض شده
+    const fresh = d.posts.filter(p => !seenIds.has(String(p.id)) && p.created_at >= topCreated);
+    if (fresh.length) {
+      const n = fresh.length >= 24 ? '۲۴+' : fresh.length.toLocaleString('fa-IR');
+      $('newPostsButton').textContent = `↑ نمایش ${n} پست جدید`;
+      $('newPostsButton').hidden = false;
+    }
+  } catch {} finally { checking = false; }
+}
+function startNewPostsWatch() { clearInterval(newPostsTimer); newPostsTimer = setInterval(checkNewPosts, NEW_POSTS_EVERY); }
+document.addEventListener('visibilitychange', () => { if (!document.hidden) checkNewPosts(); });
+$('newPostsButton').onclick = () => { hideNewPosts(); window.scrollTo({top: 0, behavior: 'smooth'}); loadFeed(true); };
+function goTimeline() { startNewPostsWatch(); paintMe(); show('timelinePage'); loadFeed(true); }
+// باز کردن صفحهٔ نوشتن؛ focus همزمان با لمس تا کیبورد موبایل باز شود
+$('composeButton').onclick = () => {
+  say('postMessage', ''); openSheet('composeSheet');
+  $('postText').focus({preventScroll: true});
+};
 form('postForm', 'postMessage', async () => {
-  const body = $('postText').value.replace(/\s+/g, ' ').trim();
+  const body = shapePost(cardLines($('postText').value).join('\n'));
   if (!body) return say('postMessage', ERR.invalid_message);
   await send('/posts', {body});
-  $('postText').value = ''; $('postCount').textContent = '0/' + MAX;
-  say('postMessage', 'پست منتشر شد.', true);
-  if (scope === 'all') loadFeed(true);
+  $('postText').value = ''; postCountText();
+  $('postText').blur();            // بستن کیبورد
+  closeSheet('composeSheet');
+  loadFeed(true);                  // جدیدترین پست اول نمایش داده می‌شود
 });
 
 /* ---------- پروفایل و دوستی ---------- */
@@ -603,8 +941,8 @@ async function openProfile(username) {
     $('pDate').textContent = 'عضویت از ' + new Date(u.created_at * 1000).toLocaleDateString('fa-IR');
     say('pMessage', '');
     const fb = $('friendButton'), eb = $('editProfileButton');
-    fb.hidden = u.is_me; eb.hidden = !u.is_me;
-    const paint = f => { fb.textContent = f ? 'لغو دوستی' : 'درخواست دوستی'; fb.className = 'btn' + (f ? ' secondary' : ''); fb.dataset.friend = f ? '1' : ''; };
+    fb.hidden = u.is_me; eb.hidden = true; $('settingsButton').hidden = !u.is_me;
+    const paint = f => { fb.textContent = f ? 'دوست' : 'دوستی'; fb.className = 'btn friend-btn' + (f ? ' is-friend' : ''); fb.setAttribute('aria-pressed', f ? 'true' : 'false'); fb.dataset.friend = f ? '1' : ''; };
     paint(u.is_friend);
     fb.onclick = async () => {
       fb.disabled = true;
@@ -613,7 +951,7 @@ async function openProfile(username) {
     };
     const pf = $('profileFeed'); pf.replaceChildren();
     const f = await api('/feed?username=' + encodeURIComponent(u.username));
-    syncClock(f.now); f.posts.forEach(p => pf.appendChild(postCard(p))); tickRings();
+    syncClock(f.now); f.posts.sort((x, y) => y.created_at - x.created_at).forEach(p => pf.appendChild(postCard(p))); tickRings();
     if (!f.posts.length) emptyNote(pf, 'این کاربر هنوز پستی ندارد.');
     show('profilePage');
   } catch (e) { alert(errText(e)); }
@@ -625,18 +963,21 @@ function openEdit() {
   $('editFullName').value = me.display_name || ''; $('editBio').value = me.bio || '';
   $('editBio').dispatchEvent(new Event('input')); say('editMessage', ''); show('editProfilePage');
 }
-$('accountButton').onclick = openEdit;
+$('settingsButton').onclick = () => openSheet('settingsSheet');
+$('settingsEdit').onclick = () => { closeSheet('settingsSheet'); openEdit(); };
+$('settingsLogout').onclick = () => $('logoutButton').click();
+const paintMe = () => { if (me) $('myProfileButton').textContent = me.avatar_id || '🙂'; };
 $('editProfileButton').onclick = openEdit;
 $('editProfileForm').addEventListener('submit', async ev => {
   ev.preventDefault();
   const display_name = $('editFullName').value.trim();
   if (!display_name) return say('editMessage', 'نام نمایشی را وارد کنید.');
-  try { const d = await send('/profile', {display_name, avatar_id: editAvatar, bio: $('editBio').value.trim()}); me = d.user; say('editMessage', 'تغییرات ذخیره شد.', true); }
+  try { const d = await send('/profile', {display_name, avatar_id: editAvatar, bio: $('editBio').value.trim()}); me = d.user; paintMe(); say('editMessage', 'تغییرات ذخیره شد.', true); }
   catch (e) { say('editMessage', errText(e)); }
 });
 
 /* ---------- خروج و بازیابی نشست ---------- */
-function logoutLocal() { me = null; show('loginPage'); }
+function logoutLocal() { me = null; clearInterval(newPostsTimer); hideNewPosts(); show('loginPage'); }
 $('logoutButton').onclick = async () => { try { await send('/logout', {}); } catch {} logoutLocal(); };
 (async () => {
   try { const d = await api('/me'); me = d.user; goTimeline(); } catch { show('signupPage'); }
