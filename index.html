@@ -208,6 +208,55 @@ body.dark .posts-title{color:#9a9a9a}
 /* دکمهٔ ذره‌بین شیشه‌ای، هم‌رنگ تم */
 .search-go{background:rgba(255,255,255,.55);color:#111;border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 2px 8px rgba(0,0,0,.08)}
 body.dark .search-go{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 8px rgba(0,0,0,.4)}
+
+/* ===== به‌روزرسانی ۲۰ مهر/اکتبر ===== */
+/* ایموجی آواتار دقیقاً وسط دایره: فونت ایموجی + line-height:1 (نه معیارهای خط وزیرمتن) */
+.avatar,.me-avatar,.avatar-option{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Segoe UI Symbol",sans-serif;line-height:1;text-align:center}
+/* فلش بازگشت SVG: سمت چپ، رو به چپ؛ چرخ‌دنده سمت راست */
+.profile-top .back-btn{margin-inline-start:auto}
+.round-btn.back-btn svg{width:23px;height:23px}
+/* کادر نوشتن پست */
+#postForm{border-radius:30px;border-bottom:1px solid var(--border);padding-top:16px}
+#postText{display:block;width:100%;height:190px;min-height:0;padding:0 2px;line-height:1.7;font-size:19px;text-align:center;white-space:pre;overflow:hidden;resize:none;border:0;background:transparent}
+#postText::placeholder{color:var(--muted)}
+.sheet-foot{border-top:0;padding-top:6px}
+.send-btn{width:54px;height:54px;flex:0 0 54px;margin:0;padding:0;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center}
+body.dark .send-btn{background:#000;box-shadow:0 0 0 1px #3a3a3a}
+.send-btn svg{width:28px;height:28px}
+/* اندازهٔ تطبیقی متن: بزرگ‌ترین فونتی که کادر متن (۴ ردیف) را بدون بیرون‌زدگی پر کند؛ همیشه بولد */
+.post-card .post-text,.feed .post-card .post-text,.feed.cols-1 .post-text,.feed.cols-3 .post-text,.card-pop .post-card .post-text{font-weight:700;font-size:min(calc((100cqw - 2 * var(--pad)) * var(--fw,.095)), calc(var(--row) * 4 / (var(--fn,1) * 1.22)))!important}
+.post-card .post-text>span{height:auto;line-height:1.18}
+.post-text>span:empty::before{content:"\00a0"}
+/* تنظیمات: دکمه‌های کامل کپسولی با فاصلهٔ بیشتر */
+.set-actions{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.set-actions .btn{margin:0;padding:13px}
+.set-actions .acc-label{margin:10px 0 0}
+.btn.logout-btn{margin-top:22px;background:transparent;color:#e0352b;border:1.5px solid #e0352b}
+body.dark .btn.logout-btn{color:#ff4d42;border-color:#ff4d42}
+.acc-step[hidden]{display:none}
+/* تم‌های رنگی: پس‌زمینه، کارت یک طیف روشن‌تر، متن و دکمه‌ها هم‌رنگ متن */
+body.t-nescafe{--bg:#6f4e37;--card:#7f5c44;--text:#fbf1e4;--muted:#d9bfa5;--border:#93705a;--field:#7f5c44}
+.opt .sw.s-nescafe{background:linear-gradient(135deg,#6f4e37 0 55%,#7f5c44 55% 100%)}
+body.t-sky{--bg:#c0deed;--card:#d6eaf5;--text:#1c2b36;--muted:#5f7d90;--border:#a9cde0;--field:#d6eaf5}
+.opt .sw.s-sky{background:linear-gradient(135deg,#c0deed 0 55%,#d6eaf5 55% 100%)}
+body.t-navy{--bg:#14213d;--card:#1f3157;--text:#eef2fb;--muted:#9aa8c7;--border:#2f446f;--field:#1f3157}
+.opt .sw.s-navy{background:linear-gradient(135deg,#14213d 0 55%,#1f3157 55% 100%)}
+body.t-purple{--bg:#4b2a6b;--card:#5d3a80;--text:#f5ecff;--muted:#c9b3e3;--border:#704b95;--field:#5d3a80}
+.opt .sw.s-purple{background:linear-gradient(135deg,#4b2a6b 0 55%,#5d3a80 55% 100%)}
+body.t-green{--bg:#1e3a2f;--card:#2a4d3f;--text:#eaf5ee;--muted:#a6c4b3;--border:#3a6152;--field:#2a4d3f}
+.opt .sw.s-green{background:linear-gradient(135deg,#1e3a2f 0 55%,#2a4d3f 55% 100%)}
+body.t-pink{--bg:#f4d3e1;--card:#f9e5ee;--text:#3a1f2b;--muted:#8e6476;--border:#e7bccf;--field:#f9e5ee}
+.opt .sw.s-pink{background:linear-gradient(135deg,#f4d3e1 0 55%,#f9e5ee 55% 100%)}
+body.t-latte{--bg:#d8c1a6;--card:#e6d4bf;--text:#3b2a1c;--muted:#7d6550;--border:#c7ad8f;--field:#e6d4bf}
+.opt .sw.s-latte{background:linear-gradient(135deg,#d8c1a6 0 55%,#e6d4bf 55% 100%)}
+body[class*=" t-"] .tl-top .tab.on,body[class^="t-"] .tl-top .tab.on{background:var(--text);color:var(--bg)}
+body[class*=" t-"] .send-btn,body[class^="t-"] .send-btn{background:var(--text);color:var(--bg);box-shadow:none}
+body[class*=" t-"] .search-go,body[class^="t-"] .search-go{background:var(--text);color:var(--bg);border:0;box-shadow:none}
+body[class*=" t-"] .ring-fg,body[class^="t-"] .ring-fg{stroke:var(--text)}
+body[class*=" t-"] .posts-title,body[class^="t-"] .posts-title,body[class*=" t-"] .pop-x,body[class^="t-"] .pop-x{color:var(--muted)}
+.opts.themes{display:grid;grid-template-columns:repeat(3,1fr)}
+.opts.themes .opt{font-size:12px;padding:8px 6px}
+.opts.themes .sw{height:38px}
 </style>
 </head>
 <body>
@@ -358,8 +407,8 @@ body.dark .search-go{background:rgba(255,255,255,.10);color:#fff;border-color:rg
 <section class="page" id="profilePage">
   <div class="profile-card">
     <div class="profile-top">
-      <button class="round-btn" data-go="timelinePage" type="button" aria-label="بازگشت به تایم‌لاین">→</button>
-      <button class="round-btn" id="settingsButton" type="button" aria-label="Settings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></button>
+            <button class="round-btn" id="settingsButton" type="button" aria-label="Settings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></button>
+      <button class="round-btn back-btn" data-go="timelinePage" type="button" aria-label="بازگشت به تایم‌لاین"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button>
     </div>
     <div class="profile-heading">
       <div class="avatar large" id="pAvatar">🙂</div>
@@ -386,20 +435,41 @@ body.dark .search-go{background:rgba(255,255,255,.10);color:#fff;border-color:rg
       <div class="counter" id="editBioCount">0/67</div></label>
     <button class="btn" type="submit">ذخیره تغییرات</button>
   </form>
-  <button class="btn secondary" data-go="timelinePage">بازگشت</button>
-  <button class="btn secondary" id="logoutButton">خروج از حساب</button>
+  <button class="btn secondary" id="editBack" type="button">بازگشت</button>
   <div class="message" id="editMessage" role="status"></div>
+</div></section>
+
+<!-- تغییر نام کاربری / ایمیل / رمز عبور (کد به ایمیل فعلی حساب) -->
+<section class="page" id="accountPage"><div class="panel">
+  <h1 id="accTitle">تغییر</h1>
+  <p class="subtitle" id="accSub"></p>
+  <form id="accForm" novalidate>
+    <div class="acc-step" id="accStep1">
+      <label class="field"><span id="accLabel"></span>
+        <input id="accValue" autocomplete="off" autocapitalize="none" spellcheck="false">
+        <div class="hint" id="accHint"></div></label>
+      <label class="field" id="accValue2Field"><span>تکرار رمز جدید</span>
+        <input id="accValue2" type="password" maxlength="15" autocomplete="new-password"></label>
+    </div>
+    <div class="acc-step" id="accStep2" hidden>
+      <label class="field"><span>کد تأیید</span>
+        <input id="accCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+    </div>
+    <button class="btn" type="submit" id="accSubmit">ارسال کد</button>
+    <div class="message" id="accMessage" role="status"></div>
+  </form>
+  <button class="text-button" id="accResend" type="button" hidden>ارسال دوبارهٔ کد</button>
+  <button class="btn secondary" id="accBack" type="button">بازگشت</button>
 </div></section>
 </div>
 
 <!-- نوشتن پست -->
 <div class="sheet-wrap" id="composeSheet" aria-hidden="true">
   <form class="sheet" id="postForm" role="dialog" aria-label="نوشتن پست">
-    <div class="grip"></div>
-    <textarea id="postText" rows="4" dir="auto" placeholder="چه خبر؟" aria-label="متن پست"></textarea>
+    <textarea id="postText" rows="4" dir="rtl" wrap="off" placeholder="چه خبر؟" aria-label="متن پست"></textarea>
     <div class="sheet-foot">
+      <button class="btn send-btn" type="submit" aria-label="ارسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.8 20.6 11.4h-5.1V21h-7V11.4H3.4Z"/></svg></button>
       <span class="counter" id="postCount">0/67</span>
-      <button class="btn send-btn" type="submit">ارسال</button>
     </div>
     <div class="message" id="postMessage" role="status"></div>
   </form>
@@ -411,9 +481,16 @@ body.dark .search-go{background:rgba(255,255,255,.10);color:#fff;border-color:rg
     <div class="grip"></div>
     <h2>تنظیمات</h2>
     <div class="opt-label">تم</div>
-    <div class="opts">
+    <div class="opts themes">
       <button class="opt" type="button" data-theme="light"><span class="sw w"></span>سفید</button>
       <button class="opt" type="button" data-theme="dark"><span class="sw b"></span>سیاه</button>
+      <button class="opt" type="button" data-theme="nescafe"><span class="sw s-nescafe"></span>قهوه‌ای نسکافه‌ای</button>
+      <button class="opt" type="button" data-theme="sky"><span class="sw s-sky"></span>آبی توییتر قدیمی</button>
+      <button class="opt" type="button" data-theme="navy"><span class="sw s-navy"></span>سرمه‌ای</button>
+      <button class="opt" type="button" data-theme="purple"><span class="sw s-purple"></span>بنفش</button>
+      <button class="opt" type="button" data-theme="green"><span class="sw s-green"></span>سبز تیره</button>
+      <button class="opt" type="button" data-theme="pink"><span class="sw s-pink"></span>صورتی کم‌رنگ</button>
+      <button class="opt" type="button" data-theme="latte"><span class="sw s-latte"></span>قهوه‌ای کم‌رنگ</button>
     </div>
     <div class="opt-label">تعداد کارت‌ها در هر ردیف</div>
     <div class="opts">
@@ -421,9 +498,13 @@ body.dark .search-go{background:rgba(255,255,255,.10);color:#fff;border-color:rg
       <button class="opt" type="button" data-cols="2"><span class="g" style="grid-template-columns:1fr 1fr"><i></i><i></i></span>۲ کارت</button>
       <button class="opt" type="button" data-cols="3"><span class="g" style="grid-template-columns:1fr 1fr 1fr"><i></i><i></i><i></i></span>۳ کارت</button>
     </div>
-    <div style="margin-top:8px">
-      <button class="set-row" type="button" id="settingsEdit">ویرایش پروفایل <span>←</span></button>
-      <button class="set-row danger" type="button" id="settingsLogout">خروج از حساب</button>
+    <div class="set-actions">
+      <button class="btn secondary" type="button" id="settingsEdit">ویرایش پروفایل</button>
+      <div class="opt-label acc-label">حساب کاربری</div>
+      <button class="btn secondary" type="button" data-acc="username">تغییر نام کاربری</button>
+      <button class="btn secondary" type="button" data-acc="email">تغییر ایمیل</button>
+      <button class="btn secondary" type="button" data-acc="password">تغییر رمز عبور</button>
+      <button class="btn logout-btn" type="button" id="settingsLogout">خروج از حساب</button>
     </div>
   </div>
 </div>
@@ -501,6 +582,9 @@ const ERR = {
   password_reset_change_rate_limited: 'تعداد تغییر رمز زیاد است؛ بعداً تلاش کنید.',
   invalid_message: 'پست باید حداکثر ۶۷ کاراکتر و غیرخالی باشد.',
   text_too_long: 'متن بیش از ۶۷ کاراکتر است.',
+  same_value: 'مقدار جدید با مقدار فعلی یکسان است.',
+  invalid_kind: 'درخواست نامعتبر است.',
+  account_change_failed: 'تغییر انجام نشد؛ دوباره تلاش کنید.',
   unauthorized: 'نشست شما تمام شده؛ دوباره وارد شوید.'
 };
 function errText(e) {
@@ -553,33 +637,101 @@ limit('bio', 'bioCount'); limit('editBio', 'editBioCount');
 limit('fullName'); limit('editFullName');
 
 const LINE_MAX = 17, LINES_MAX = 4;
-/* نوشتن پست: ۴ خط × ۱۷ کاراکتر؛ اینتر فقط بعد از حداقل یک کاراکتر در همان خط */
-function shapePost(v) {
-  let lines = v.replace(/\r/g, '').split('\n');
-  while (lines.length && !lines[0].trim()) lines.shift();          // اینتر در آغاز اثری ندارد
-  lines = lines.filter((l, i) => i === lines.length - 1 || l.trim()); // خط خالی وسط حذف
-  lines = lines.slice(0, LINES_MAX).map(l => Array.from(l).slice(0, LINE_MAX).join(''));
-  let left = MAX;                                                    // جمع همهٔ کاراکترها حداکثر ۶۷
-  lines = lines.map(l => { const c = Array.from(l).slice(0, Math.max(0, left)); left -= c.length; return c.join(''); });
+/* ---------- نوشتن پست ----------
+   سقف ۶۷ کاراکتر (فاصله، نیم‌فاصله و اینتر هرکدام ۱ کاراکتر)، حداکثر ۴ خط، هر خط ۱۷ کاراکتر.
+   شکست خودکار: فاصلهٔ قبل از کلمه‌ای که از خط بیرون می‌زند به شکست خط تبدیل می‌شود (کلمه نصف نمی‌شود)
+   و با پاک کردن متن، کلمه‌ها زنده به خط بالا برمی‌گردند. اینتر همیشه یک خط پایین می‌رود (حتی روی خط خالی).
+   نوع هر «\n» در کادر: h = اینتر کاربر، s = فاصلهٔ تبدیل‌شده به شکست، i = شکست اجباری کلمهٔ بلندتر از ۱۷، p = خط کمکی انتهایی */
+const cps = s => Array.from(s);
+const cpAt = (str, cu) => Array.from(str.slice(0, cu)).length;          // اندیس UTF-16 ← اندیس کاراکتر
+const cuAt = (arr, cp) => arr.slice(0, cp).join('').length;             // اندیس کاراکتر ← اندیس UTF-16
+const comp = {disp: [], kind: [], ph: false, raw: 0, sel: 0, composing: false};
+function wrapRaw(raw) {
+  const disp = [], kind = [], map = new Array(raw.length + 1);
+  let len = 0, lines = 1;
+  const wordLen = k => { let j = k; while (j < raw.length && raw[j] !== ' ' && raw[j] !== '\n') j++; return j - k; };
+  for (let k = 0; k < raw.length; k++) {
+    const c = raw[k];
+    if (c === '\n') { map[k] = disp.length; disp.push('\n'); kind.push('h'); len = 0; lines++; continue; }
+    if (c === ' ') {
+      map[k] = disp.length;
+      if (len + 1 + wordLen(k + 1) <= LINE_MAX) { disp.push(' '); kind.push(null); len++; }
+      else { disp.push('\n'); kind.push('s'); len = 0; lines++; }
+      continue;
+    }
+    if (len >= LINE_MAX) { disp.push('\n'); kind.push('i'); len = 0; lines++; }
+    map[k] = disp.length; disp.push(c); kind.push(null); len++;
+  }
+  map[raw.length] = disp.length;
+  return {disp, kind, map, lines};
+}
+function padPost() {
+  const el = $('postText');
+  const lines = Math.max(1, comp.disp.join('').split('\n').length);
+  const lh = parseFloat(getComputedStyle(el).lineHeight) || 32;
+  el.style.paddingTop = Math.max(0, (el.offsetHeight - lines * lh) / 2) + 'px';
+  el.scrollTop = 0;
+}
+function postCountText() { $('postCount').textContent = comp.raw + '/' + MAX; }
+function renderPost(res, rawLen, caretCp) {
+  const el = $('postText');
+  comp.disp = res.disp; comp.kind = res.kind; comp.raw = rawLen;
+  comp.ph = res.disp.length > 0 && res.disp[res.disp.length - 1] === '\n';   // خط خالی آخر: caret روی خط جدید دیده شود
+  const full = res.disp.concat(comp.ph ? ['\n'] : []), val = full.join('');
+  const pos = cuAt(full, caretCp);
+  if (el.value !== val) el.value = val;
+  if (document.activeElement === el && (el.selectionStart !== pos || el.selectionEnd !== pos)) el.setSelectionRange(pos, pos);
+  comp.sel = pos;
+  postCountText(); padPost();
+}
+function resetPost() { renderPost({disp: [], kind: []}, 0, 0); }
+function onPostInput() {
+  const el = $('postText');
+  if (comp.composing) return;
+  const val = cps(el.value.replace(/\r\n?/g, '\n').replace(/\t/g, ' '));
+  const old = comp.disp.concat(comp.ph ? ['\n'] : []), oldKind = comp.kind.concat(comp.ph ? ['p'] : []);
+  const caret = Math.min(val.length, cpAt(el.value, el.selectionStart));
+  // بخش تغییرکرده: اول انتهای مشترک (بعد از caret)، بعد ابتدای مشترک (تا caret)
+  const ol = old.length, nl = val.length;
+  let s = 0;
+  while (s < ol && s < nl - caret && old[ol - 1 - s] === val[nl - 1 - s]) s++;
+  let p = 0;
+  while (p < ol - s && p < caret && old[p] === val[p]) p++;
+  const kinds = oldKind.slice(0, p).concat(val.slice(p, nl - s).map(c => c === '\n' ? 'h' : null), oldKind.slice(ol - s));
+  let raw = [], rc = 0;
+  val.forEach((c, k) => {
+    if (k === caret) rc = raw.length;
+    if (c !== '\n') raw.push(c);
+    else if (kinds[k] === 's') raw.push(' ');
+    else if (kinds[k] === 'h') raw.push('\n');       // i و p حذف می‌شوند
+  });
+  if (caret >= val.length) rc = raw.length;
+  // اگر از ۶۷ کاراکتر یا ۴ خط بیشتر شد، کاراکترهای تازه (پشت caret) کنار گذاشته می‌شوند
+  let inserted = Math.max(0, nl - s - p), res = wrapRaw(raw);
+  while ((raw.length > MAX || res.lines > LINES_MAX) && inserted > 0 && rc > 0) {
+    raw.splice(rc - 1, 1); rc--; inserted--; res = wrapRaw(raw);
+  }
+  if (raw.length > MAX || res.lines > LINES_MAX) {             // بازگشت به حالت قبل
+    el.value = old.join(''); el.setSelectionRange(comp.sel, comp.sel); return;
+  }
+  renderPost(res, raw.length, res.map[rc]);
+}
+const pt = $('postText');
+pt.addEventListener('beforeinput', () => { if (!comp.composing) comp.sel = pt.selectionStart; });
+pt.addEventListener('compositionstart', () => { comp.composing = true; });
+pt.addEventListener('compositionend', () => { comp.composing = false; onPostInput(); });
+pt.addEventListener('input', e => { if (e.isComposing) return; onPostInput(); });
+pt.addEventListener('focus', padPost);
+// متن نهایی پست: خطوط خالی وسط حفظ می‌شوند؛ خطوط خالی ابتدا و انتها حذف
+function postBody() {
+  const lines = comp.disp.join('').split('\n').map(l => l.trim());
+  while (lines.length && !lines[0]) lines.shift();
+  while (lines.length && !lines[lines.length - 1]) lines.pop();
   return lines.join('\n');
 }
-function postCountText() {
-  const v = $('postText').value, n = Array.from(v.replace(/\n/g, '')).length;
-  $('postCount').textContent = n + '/' + MAX;
-}
-$('postText').addEventListener('keydown', e => {
-  if (e.key !== 'Enter') return;
-  const el = e.target, before = el.value.slice(0, el.selectionStart), cur = before.split('\n').pop();
-  if (!cur.trim() || el.value.split('\n').length >= LINES_MAX || Array.from(el.value.replace(/\n/g, '')).length >= MAX) e.preventDefault();
-});
-$('postText').addEventListener('input', e => {
-  const el = e.target, v = shapePost(el.value);
-  if (v !== el.value) { const p = el.selectionStart - (el.value.length - v.length); el.value = v; el.selectionStart = el.selectionEnd = Math.max(0, p); }
-  postCountText();
-});
-postCountText();
+resetPost();
 const digits = id => $(id).addEventListener('input', () => { $(id).value = $(id).value.replace(/\D/g, '').slice(0, 6); });
-['verificationCode', 'loginCode', 'resetCode'].forEach(digits);
+['verificationCode', 'loginCode', 'resetCode', 'accCode'].forEach(digits);
 
 /* ---------- Turnstile ---------- */
 const widgets = {}, tsTargets = {};
@@ -618,18 +770,23 @@ if (window.visualViewport) {
   visualViewport.addEventListener('resize', kb); visualViewport.addEventListener('scroll', kb);
 }
 
-/* ---------- تم: فقط سفید / سیاه؛ پیش‌فرض سفید؛ تغییر فقط از تنظیمات پروفایل ---------- */
-function setTheme(dark, remount) {
-  document.body.classList.toggle('dark', dark);
-  document.querySelector('meta[name=theme-color]').setAttribute('content', dark ? '#090909' : '#ffffff');
-  document.querySelectorAll('[data-theme]').forEach(b => b.classList.toggle('on', (b.dataset.theme === 'dark') === dark));
-  try { localStorage.setItem('67-social-theme', dark ? 'dark' : 'light'); } catch {}
+/* ---------- تم: سفید، سیاه و ۷ تم رنگی؛ پیش‌فرض سفید؛ تغییر فقط از تنظیمات پروفایل ---------- */
+const THEMES = {light:{dark:false,meta:'#ffffff'},dark:{dark:true,meta:'#090909'},nescafe:{dark:true,meta:'#6f4e37'},sky:{dark:false,meta:'#c0deed'},navy:{dark:true,meta:'#14213d'},purple:{dark:true,meta:'#4b2a6b'},green:{dark:true,meta:'#1e3a2f'},pink:{dark:false,meta:'#f4d3e1'},latte:{dark:false,meta:'#d8c1a6'}};
+function setTheme(name, remount) {
+  if (!THEMES[name]) name = 'light';
+  const t = THEMES[name], b = document.body;
+  [...b.classList].filter(c => c.startsWith('t-')).forEach(c => b.classList.remove(c));
+  if (name !== 'light' && name !== 'dark') b.classList.add('t-' + name);
+  b.classList.toggle('dark', t.dark);
+  document.querySelector('meta[name=theme-color]').setAttribute('content', t.meta);
+  document.querySelectorAll('[data-theme]').forEach(x => x.classList.toggle('on', x.dataset.theme === name));
+  try { localStorage.setItem('67-social-theme', name); } catch {}
   if (remount) remountTs();
 }
-document.querySelectorAll('[data-theme]').forEach(b => b.onclick = () => setTheme(b.dataset.theme === 'dark', true));
+document.querySelectorAll('[data-theme]').forEach(b => b.onclick = () => setTheme(b.dataset.theme, true));
 let savedTheme = 'light';
 try { savedTheme = localStorage.getItem('67-social-theme') || 'light'; } catch {}
-setTheme(savedTheme === 'dark');
+setTheme(savedTheme);
 
 /* ---------- تعداد کارت‌ها در هر ردیف: ۱، ۲ یا ۳؛ پیش‌فرض ۲ ---------- */
 function setCols(n) {
@@ -771,21 +928,40 @@ setInterval(tickRings, 30000);
 setTimeout(tickRings, 0);
 
 /* ---------- تایم‌لاین ---------- */
-/* متن کارت: حداکثر ۴ خط × ۱۷ کاراکتر؛ تا ۹ کاراکتر بولد */
+/* متن کارت: حداکثر ۴ خط × ۱۷ کاراکتر؛ همیشه بولد با اندازهٔ تطبیقی */
 function cardLines(body) {
+  const ls = String(body || '').replace(/\r/g, '').split('\n').map(l => l.trim());
+  while (ls.length && !ls[0]) ls.shift();
+  while (ls.length && !ls[ls.length - 1]) ls.pop();
   const out = [];
-  String(body || '').split('\n').forEach(l => {
-    const c = Array.from(l.trim());
-    if (!c.length) return;
+  ls.forEach(l => {
+    const c = Array.from(l);
+    if (!c.length) { out.push(''); return; }                 // خط خالی وسط حفظ می‌شود
     for (let i = 0; i < c.length; i += LINE_MAX) out.push(c.slice(i, i + LINE_MAX).join(''));
   });
   return out.slice(0, LINES_MAX);
 }
+let _fitCtx = null;
+function lineWidth(t) {                                       // عرض خط در فونت بولد ۱۰۰px
+  if (!_fitCtx) _fitCtx = document.createElement('canvas').getContext('2d');
+  _fitCtx.font = '700 100px "Vazirmatn", Tahoma, sans-serif';
+  return _fitCtx.measureText(t).width;
+}
+function fitText(el) {
+  const lines = el._lines || Array.from(el.children, c => c.textContent);
+  const w = Math.max(1, ...lines.map(l => l ? lineWidth(l) : 0));
+  el.style.setProperty('--fw', (100 / w * 0.94).toFixed(5));   // پر کردن عرض با ۶٪ حاشیه
+  el.style.setProperty('--fn', Math.max(1, lines.length));     // پر کردن ارتفاع بر اساس تعداد خطوط
+}
 function fillText(el, body) {
   const lines = cardLines(body);
   el.replaceChildren(...lines.map(l => { const s = document.createElement('span'); s.textContent = l; return s; }));
-  el.classList.toggle('bold', Array.from(lines.join('')).length <= 9);
+  el._lines = lines; el.classList.add('bold'); el.classList.add('fit');
+  fitText(el);
 }
+if (document.fonts && document.fonts.load) document.fonts.load('700 100px "Vazirmatn"').then(() => {   // اندازه‌گیری دوباره بعد از بارگذاری فونت
+  _fitCtx = null; document.querySelectorAll('.post-text.fit').forEach(fitText);
+});
 /* دابل‌تپ / دابل‌کلیک → پاپ‌آپ ۱:۱ تا ۹۲٪ صفحه */
 function openCardPop(card) {
   let pop = $('cardPop');
@@ -815,7 +991,7 @@ function bindDoubleTap(card) {
   });
 }
 
-function postCard(p, onDeleted) {
+function postCard(p, onDeleted, canDelete) {
   const card = document.createElement('article'); card.className = 'post-card';
   const text = document.createElement('div'); text.className = 'post-text'; fillText(text, p.body);
   const foot = document.createElement('button'); foot.type = 'button'; foot.className = 'post-footer';
@@ -827,7 +1003,7 @@ function postCard(p, onDeleted) {
   wrap.appendChild(av);
   foot.append(name, wrap); foot.onclick = () => openProfile(p.username);
   card.append(text, foot); card.dataset.user = p.username; bindDoubleTap(card);
-  if (p.mine) {
+  if (p.mine && canDelete) {               // حذف فقط در پروفایل خود کاربر
     card.classList.add('mine');
     const del = document.createElement('button'); del.type = 'button'; del.className = 'post-del'; del.textContent = '✕';
     del.setAttribute('aria-label', 'حذف پست');
@@ -919,13 +1095,13 @@ function goTimeline() { startNewPostsWatch(); paintMe(); show('timelinePage'); l
 // باز کردن صفحهٔ نوشتن؛ focus همزمان با لمس تا کیبورد موبایل باز شود
 $('composeButton').onclick = () => {
   say('postMessage', ''); openSheet('composeSheet');
-  $('postText').focus({preventScroll: true});
+  $('postText').focus({preventScroll: true}); padPost();
 };
 form('postForm', 'postMessage', async () => {
-  const body = shapePost(cardLines($('postText').value).join('\n'));
+  const body = postBody();
   if (!body) return say('postMessage', ERR.invalid_message);
   await send('/posts', {body});
-  $('postText').value = ''; postCountText();
+  resetPost();
   $('postText').blur();            // بستن کیبورد
   closeSheet('composeSheet');
   loadFeed(true);                  // جدیدترین پست اول نمایش داده می‌شود
@@ -951,7 +1127,7 @@ async function openProfile(username) {
     };
     const pf = $('profileFeed'); pf.replaceChildren();
     const f = await api('/feed?username=' + encodeURIComponent(u.username));
-    syncClock(f.now); f.posts.sort((x, y) => y.created_at - x.created_at).forEach(p => pf.appendChild(postCard(p))); tickRings();
+    syncClock(f.now); f.posts.sort((x, y) => y.created_at - x.created_at).forEach(p => pf.appendChild(postCard(p, () => { if (!pf.querySelector('.post-card')) emptyNote(pf, 'این کاربر هنوز پستی ندارد.'); }, u.is_me))); tickRings();
     if (!f.posts.length) emptyNote(pf, 'این کاربر هنوز پستی ندارد.');
     show('profilePage');
   } catch (e) { alert(errText(e)); }
@@ -965,20 +1141,100 @@ function openEdit() {
 }
 $('settingsButton').onclick = () => openSheet('settingsSheet');
 $('settingsEdit').onclick = () => { closeSheet('settingsSheet'); openEdit(); };
-$('settingsLogout').onclick = () => $('logoutButton').click();
+$('editBack').onclick = () => me ? openProfile(me.username) : goTimeline();
 const paintMe = () => { if (me) $('myProfileButton').textContent = me.avatar_id || '🙂'; };
 $('editProfileButton').onclick = openEdit;
 $('editProfileForm').addEventListener('submit', async ev => {
   ev.preventDefault();
   const display_name = $('editFullName').value.trim();
   if (!display_name) return say('editMessage', 'نام نمایشی را وارد کنید.');
-  try { const d = await send('/profile', {display_name, avatar_id: editAvatar, bio: $('editBio').value.trim()}); me = d.user; paintMe(); say('editMessage', 'تغییرات ذخیره شد.', true); }
+  try { const d = await send('/profile', {display_name, avatar_id: editAvatar, bio: $('editBio').value.trim()}); me = d.user; paintMe(); openProfile(me.username); }
   catch (e) { say('editMessage', errText(e)); }
 });
 
 /* ---------- خروج و بازیابی نشست ---------- */
 function logoutLocal() { me = null; clearInterval(newPostsTimer); hideNewPosts(); show('loginPage'); }
-$('logoutButton').onclick = async () => { try { await send('/logout', {}); } catch {} logoutLocal(); };
+$('settingsLogout').onclick = async () => { try { await send('/logout', {}); } catch {} logoutLocal(); };
+/* ---------- تغییر نام کاربری / ایمیل / رمز عبور: کد به ایمیل فعلی حساب ---------- */
+const ACC = {
+  username: {title: 'تغییر نام کاربری', label: 'نام کاربری جدید', hint: '۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی (a-z) و عدد (0-9).', type: 'text', max: 9, done: 'نام کاربری تغییر کرد.'},
+  email: {title: 'تغییر ایمیل', label: 'ایمیل جدید (فقط Gmail)', hint: 'فقط نشانی @gmail.com پذیرفته می‌شود.', type: 'email', max: 254, done: 'ایمیل حساب تغییر کرد.'},
+  password: {title: 'تغییر رمز عبور', label: 'رمز عبور جدید', hint: '۸ تا ۱۵ کاراکتر شامل حرف کوچک، حرف بزرگ، عدد و نماد (مثل ! @ #).', type: 'password', max: 15, done: 'رمز عبور تغییر کرد و همهٔ دستگاه‌های دیگر از حساب خارج شدند.'}
+};
+let acc = null, accTimer, accSeq = 0;
+function accStep(n) {
+  $('accStep1').hidden = n !== 1; $('accStep2').hidden = n !== 2;
+  $('accResend').hidden = n !== 2;
+  $('accSubmit').textContent = n === 1 ? 'ارسال کد' : 'تأیید';
+}
+function openAccount(kind) {
+  const c = ACC[kind]; acc = {kind, value: ''};
+  closeSheet('settingsSheet');
+  $('accTitle').textContent = c.title; $('accLabel').textContent = c.label;
+  $('accSub').textContent = `برای تأیید، یک کد ۶ رقمی به ایمیل فعلی حساب (${me.email}) فرستاده می‌شود.`;
+  const v = $('accValue'); v.value = ''; v.type = c.type; v.maxLength = c.max;
+  v.autocomplete = kind === 'password' ? 'new-password' : 'off';
+  v.inputMode = kind === 'email' ? 'email' : '';
+  $('accHint').textContent = c.hint; $('accHint').className = 'hint';
+  $('accValue2').value = ''; $('accValue2Field').hidden = kind !== 'password';
+  $('accCode').value = ''; say('accMessage', ''); accStep(1);
+  show('accountPage');
+}
+document.querySelectorAll('[data-acc]').forEach(b => b.onclick = () => me && openAccount(b.dataset.acc));
+$('accValue').addEventListener('input', () => {
+  if (!acc) return;
+  clearTimeout(accTimer); const n = ++accSeq, h = $('accHint'), k = acc.kind;
+  const v = k === 'email' ? $('accValue').value.trim().toLowerCase() : k === 'username' ? $('accValue').value.trim().toLowerCase() : $('accValue').value;
+  if (!v) { h.textContent = ACC[k].hint; h.className = 'hint'; return; }
+  if (k === 'password') { const p = pwProblem(v); h.textContent = p || '✓ رمز عبور مناسب است.'; h.className = 'hint ' + (p ? 'bad' : 'ok'); return; }
+  const ok = k === 'username' ? /^[a-z0-9]{3,9}$/.test(v) : /^[^\s@]+@gmail\.com$/.test(v);
+  if (!ok) { h.textContent = k === 'username' ? '✕ ۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی و عدد.' : '✕ فقط ایمیل @gmail.com مجاز است.'; h.className = 'hint bad'; return; }
+  if (v === String(k === 'username' ? me.username : me.email).toLowerCase()) { h.textContent = ERR.same_value; h.className = 'hint bad'; return; }
+  h.textContent = 'در حال بررسی…'; h.className = 'hint';
+  accTimer = setTimeout(async () => {
+    try {
+      const r = await api((k === 'username' ? '/check-username?username=' : '/check-email?email=') + encodeURIComponent(v)); if (n !== accSeq) return;
+      h.textContent = r.available ? (k === 'username' ? '✓ این نام کاربری آزاد است.' : '✓ این ایمیل آزاد است.') : '✕ در دسترس نیست.';
+      h.className = 'hint ' + (r.available ? 'ok' : 'bad');
+    } catch { if (n === accSeq) { h.textContent = 'بررسی فعلاً ممکن نیست.'; h.className = 'hint'; } }
+  }, 400);
+});
+async function accRequest() {
+  await send('/account/request-change', {kind: acc.kind, value: acc.value});
+  $('accCode').value = ''; accStep(2);
+  say('accMessage', `کد به ${me.email} ارسال شد و ۱۰ دقیقه معتبر است. پوشهٔ هرزنامه را هم ببینید.`, true);
+  $('accCode').focus();
+}
+form('accForm', 'accMessage', async () => {
+  if (!acc) return;
+  if (!$('accStep1').hidden) {
+    const k = acc.kind, raw = $('accValue').value;
+    const v = k === 'password' ? raw : raw.trim().toLowerCase();
+    if (k === 'username' && !/^[a-z0-9]{3,9}$/.test(v)) throw new Error('invalid_username');
+    if (k === 'email' && !/^[^\s@]+@gmail\.com$/.test(v)) throw new Error('gmail_only');
+    if (k === 'password') {
+      const pp = pwProblem(v); if (pp) return say('accMessage', pp);
+      if (v !== $('accValue2').value) return say('accMessage', 'رمز جدید و تکرار آن یکسان نیستند.');
+    }
+    if (k !== 'password' && v === String(k === 'username' ? me.username : me.email).toLowerCase()) throw new Error('same_value');
+    acc.value = v;
+    return accRequest();
+  }
+  const code = $('accCode').value;
+  if (!/^\d{6}$/.test(code)) return say('accMessage', 'کد باید دقیقاً ۶ رقم باشد.');
+  const d = await send('/account/confirm-change', {kind: acc.kind, value: acc.value, code});
+  if (d.user) { me = {...me, ...d.user}; paintMe(); }
+  const done = ACC[acc.kind].done; acc = null;
+  $('accValue').value = ''; $('accValue2').value = ''; $('accCode').value = '';
+  await openProfile(me.username);
+  say('pMessage', done, true);
+});
+$('accResend').onclick = async () => {
+  if (!acc?.value) return;
+  try { await accRequest(); } catch (e) { say('accMessage', errText(e)); }
+};
+$('accBack').onclick = () => { acc = null; $('accValue').value = ''; $('accValue2').value = ''; me ? openProfile(me.username) : goTimeline(); };
+
 (async () => {
   try { const d = await api('/me'); me = d.user; goTimeline(); } catch { show('signupPage'); }
 })();
