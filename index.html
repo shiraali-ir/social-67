@@ -406,6 +406,8 @@ html:has(body.auth){overflow-x:hidden;scrollbar-width:none}
 html:has(body.auth)::-webkit-scrollbar,body.auth::-webkit-scrollbar{display:none;width:0;height:0}
 body.auth .app{max-width:440px;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 12px calc(14px + env(safe-area-inset-bottom))}
 body.auth header{position:relative;display:flex;justify-content:center;align-items:center;height:56px;margin:0 0 12px;padding:0;background:none;border:0;box-shadow:none}
+body:not(.wm-on) header .brand{display:none!important}
+body.no-head header{display:none!important}
 header .brand{display:flex;align-items:center;justify-content:center;line-height:0;color:var(--text)}
 header .wordmark{height:22px;width:auto;display:block}
 .auth-back{position:absolute;left:0;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--card);background:color-mix(in srgb,var(--card) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:var(--shadow);color:var(--text)}
@@ -2030,11 +2032,15 @@ const _show = show;
 show = function (id) {
   _show(id);
   const auth = id in AUTH_STEPS; document.body.classList.toggle('auth', auth);
+  // نوشتهٔ SOCIAL 67 فقط بالای ساین‌اپ و ساین‌این؛ صفحه‌های غیرِ ورود اصلاً نوار بالا ندارند
+  document.body.classList.toggle('wm-on', id === 'signupPage' || id === 'loginPage');
+  document.body.classList.toggle('no-head', !auth);
   $('authBack').hidden = !AUTH_BACK[id];
   if (auth) { setTimeout(tsFit, 0); const c = $(id).querySelector('.otp-field input'); if (c) { c.value = ''; c._otpPaint(); } }
   if (id === 'verifyPage') resendCountdown();
 };
 document.body.classList.toggle('auth', $('signupPage').classList.contains('active'));
+document.body.classList.toggle('wm-on', $('signupPage').classList.contains('active'));
 
 /* ---------- @یوزرنیم و #هشتگ در متن پست و چت ← لینک ---------- */
 const TOK_RE = /(^|\s)(@[A-Za-z0-9]+|#[\p{L}\p{N}\p{M}_\u200c]+)/gu;
