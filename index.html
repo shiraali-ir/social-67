@@ -482,6 +482,15 @@ body.lang-en .forgot-link{margin:-2px auto 4px 18px}
 </style>
 <script>try{if(localStorage.getItem('s67_in'))document.documentElement.classList.add('s67-in');setTimeout(function(){document.documentElement.classList.remove('s67-in')},2500)}catch(e){}</script>
 <style>html.s67-in body{visibility:hidden}</style>
+<style>
+/* لمس: بدون مربع آبی؛ لایهٔ خاکستری هم‌شکل خود دکمه، وسط ۵۰٪ و نرم تا لبه کاملاً شفاف */
+*{-webkit-tap-highlight-color:transparent}
+:is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[data-open]):not(:disabled):active{background-image:radial-gradient(farthest-side,rgba(128,128,128,.5),rgba(128,128,128,.28) 45%,rgba(128,128,128,0))!important}
+body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[data-open]):not(:disabled):active{background-image:radial-gradient(farthest-side,rgba(175,175,175,.5),rgba(175,175,175,.28) 45%,rgba(175,175,175,0))!important}
+.tok:active{background-image:none!important}
+/* شمارندهٔ پست: وسط دایرهٔ فرضی هم‌اندازهٔ دکمهٔ ارسال، قرینه در سمت چپ */
+#postCount{flex:0 0 54px;width:54px;height:54px;display:grid;place-items:center;text-align:center;direction:ltr;white-space:nowrap}
+</style>
 </head>
 <body>
 <div class="app">
@@ -616,8 +625,8 @@ body.lang-en .forgot-link{margin:-2px auto 4px 18px}
   <div class="tl-top">
     <button class="me-avatar" id="myProfileButton" aria-label="پروفایل من">🙂</button>
     <div class="tabs" role="tablist">
-      <button class="tab on" data-scope="all" role="tab">همه</button>
       <button class="tab" data-scope="friends" role="tab">دوستان</button>
+      <button class="tab on" data-scope="all" role="tab">همه</button>
     </div>
     <div class="search-box" id="searchBox"><input id="searchInput" type="search" maxlength="67" placeholder="جست‌وجو در پست‌ها" aria-label="جست‌وجو در پست‌ها" autocomplete="off"><button class="search-go" id="searchGo" type="button" aria-label="جست‌وجو"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
     <button class="round-btn" id="searchButton" type="button" aria-label="جست‌وجو"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
@@ -1664,7 +1673,7 @@ async function openProfile(username) {
     $('pDate').textContent = 'عضویت از ' + (LANG === 'en' ? new Date(u.created_at * 1000).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) : new Date(u.created_at * 1000).toLocaleDateString('fa-IR'));
     say('pMessage', '');
     const fb = $('friendButton'), eb = $('editProfileButton');
-    fb.hidden = u.is_me; eb.hidden = true; $('settingsButton').hidden = !u.is_me;
+    fb.hidden = u.is_me || !!u.is_bot; eb.hidden = true; $('settingsButton').hidden = !u.is_me;
     $('pActions').hidden = !u.is_me; if (u.is_me) checkUnread();
     const paint = f => { fb.textContent = f ? 'دوست' : 'دوستی'; fb.className = 'btn friend-btn' + (f ? ' is-friend' : ''); fb.setAttribute('aria-pressed', f ? 'true' : 'false'); fb.dataset.friend = f ? '1' : ''; };
     paint(u.is_friend);
