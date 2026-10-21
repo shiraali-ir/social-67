@@ -480,6 +480,8 @@ body.lang-en .forgot-link{margin:-2px auto 4px 18px}
 .text-button:disabled,body.auth .panel>.text-button:disabled{opacity:.35;cursor:default;pointer-events:none}
 .forgot-link:active{background:color-mix(in srgb,var(--link) 14%,transparent)}
 </style>
+<script>try{if(localStorage.getItem('s67_in'))document.documentElement.classList.add('s67-in');setTimeout(function(){document.documentElement.classList.remove('s67-in')},2500)}catch(e){}</script>
+<style>html.s67-in body{visibility:hidden}</style>
 </head>
 <body>
 <div class="app">
@@ -1636,7 +1638,7 @@ async function checkNewPosts() {
 function startNewPostsWatch() { clearInterval(newPostsTimer); newPostsTimer = setInterval(() => { checkNewPosts(); checkUnread(); }, NEW_POSTS_EVERY); }
 document.addEventListener('visibilitychange', () => { if (!document.hidden) { checkNewPosts(); checkUnread(); } });
 $('newPostsButton').onclick = () => { hideNewPosts(); $('tlScroll').scrollTop = 0; loadFeed(true); };
-function goTimeline() { startNewPostsWatch(); paintMe(); show('timelinePage'); loadFeed(true); checkUnread(); pushSync(); pushPending(); }
+function goTimeline() { try { localStorage.setItem('s67_in', '1'); } catch {} startNewPostsWatch(); paintMe(); show('timelinePage'); loadFeed(true); checkUnread(); pushSync(); pushPending(); }
 // باز کردن صفحهٔ نوشتن؛ focus همزمان با لمس تا کیبورد موبایل باز شود
 $('composeButton').onclick = () => {
   say('postMessage', ''); openSheet('composeSheet');
@@ -1861,7 +1863,7 @@ window.addEventListener('resize', () => document.querySelectorAll('#chatList .bu
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { document.querySelectorAll('#chatList .bub').forEach(fitBubble); if (chatStick) chatToBottom(); });
 
 /* ---------- خروج و بازیابی نشست ---------- */
-function logoutLocal() { pushSent = ''; me = null; clearInterval(newPostsTimer); hideNewPosts(); stopChat(); paintUnread(0); show('loginPage'); }
+function logoutLocal() { try { localStorage.removeItem('s67_in'); } catch {} pushSent = ''; me = null; clearInterval(newPostsTimer); hideNewPosts(); stopChat(); paintUnread(0); show('loginPage'); }
 $('settingsLogout').onclick = async () => {
   const t = pushTok(); if (t) { try { await send('/push/unregister', {token: t}); } catch {} }
   try { await send('/logout', {}); } catch {} logoutLocal();
@@ -2125,7 +2127,12 @@ function pushPending() {
 }
 
 (async () => {
-  try { const d = await api('/me'); me = d.user; goTimeline(); } catch { show('signupPage'); }
+  // نشانهٔ ورود قبلی: تایم‌لاین فوراً، بدون نمایش لحظه‌ای ساین‌اپ؛ /me تأیید نهایی است
+  let hinted = false; try { hinted = !!localStorage.getItem('s67_in'); } catch {}
+  if (hinted) show('timelinePage');
+  document.documentElement.classList.remove('s67-in');
+  try { const d = await api('/me'); me = d.user; goTimeline(); }
+  catch (e) { if (e.status === 401) { try { localStorage.removeItem('s67_in'); } catch {} } show('signupPage'); }
 })();
 })();
 </script>
