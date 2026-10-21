@@ -340,6 +340,11 @@ body{background:radial-gradient(60% 40% at 10% 15%,color-mix(in srgb,var(--text)
 .fcard .dm-dot{top:9px;right:9px;width:13px;height:13px}
 .user-hits{max-width:none;margin:0 0 16px}
 .user-hits .fcard{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.bub{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.post-card,.bub,.fcard{transition:transform .18s ease}
+.post-card.held,.bub.held,.fcard.held{transform:scale(.96)}
+.copy-toast{position:fixed;left:50%;top:50%;white-space:nowrap;z-index:9999;padding:10px 20px;border-radius:999px;background:var(--text);color:var(--bg);font:700 14px Vazirmatn,Tahoma,sans-serif;box-shadow:var(--shadow);opacity:0;transform:translate(-50%,-100%) translateY(8px) scale(.9);transition:opacity .18s,transform .18s;pointer-events:none}
+.copy-toast.on{opacity:1;transform:translate(-50%,-100%)}
 .card-pop .fcard{width:var(--ps);height:var(--ps);aspect-ratio:1/1;background:var(--bg);border-radius:calc(var(--ps) * .09);gap:calc(var(--ps) * .04);cursor:pointer;transform:scale(.94);transition:transform .18s}
 .card-pop.open .fcard{transform:none}
 .card-pop .fcard .avatar{width:calc(var(--ps) * .42);height:calc(var(--ps) * .42);font-size:calc(var(--ps) * .3)}
@@ -395,12 +400,92 @@ body.dark .tl-top.searching .search-box input{box-shadow:0 4px 14px rgba(160,160
 body.dark .fab,body.dark .np-fab{box-shadow:0 10px 28px rgba(160,160,160,.28)}
 body.dark .sheet{box-shadow:0 20px 60px rgba(160,160,160,.20)}
 body.dark .tl-top .tab.on{box-shadow:0 1px 6px rgba(160,160,160,.25)}
+/* ===== صفحات ورود/ثبت‌نام مدرن (۲۰۲۶-۱۰-۲۱) ===== */
+body.auth{overflow-x:hidden;scrollbar-width:none}
+html:has(body.auth){overflow-x:hidden;scrollbar-width:none}
+html:has(body.auth)::-webkit-scrollbar,body.auth::-webkit-scrollbar{display:none;width:0;height:0}
+body.auth .app{max-width:440px;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 12px calc(14px + env(safe-area-inset-bottom))}
+body.auth header{position:relative;display:flex;justify-content:center;align-items:center;height:56px;margin:0 0 12px;padding:0;background:none;border:0;box-shadow:none}
+header .brand{display:flex;align-items:center;justify-content:center;line-height:0;color:var(--text)}
+header .wordmark{height:22px;width:auto;display:block}
+.auth-back{position:absolute;left:0;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--card);background:color-mix(in srgb,var(--card) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:var(--shadow);color:var(--text)}
+.auth-back[hidden]{display:none}
+body.auth .page.active{flex:1;display:flex;flex-direction:column;justify-content:center}
+body.auth .panel{width:100%;max-width:none;margin:0;padding:20px 16px 16px;border-radius:30px;background:var(--card);background:color-mix(in srgb,var(--card) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+body.auth .panel h1{font-size:22px;font-weight:900;margin:0 0 4px;text-align:center}
+body.auth .panel>.subtitle{text-align:center;margin:0 0 6px;font-size:12.5px;line-height:1.8}
+.steps{display:flex;justify-content:center;gap:6px;margin:0 0 14px}
+.steps i{width:8px;height:8px;border-radius:99px;background:var(--border);transition:width .25s,background .25s}
+.steps i.on{width:24px;background:var(--text)}
+.steps i.done{background:var(--muted)}
+/* فیلد کپسولی با برچسب شناور */
+body.auth .panel .field{position:relative;margin:10px 0}
+body.auth .panel .field:has(>input)>span{position:absolute;top:0;inset-inline-start:20px;height:52px;display:flex;align-items:center;margin:0;font-size:14px;font-weight:500;color:var(--muted);pointer-events:none;transition:height .18s,font-size .18s,top .18s;z-index:1}
+body.auth .panel .field>input{height:52px;padding:18px 20px 4px;border-radius:999px;font-size:15px;background:var(--field);border:1px solid var(--border)}
+body.auth .panel .field:has(input:focus)>span,body.auth .panel .field:has(input:not(:placeholder-shown))>span{height:26px;font-size:11px;font-weight:700;color:var(--text)}
+body.auth .panel .field>input:focus{border-color:var(--text)}
+body.auth .panel .field>input::placeholder{color:transparent}
+body.auth .panel .field>textarea{border-radius:24px;padding:14px 18px;min-height:80px;resize:none}
+.field.has-eye>input{padding-inline-end:52px!important}
+.eye{position:absolute;top:6px;left:6px;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:var(--muted);display:grid;place-items:center;padding:0;z-index:2}
+.eye svg{width:21px;height:21px}
+.eye.on{color:var(--text)}
+/* راهنماها فقط هنگام تمرکز یا وقتی نتیجه دارند */
+body.auth .panel .field>.hint{display:none;margin:5px 18px 0;font-size:11.5px;line-height:1.7}
+body.auth .panel .field:focus-within>.hint,body.auth .panel .field>.hint.ok,body.auth .panel .field>.hint.bad{display:block}
+#passwordHint,#newPasswordHint{display:none!important}
+.pw-chips{display:none;flex-wrap:wrap;gap:5px;margin:7px 10px 0}
+.field:focus-within .pw-chips,.pw-chips.typed{display:flex}
+.pw-chips b{font-weight:500;font-size:11px;padding:3px 10px;border-radius:99px;border:1px solid var(--border);color:var(--muted);background:var(--field);transition:all .2s}
+.pw-chips b.ok{color:var(--bg);background:var(--ok);border-color:var(--ok)}
+.pw-chips b.ok::before{content:"✓ "}
+/* ویجت Cloudflare: هرگز بیرون از کادر */
+.ts-box{position:relative;width:100%;margin:12px 0 2px;overflow:hidden;border-radius:14px;display:flex;justify-content:center}
+.ts-box>div{transform-origin:center top}
+.ts-box iframe{max-width:100%}
+body.auth .panel .btn{height:52px;padding:0 16px;margin-top:12px;font-size:16px}
+body.auth .panel .message{text-align:center;min-height:0;margin-top:6px}
+body.auth .panel .message:empty{display:none}
+.forgot-link{display:block;margin:-2px 18px 4px auto;border:0;background:none;color:var(--muted);font-size:12px;padding:2px 0}
+body.auth .panel>.text-button{display:block;width:100%;height:46px;margin:10px 0 0;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--text);text-decoration:none;font-weight:700;font-size:14px}
+body.auth .panel>.text-button.auth-hide{display:none}
+body.auth .panel>.text-button:disabled{opacity:.5}
+/* کد ۶ رقمی در ۶ خانه */
+.otp{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:7px;direction:ltr;margin:14px 0 4px}
+.otp i{height:54px;border-radius:16px;border:1px solid var(--border);background:var(--field);display:grid;place-items:center;font-style:normal;font-size:23px;font-weight:900;transition:border-color .15s,transform .15s}
+.otp i.cur{border:2px solid var(--text)}
+.otp i.fill{transform:scale(1.03)}
+body.auth .panel .field.otp-field>span{display:none}
+body.auth .panel .otp>input{position:absolute;inset:0;height:100%;width:100%;opacity:0;padding:0;border:0;color:transparent;caret-color:transparent;z-index:3;letter-spacing:40px}
+/* تنظیم پروفایل */
+#profileSetupPage .profile-heading{flex-direction:column;gap:6px;margin:4px 0 8px}
+#profileSetupPage .avatar.large{width:92px;height:92px;flex-basis:auto;font-size:56px;border:1px solid var(--border);box-shadow:var(--shadow)}
+#profileSetupPage .profile-heading strong{font-size:12px;color:var(--muted);font-weight:500}
+#profileSetupPage .avatar-grid{max-height:150px;grid-template-columns:repeat(6,1fr);gap:7px;scrollbar-width:none}
+#profileSetupPage .avatar-grid::-webkit-scrollbar{display:none}
+#profileSetupPage .counter{margin:4px 18px 0}
+body.lang-en.auth .panel .field:has(>input)>span{inset-inline-start:auto;inset-inline-end:20px}
+body.lang-en.auth .panel :is(h1,.subtitle){text-align:center!important}
+body.lang-en .forgot-link{direction:ltr}
+body.auth .panel .field>input:focus-visible,body.auth .otp>input:focus-visible{outline:none}
+body.auth .panel .field>textarea+.counter{margin-top:4px}
+#profileSetupPage .avatar-grid{max-height:104px!important}
+body.lang-en .forgot-link{margin:-2px auto 4px 18px}
+:root{--link:#1a73e8}body.dark{--link:#5aa9ff}body.t-sky{--link:#0b57d0}body.t-navy{--link:#82b6ff}body.t-purple{--link:#a9cbff}body.t-green{--link:#8fc6ff}body.t-nescafe{--link:#b3d6ff}body.t-pink{--link:#1559c9}body.t-latte{--link:#1a66d9}
+.tok{unicode-bidi:isolate;color:var(--link);text-decoration:none;font-weight:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:.25em}
+.bub.me .tok{color:#d4e6ff}
+.tok:active{background:color-mix(in srgb,var(--link) 18%,transparent)}
+/* لینک‌های متنی (نه دکمه‌ها) آبی و بدون زیرخط */
+.forgot-link{color:var(--link);text-decoration:none;border-radius:6px}
+.text-button:disabled,body.auth .panel>.text-button:disabled{opacity:.35;cursor:default;pointer-events:none}
+.forgot-link:active{background:color-mix(in srgb,var(--link) 14%,transparent)}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand">Social 67</div>
+  <button class="round-btn back-btn auth-back" id="authBack" type="button" aria-label="بازگشت" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button>
+  <div class="brand" data-i18n-skip><svg class="wordmark" viewBox="0 0 2862 520" fill="currentColor" role="img" aria-label="SOCIAL 67"><rect x="61.2" y="0" width="137.6" height="72" rx="36"/><rect x="0" y="61.2" width="72" height="188" rx="36"/><rect x="61.2" y="224" width="137.6" height="72" rx="36"/><rect x="188" y="270.8" width="72" height="188" rx="36"/><rect x="61.2" y="448" width="137.6" height="72" rx="36"/><rect x="431.2" y="0" width="137.6" height="72" rx="36"/><rect x="558" y="61.2" width="72" height="188" rx="36"/><rect x="558" y="270.8" width="72" height="188" rx="36"/><rect x="431.2" y="448" width="137.6" height="72" rx="36"/><rect x="370" y="270.8" width="72" height="188" rx="36"/><rect x="370" y="61.2" width="72" height="188" rx="36"/><rect x="801.2" y="0" width="137.6" height="72" rx="36"/><rect x="740" y="61.2" width="72" height="188" rx="36"/><rect x="740" y="270.8" width="72" height="188" rx="36"/><rect x="801.2" y="448" width="137.6" height="72" rx="36"/><rect x="1110" y="270.8" width="72" height="188" rx="36"/><rect x="1110" y="61.2" width="72" height="188" rx="36"/><rect x="1353.2" y="0" width="137.6" height="72" rx="36"/><rect x="1480" y="61.2" width="72" height="188" rx="36"/><rect x="1480" y="270.8" width="72" height="188" rx="36"/><rect x="1292" y="270.8" width="72" height="188" rx="36"/><rect x="1292" y="61.2" width="72" height="188" rx="36"/><rect x="1353.2" y="224" width="137.6" height="72" rx="36"/><rect x="1662" y="61.2" width="72" height="188" rx="36"/><rect x="1662" y="270.8" width="72" height="188" rx="36"/><rect x="1723.2" y="448" width="137.6" height="72" rx="36"/><rect x="2293.2" y="0" width="137.6" height="72" rx="36"/><rect x="2232" y="61.2" width="72" height="188" rx="36"/><rect x="2293.2" y="224" width="137.6" height="72" rx="36"/><rect x="2232" y="270.8" width="72" height="188" rx="36"/><rect x="2293.2" y="448" width="137.6" height="72" rx="36"/><rect x="2420" y="270.8" width="72" height="188" rx="36"/><rect x="2663.2" y="0" width="137.6" height="72" rx="36"/><rect x="2790" y="61.2" width="72" height="188" rx="36"/><rect x="2790" y="270.8" width="72" height="188" rx="36"/></svg></div>
 </header>
 
 <!-- ثبت‌نام -->
@@ -419,7 +504,7 @@ body.dark .tl-top .tab.on{box-shadow:0 1px 6px rgba(160,160,160,.25)}
       <div class="hint" id="passwordHint">۸ تا ۱۵ کاراکتر شامل حرف کوچک، حرف بزرگ، عدد و نماد (مثل ! @ #).</div></label>
     <label class="field"><span>تکرار رمز عبور</span>
       <input id="confirmPassword" type="password" maxlength="15" autocomplete="new-password" required></label>
-    <div class="field"><span>بررسی امنیتی</span><div id="tsSignup"></div></div>
+    <div class="ts-box"><div id="tsSignup"></div></div>
     <button class="btn" type="submit">Sign Up</button>
     <div class="message" id="signupMessage" role="status"></div>
   </form>
@@ -463,7 +548,7 @@ body.dark .tl-top .tab.on{box-shadow:0 1px 6px rgba(160,160,160,.25)}
       <input id="loginIdentifier" autocomplete="username" autocapitalize="none" required></label>
     <label class="field"><span>رمز عبور</span>
       <input id="loginPassword" type="password" autocomplete="current-password" required></label>
-    <div class="field"><span>بررسی امنیتی</span><div id="tsLogin"></div></div>
+    <div class="ts-box"><div id="tsLogin"></div></div>
     <button class="btn" type="submit">ورود</button>
     <div class="message" id="loginMessage" role="status"></div>
   </form>
@@ -712,6 +797,7 @@ let LANG = 'fa';
 try { LANG = localStorage.getItem(LANG_KEY) === 'en' ? 'en' : 'fa'; } catch {}
 const EN_DICT = {"ساخت حساب": "Create account", "برای پیوستن به Social 67 اطلاعات زیر را وارد کنید.": "Enter the details below to join Social 67.", "نام کاربری": "Username", "۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی (a-z) و عدد (0-9).": "3–9 characters; lowercase English letters (a-z) and digits (0-9) only.", "ایمیل (فقط Gmail)": "Email (Gmail only)", "فقط نشانی @gmail.com پذیرفته می‌شود.": "Only @gmail.com addresses are accepted.", "رمز عبور": "Password", "۸ تا ۱۵ کاراکتر شامل حرف کوچک، حرف بزرگ، عدد و نماد (مثل ! @ #).": "8–15 characters with a lowercase letter, an uppercase letter, a digit and a symbol (like ! @ #).", "تکرار رمز عبور": "Confirm password", "بررسی امنیتی": "Security check", "از قبل حساب دارید؟ ورود": "Already have an account? Log in", "تأیید ایمیل": "Verify email", "کد ۶ رقمی ارسال‌شده به ایمیل را وارد کنید.": "Enter the 6-digit code sent to your email.", "کد تأیید": "Verification code", "تأیید و ادامه": "Verify and continue", "ارسال دوبارهٔ کد": "Resend code", "بازگشت": "Back", "پروفایل خود را بسازید": "Create your profile", "آواتار انتخاب کنید و نام و بیوگرافی بنویسید.": "Pick an avatar and write your name and bio.", "انتخاب آواتار": "Choose avatar", "نام نمایشی": "Display name", "بیوگرافی (اختیاری)": "Bio (optional)", "ذخیره و ورود به تایم‌لاین": "Save and go to timeline", "ورود به حساب": "Log in", "نام کاربری یا ایمیل": "Username or email", "ورود": "Log in", "فراموشی رمز عبور": "Forgot password", "ساخت حساب جدید": "Create a new account", "کد ورود": "Login code", "تأیید و ورود": "Verify and log in", "بازگشت به ورود": "Back to login", "نام کاربری و ایمیل حساب را وارد کنید. اگر هر دو مال یک حساب باشند، کد به ایمیل ارسال می‌شود.": "Enter your account's username and email. If both belong to the same account, a code will be sent to the email.", "ایمیل": "Email", "ارسال کد": "Send code", "وارد کردن کد": "Enter code", "کد ۶ رقمی ارسال‌شده به ایمیل را وارد کنید. کد تا ۱۰ دقیقه معتبر است.": "Enter the 6-digit code sent to your email. The code is valid for 10 minutes.", "تأیید کد": "Verify code", "رمز عبور جدید": "New password", "رمز جدید": "New password", "تکرار رمز جدید": "Confirm new password", "ثبت": "Submit", "همه": "All", "دوستان": "Friends", "↑ نمایش پست جدید": "↑ Show new posts", "بارگذاری بیشتر": "Load more", "ویرایش پروفایل": "Edit profile", "پست‌ها": "Posts", "آواتار": "Avatar", "بیوگرافی": "Bio", "ذخیره تغییرات": "Save changes", "تغییر": "Change", "تنظیمات": "Settings", "تم": "Theme", "سفید": "White", "سیاه": "Black", "قهوه‌ای": "Brown", "آبی": "Blue", "سرمه‌ای": "Navy", "بنفش": "Purple", "سبز": "Green", "صورتی": "Pink", "خاکی": "Latte", "تعداد کارت‌ها در هر ردیف": "Cards per row", "۱ کارت": "1 card", "۲ کارت": "2 cards", "۳ کارت": "3 cards", "حساب کاربری": "Account", "تغییر نام کاربری": "Change username", "تغییر ایمیل": "Change email", "تغییر رمز عبور": "Change password", "خروج از حساب": "Log out", "دربارهٔ خودتان بنویسید...": "Write about yourself...", "پروفایل من": "My profile", "جست‌وجو در پست‌ها": "Search posts", "جست‌وجو": "Search", "نوشتن پست": "Write a post", "بازگشت به تایم‌لاین": "Back to timeline", "چه خبر؟": "What's up?", "متن پست": "Post text", "ارسال": "Send", "چهره": "Faces", "آدم‌ها": "People", "حیوانات": "Animals", "طبیعت": "Nature", "خوراکی": "Food", "ورزش و بازی": "Sports & games", "اشیا و نمادها": "Objects & symbols", "دست‌ها": "Hands", "یک حساب یا ثبت‌نام در انتظار با این ایمیل وجود دارد.": "An account or pending sign-up already exists with this email.", "این نام کاربری قبلاً انتخاب شده یا رزرو است.": "This username is already taken or reserved.", "نام کاربری باید ۳ تا ۹ کاراکتر و فقط شامل حروف کوچک انگلیسی و اعداد ۰ تا ۹ باشد.": "Username must be 3–9 characters, lowercase English letters and digits 0–9 only.", "رمز عبور باید ۸ تا ۱۵ کاراکتر و شامل حرف کوچک، حرف بزرگ، عدد و نماد باشد.": "Password must be 8–15 characters and include a lowercase letter, an uppercase letter, a digit and a symbol.", "بررسی امنیتی انجام نشد؛ دوباره تلاش کنید.": "Security check failed; please try again.", "ارسال ایمیل انجام نشد؛ کمی بعد دوباره تلاش کنید.": "Couldn't send the email; try again shortly.", "تعداد درخواست‌ها زیاد است؛ کمی بعد دوباره تلاش کنید.": "Too many requests; try again shortly.", "نام کاربری/ایمیل یا رمز عبور نادرست است.": "Incorrect username/email or password.", "کد نادرست است.": "Incorrect code.", "کد منقضی شده است؛ کد تازه بگیرید.": "The code has expired; get a new one.", "به‌دلیل تلاش‌های ناموفق، کد قفل شد؛ کد تازه بگیرید.": "Too many failed attempts; the code is locked. Get a new one.", "مهلت ثبت‌نام تمام شده؛ دوباره ثبت‌نام کنید.": "Sign-up window expired; please sign up again.", "مهلت رزرو نام کاربری تمام شده؛ دوباره ثبت‌نام کنید.": "Username reservation expired; please sign up again.", "کد نادرست یا منقضی شده است.": "The code is incorrect or expired.", "به‌دلیل تلاش‌های ناموفق، بازیابی موقتاً قفل شد.": "Too many failed attempts; recovery is temporarily locked.", "برای درخواست کد تازه کمی صبر کنید.": "Please wait a moment before requesting a new code.", "تعداد درخواست کد زیاد است؛ بعداً تلاش کنید.": "Too many code requests; try again later.", "تعداد تغییر رمز زیاد است؛ بعداً تلاش کنید.": "Too many password changes; try again later.", "پست باید حداکثر ۶۷ کاراکتر و غیرخالی باشد.": "A post must be non-empty and at most 67 characters.", "متن بیش از ۶۷ کاراکتر است.": "Text is longer than 67 characters.", "مقدار جدید با مقدار فعلی یکسان است.": "The new value is the same as the current one.", "درخواست نامعتبر است.": "Invalid request.", "تغییر انجام نشد؛ دوباره تلاش کنید.": "The change failed; please try again.", "نشست شما تمام شده؛ دوباره وارد شوید.": "Your session has ended; please log in again.", "درخواست انجام نشد؛ دوباره تلاش کنید.": "Request failed; please try again.", "رمز عبور باید بین ۸ تا ۱۵ کاراکتر باشد.": "Password must be 8 to 15 characters.", "فقط حروف و اعداد و نمادهای انگلیسی مجاز است (بدون فاصله).": "Only English letters, digits and symbols are allowed (no spaces).", "حداقل یک حرف کوچک انگلیسی لازم است.": "At least one lowercase English letter is required.", "حداقل یک حرف بزرگ انگلیسی لازم است.": "At least one uppercase English letter is required.", "حداقل یک عدد لازم است.": "At least one digit is required.", "حداقل یک نماد (مثل ! @ # $) لازم است.": "At least one symbol (like ! @ # $) is required.", "✓ رمز عبور مناسب است.": "✓ Password looks good.", "در حال بررسی…": "Checking…", "✕ در دسترس نیست.": "✕ Not available.", "بررسی فعلاً ممکن نیست.": "Can't check right now.", "✓ این نام کاربری آزاد است.": "✓ This username is available.", "✕ ۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی و عدد.": "✕ 3–9 characters; lowercase English letters and digits only.", "✓ این ایمیل آزاد است.": "✓ This email is available.", "✕ فقط ایمیل @gmail.com مجاز است.": "✕ Only @gmail.com emails are allowed.", "رمز عبور و تکرار آن یکسان نیستند.": "Password and confirmation don't match.", "ابتدا بررسی امنیتی را کامل کنید.": "Please complete the security check first.", "کد باید دقیقاً ۶ رقم باشد.": "The code must be exactly 6 digits.", "اگر ثبت‌نام در انتظار باشد، کد تازه ارسال شد. پوشهٔ هرزنامه را هم ببینید.": "If a sign-up is pending, a new code was sent. Check your spam folder too.", "نام نمایشی را وارد کنید.": "Enter a display name.", "اگر نام کاربری و ایمیل مال یک حساب باشند، کد ارسال شده است.": "If the username and email belong to the same account, a code has been sent.", "رمز جدید و تکرار آن یکسان نیستند.": "New password and confirmation don't match.", "رمز عبور تغییر کرد. با رمز جدید وارد شوید.": "Password changed. Log in with your new password.", "بستن": "Close", "حذف پست": "Delete post", "این پست حذف شود؟": "Delete this post?", "هنوز پستی از دوستانتان نیست. از پروفایل کاربران، دکمهٔ «دوستی» را بزنید.": "No posts from your friends yet. Tap “Add friend” on a user's profile.", "هنوز پستی نیست. اولین پست را شما بنویسید.": "No posts yet. Be the first to write one.", "بستن جست‌وجو": "Close search", "دوست": "Friends", "دوستی": "Add friend", "اکنون پست‌های او در تایم‌لاین «دوستان» نمایش داده می‌شود.": "Their posts will now appear in your Friends timeline.", "دوستی لغو شد.": "Unfriended.", "این کاربر هنوز پستی ندارد.": "This user has no posts yet.", "نام کاربری جدید": "New username", "نام کاربری تغییر کرد.": "Username changed.", "ایمیل جدید (فقط Gmail)": "New email (Gmail only)", "ایمیل حساب تغییر کرد.": "Account email changed.", "رمز عبور تغییر کرد و همهٔ دستگاه‌های دیگر از حساب خارج شدند.": "Password changed and all other devices were logged out.", "تأیید": "Verify", "دانلود اپلیکیشن": "Download app", "زبان": "Language", "افزودن به صفحهٔ اصلی از مرورگر": "Add to Home Screen from a browser", "شما دوست دوطرفه ندارید": "You have no mutual friends", "پیام‌ها بعد از ۲۴ ساعت پاک می‌شوند": "Messages are deleted after 24 hours", "پیام…": "Message…", "متن پیام": "Message text", "پیام‌ها": "Messages", "نمایش پست‌های جدید": "Show new posts", "پیام فقط بین دوستان دوطرفه ممکن است.": "Messages are only possible between mutual friends.", "پیام باید غیرخالی و حداکثر ۶۷ کاراکتر باشد.": "A message must be non-empty and at most 67 characters.", "کاربر پیدا نشد.": "User not found.", "پیام ارسال نشد؛ دوباره تلاش کنید.": "Message not sent; please try again.", "در حال بارگذاری…": "Loading…", "پیام به": "Message", "هنوز پیامی نیست.": "No messages yet."};
 const i18nNorm = s => String(s).replace(/[\u200c\u200d\u200e\u200f\u0654]/g, '').replace(/\s+/g, ' ').trim();
+Object.assign(EN_DICT, {"کپی شد": "Copied", "رمز را فراموش کرده‌اید؟": "Forgot password?", "نمایش رمز": "Show password", "۸ تا ۱۵ کاراکتر": "8–15 characters", "حرف کوچک": "Lowercase", "حرف بزرگ": "Uppercase", "عدد": "Number", "نماد": "Symbol", "بازگشت": "Back", "ارسال دوبارهٔ کد": "Resend code"});
 const EN = {}; for (const k in EN_DICT) EN[i18nNorm(k)] = EN_DICT[k];
 const enDigits = s => String(s).replace(/[۰-۹]/g, c => c.charCodeAt(0) - 1776).replace(/[٠-٩]/g, c => c.charCodeAt(0) - 1632).replace(/٫/g, '.');
 // الگوهای متن‌های ترکیبی (مقدار کاربر مثل ایمیل یا عبارت جست‌وجو دست‌نخورده می‌ماند)
@@ -905,6 +991,7 @@ function show(id) {
   document.body.classList.toggle('in-app', ['timelinePage', 'profilePage', 'dmPage', 'chatPage'].includes(id));
   if (id !== 'chatPage') stopChat();
   closeSheets();
+  pushChatState(id);
   window.scrollTo({top: 0}); if ($('tlScroll')) $('tlScroll').scrollTop = 0;
 }
 document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
@@ -1047,7 +1134,7 @@ async function mountTs(key, target) {
   await tsReady; if (!window.turnstile) return;
   tsTargets[key] = target;
   const w = widgets[key] = {token: ''};
-  w.id = turnstile.render(target, {sitekey: TURNSTILE_SITE_KEY, theme: document.body.classList.contains('dark') ? 'dark' : 'light', language: LANG === 'en' ? 'en' : 'fa', callback: t => { w.token = t; }, 'expired-callback': () => { w.token = ''; }, 'error-callback': () => { w.token = ''; }});
+  w.id = turnstile.render(target, {sitekey: TURNSTILE_SITE_KEY, theme: document.body.classList.contains('dark') ? 'dark' : 'light', language: LANG === 'en' ? 'en' : 'fa', size: 'flexible', callback: t => { w.token = t; }, 'expired-callback': () => { w.token = ''; }, 'error-callback': () => { w.token = ''; }});
 }
 const tsToken = k => widgets[k]?.token || '';
 const tsReset = k => { if (widgets[k]) { widgets[k].token = ''; turnstile.reset(widgets[k].id); } };
@@ -1324,7 +1411,7 @@ function fitText(el) {
 function fillText(el, body) {
   const lines = cardLines(body);
   el.dir = /[\u0600-\u06FF]/.test(body) ? 'rtl' : 'ltr';   // پست بدون حرف فارسی (تیتر انگلیسی) چپ‌به‌راست
-  el.replaceChildren(...lines.map(l => { const s = document.createElement('span'); s.textContent = l; if (/[A-Za-z]/.test(l) && !/[\u0600-\u06FF]/.test(l)) s.dir = 'ltr'; return s; }));   // خط لاتین بدون فارسی: ltr
+  el.replaceChildren(...lines.map(l => { const s = document.createElement('span'); linkify(s, l); if (/[A-Za-z]/.test(l) && !/[\u0600-\u06FF]/.test(l)) s.dir = 'ltr'; return s; }));   // خط لاتین بدون فارسی: ltr
   el._lines = lines; el.classList.add('bold'); el.classList.add('fit');
   fitText(el);
 }
@@ -1352,6 +1439,8 @@ function openCardPop(card, desk) {
   const f = big.querySelector('.post-footer'), u = card.dataset.user;
   if (f && u) f.onclick = () => { closeCardPop(); openProfile(u); };
   if (big.classList.contains('fcard') && card.dataset.user) big.onclick = e => { if (e.target.closest('.pop-x') || Date.now() - (pop._openedAt || 0) < 450) return; closeCardPop(); openProfile(card.dataset.user); };
+  if (card._body != null) bindHoldCopy(big, () => card._body, e => !e.target.closest('.post-footer,.pop-x'));
+  else if (card.dataset.user && big.classList.contains('fcard')) bindHoldCopy(big, () => card.dataset.user, e => !e.target.closest('.pop-x'));
   pop.replaceChildren(big); requestAnimationFrame(() => pop.classList.add('open'));
 }
 function closeCardPop() { const p = $('cardPop'); if (p) { p.classList.remove('open'); setTimeout(() => p.replaceChildren(), 200); } }
@@ -1361,35 +1450,58 @@ const multiCols = card => !!card.closest('.feed.cols-2, .feed.cols-3');         
 const deskPop = card => multiCols(card) && matchMedia('(min-width:760px)').matches;
 let lpSwallowUntil = 0;   // کلیکِ بعد از نگه‌داشتن موفق (رهاکردن دکمه/انگشت) جایی را نمی‌بندد
 document.addEventListener('click', e => { if (Date.now() < lpSwallowUntil) { e.preventDefault(); e.stopPropagation(); lpSwallowUntil = 0; } }, true);
+/* نگه‌داشتن ۲ ثانیه‌ای (لمس یا ماوس) ← کپی متن در کلیپ‌برد؛ با جابه‌جایی بیش از ۱۰px یا رهاکردن زودتر لغو می‌شود.
+   کپی هنگام رهاکردن انجام می‌شود چون مرورگر فقط در لحظهٔ اقدام کاربر اجازهٔ نوشتن در کلیپ‌برد می‌دهد */
+function copyText(t, at) {
+  const fb = () => { const ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:-1000px;left:0;opacity:0'; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch {} ta.remove(); return ok; };
+  const done = () => copyToast(at);
+  try { if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(t).then(done, () => { fb(); done(); }); return; } } catch {}
+  fb(); done();
+}
+let _toastT = 0;
+// «کپی شد» بالای نقطهٔ لمس (حدود ۷۰px بالاتر از انگشت) تا زیر انگشت پنهان نشود
+function copyToast(at) {
+  let el = $('copyToast');
+  if (!el) { el = document.createElement('div'); el.id = 'copyToast'; el.className = 'copy-toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+  el.textContent = tr('کپی شد');
+  const W = innerWidth, x = at ? at.x : W / 2, y = at ? at.y : innerHeight - 140;
+  const half = Math.min(W / 2 - 8, (el.offsetWidth || 90) / 2 + 4);
+  el.style.left = Math.max(half + 8, Math.min(W - half - 8, x)) + 'px';
+  el.style.top = (y - 70 - 44 >= 8 ? y - 70 : y + 100) + 'px';   // نزدیک لبهٔ بالا ← زیر انگشت (با فاصله)
+  el.classList.remove('on'); void el.offsetWidth; el.classList.add('on'); clearTimeout(_toastT); _toastT = setTimeout(() => el.classList.remove('on'), 1500);
+}
+function bindHoldCopy(el, getText, ok = () => true) {
+  let lp = null;
+  const cancel = () => { if (lp) { clearTimeout(lp.t); lp = null; } };
+  el.addEventListener('pointerdown', e => {
+    cancel(); el._held = false; el.classList.remove('held');
+    if (!e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0) || !ok(e)) return;
+    lp = {x: e.clientX, y: e.clientY, t: setTimeout(() => {
+      lp = null; el._held = true; el.classList.add('held'); lpSwallowUntil = Date.now() + 1500;
+      if (navigator.vibrate) try { navigator.vibrate(15); } catch {}
+    }, LONG_PRESS)};
+  });
+  el.addEventListener('pointermove', e => { if (lp && Math.hypot(e.clientX - lp.x, e.clientY - lp.y) > LP_MOVE) cancel(); });
+  el.addEventListener('pointerup', e => {
+    cancel();
+    if (el._held) { el.classList.remove('held'); copyText(getText() || '', {x: e.clientX, y: e.clientY}); lpSwallowUntil = Date.now() + 400; if (e.pointerType !== 'touch') el._held = false; }
+  });
+  ['pointercancel', 'pointerleave'].forEach(n => el.addEventListener(n, () => { cancel(); el.classList.remove('held'); }));
+  el.addEventListener('contextmenu', e => { if (lp || el._held || (e.pointerType && e.pointerType !== 'mouse')) e.preventDefault(); });
+}
+/* دابل‌تپ / دابل‌کلیک ← پاپ‌آپ؛ نگه‌داشتن ۲ ثانیه ← کپی متن */
 function bindDoubleTap(card) {
-  let last = 0, lp = null, fired = false;
+  let last = 0;
   const ok = e => !e.target.closest('.post-footer,.post-del');
   card.addEventListener('dblclick', e => { if (ok(e)) { e.preventDefault(); window.getSelection()?.removeAllRanges(); openCardPop(card, deskPop(card)); } });
   card.addEventListener('mousedown', e => { if (e.detail > 1) e.preventDefault(); });   // دابل‌کلیک متن را انتخاب نکند
   card.addEventListener('touchend', e => {
-    if (fired) { e.preventDefault(); fired = false; last = 0; return; }   // پایان نگه‌داشتن موفق: نه کلیک، نه شمارش تپ
+    if (card._held) { e.preventDefault(); card._held = false; last = 0; return; }   // پایان نگه‌داشتن: نه کلیک، نه شمارش تپ
     if (!ok(e)) return;
     const t = Date.now();
     if (t - last < 320) { e.preventDefault(); last = 0; openCardPop(card); } else last = t;
   });
-  /* نگه‌داشتن ۲ ثانیه‌ای (لمس یا ماوس) در حالت ۲ و ۳ کارتی؛ با جابه‌جایی بیش از ۱۰px یا رهاکردن زودتر لغو می‌شود */
-  const cancel = () => { if (lp) { clearTimeout(lp.t); lp = null; } };
-  card.addEventListener('pointerdown', e => {
-    cancel(); fired = false;
-    if (!e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0) || !ok(e) || !multiCols(card) || card.closest('.card-pop')) return;
-    lp = {x: e.clientX, y: e.clientY, type: e.pointerType, t: setTimeout(() => {
-      lp = null; fired = true; last = 0;
-      lpSwallowUntil = Date.now() + 1500;
-      openCardPop(card, deskPop(card));
-      if (navigator.vibrate) try { navigator.vibrate(15); } catch {}
-    }, LONG_PRESS)};
-  });
-  card.addEventListener('pointermove', e => { if (lp && Math.hypot(e.clientX - lp.x, e.clientY - lp.y) > LP_MOVE) cancel(); });
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(n => card.addEventListener(n, e => {
-    cancel();
-    if (n === 'pointerup' && fired && e.pointerType !== 'touch') { fired = false; lpSwallowUntil = Date.now() + 400; }
-  }));
-  card.addEventListener('contextmenu', e => { if (lp || fired || (e.pointerType && e.pointerType !== 'mouse')) e.preventDefault(); });
+  bindHoldCopy(card, () => card._body, ok);
 }
 
 function postCard(p, onDeleted, canDelete) {
@@ -1403,7 +1515,7 @@ function postCard(p, onDeleted, canDelete) {
   wrap.innerHTML = '<svg viewBox="0 0 46 46" aria-hidden="true"><circle class="ring-bg" cx="23" cy="23" r="21" pathLength="100"/><circle class="ring-fg" cx="23" cy="23" r="21" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/></svg>';
   wrap.appendChild(av);
   foot.append(name, wrap); foot.onclick = () => openProfile(p.username);
-  card.append(text, foot); card.dataset.user = p.username; bindDoubleTap(card);
+  card.append(text, foot); card.dataset.user = p.username; card._body = p.body; bindDoubleTap(card);
   if (p.mine && canDelete) {               // حذف فقط در پروفایل خود کاربر
     card.classList.add('mine');
     const del = document.createElement('button'); del.type = 'button'; del.className = 'post-del'; del.textContent = '✕';
@@ -1423,33 +1535,23 @@ function renderUserHits(list) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'fcard';
     b.setAttribute('aria-label', '@' + f.username);
     const av = document.createElement('div'); av.className = 'avatar'; av.textContent = f.avatar_id || '🙂';
-    const u = document.createElement('span'); u.className = 'fu'; u.dataset.i18nSkip = ''; u.textContent = '@' + f.username;
+    const u = document.createElement('span'); u.className = 'fu'; u.dataset.i18nSkip = ''; u.textContent = f.username;
     b.append(av, u); b.dataset.user = f.username; bindUserPop(b);
     g.appendChild(b);
   });
 }
-// کارت کاربر در نتایج جست‌وجو: یک تپ = پروفایل؛ دابل‌تپ/دابل‌کلیک یا نگه‌داشتن ۲ ثانیه = پاپ‌آپ (مثل کارت پست)
+// کارت کاربر در نتایج جست‌وجو: تپ روی نام = فوری پروفایل؛ تپ جای دیگر = پروفایل؛ دابل‌تپ/دابل‌کلیک = پاپ‌آپ؛ نگه‌داشتن ۲ ثانیه = کپی نام کاربری
 function bindUserPop(b) {
-  let clickT = null, lp = null;
+  let clickT = null;
   const desk = () => matchMedia('(min-width:760px)').matches;
   const pop = () => { clearTimeout(clickT); clickT = null; openCardPop(b, desk()); };
-  b.onclick = () => {
+  b.onclick = e => {
+    if (e.target.closest('.fu')) { clearTimeout(clickT); clickT = null; return openProfile(b.dataset.user); }
     if (clickT) return pop();
     clickT = setTimeout(() => { clickT = null; openProfile(b.dataset.user); }, 300);
   };
   b.addEventListener('mousedown', e => { if (e.detail > 1) e.preventDefault(); });
-  const cancel = () => { if (lp) { clearTimeout(lp.t); lp = null; } };
-  b.addEventListener('pointerdown', e => {
-    cancel();
-    if (!e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
-    lp = {x: e.clientX, y: e.clientY, t: setTimeout(() => {
-      lp = null; lpSwallowUntil = Date.now() + 1500; pop();
-      if (navigator.vibrate) try { navigator.vibrate(15); } catch {}
-    }, LONG_PRESS)};
-  });
-  b.addEventListener('pointermove', e => { if (lp && Math.hypot(e.clientX - lp.x, e.clientY - lp.y) > LP_MOVE) cancel(); });
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(n => b.addEventListener(n, cancel));
-  b.addEventListener('contextmenu', e => { if (lp || (e.pointerType && e.pointerType !== 'mouse')) e.preventDefault(); });
+  bindHoldCopy(b, () => b.dataset.user);
 }
 function emptyNote(feed, text) { const d = document.createElement('div'); d.className = 'empty'; d.textContent = text; feed.appendChild(d); }
 async function loadFeed(reset) {
@@ -1534,7 +1636,7 @@ async function checkNewPosts() {
 function startNewPostsWatch() { clearInterval(newPostsTimer); newPostsTimer = setInterval(() => { checkNewPosts(); checkUnread(); }, NEW_POSTS_EVERY); }
 document.addEventListener('visibilitychange', () => { if (!document.hidden) { checkNewPosts(); checkUnread(); } });
 $('newPostsButton').onclick = () => { hideNewPosts(); $('tlScroll').scrollTop = 0; loadFeed(true); };
-function goTimeline() { startNewPostsWatch(); paintMe(); show('timelinePage'); loadFeed(true); checkUnread(); }
+function goTimeline() { startNewPostsWatch(); paintMe(); show('timelinePage'); loadFeed(true); checkUnread(); pushSync(); pushPending(); }
 // باز کردن صفحهٔ نوشتن؛ focus همزمان با لمس تا کیبورد موبایل باز شود
 $('composeButton').onclick = () => {
   say('postMessage', ''); openSheet('composeSheet');
@@ -1679,8 +1781,9 @@ function bubble(m) {
   const b = document.createElement('div'); b.className = 'bub ' + (m.mine ? 'me' : 'them');
   const lines = cardLines(m.body);
   b.dir = /[\u0600-\u06FF]/.test(m.body) ? 'rtl' : 'ltr';
-  b.replaceChildren(...lines.map(l => { const s = document.createElement('span'); s.textContent = l; if (/[A-Za-z]/.test(l) && !/[\u0600-\u06FF]/.test(l)) s.dir = 'ltr'; return s; }));
+  b.replaceChildren(...lines.map(l => { const s = document.createElement('span'); linkify(s, l); if (/[A-Za-z]/.test(l) && !/[\u0600-\u06FF]/.test(l)) s.dir = 'ltr'; return s; }));
   b._lines = lines; fitBubble(b);
+  bindHoldCopy(b, () => m.body);
   return b;
 }
 function chatAtBottom() { const c = $('chatScroll'); return c.scrollHeight - c.scrollTop - c.clientHeight < 60; }
@@ -1758,8 +1861,11 @@ window.addEventListener('resize', () => document.querySelectorAll('#chatList .bu
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { document.querySelectorAll('#chatList .bub').forEach(fitBubble); if (chatStick) chatToBottom(); });
 
 /* ---------- خروج و بازیابی نشست ---------- */
-function logoutLocal() { me = null; clearInterval(newPostsTimer); hideNewPosts(); stopChat(); paintUnread(0); show('loginPage'); }
-$('settingsLogout').onclick = async () => { try { await send('/logout', {}); } catch {} logoutLocal(); };
+function logoutLocal() { pushSent = ''; me = null; clearInterval(newPostsTimer); hideNewPosts(); stopChat(); paintUnread(0); show('loginPage'); }
+$('settingsLogout').onclick = async () => {
+  const t = pushTok(); if (t) { try { await send('/push/unregister', {token: t}); } catch {} }
+  try { await send('/logout', {}); } catch {} logoutLocal();
+};
 /* ---------- تغییر نام کاربری / ایمیل / رمز عبور: کد به ایمیل فعلی حساب ---------- */
 const ACC = {
   username: {title: 'تغییر نام کاربری', label: 'نام کاربری جدید', hint: '۳ تا ۹ کاراکتر؛ فقط حروف کوچک انگلیسی (a-z) و عدد (0-9).', type: 'text', max: 9, done: 'نام کاربری تغییر کرد.'},
@@ -1806,7 +1912,7 @@ $('accValue').addEventListener('input', () => {
 });
 async function accRequest() {
   await send('/account/request-change', {kind: acc.kind, value: acc.value});
-  $('accCode').value = ''; accStep(2);
+  $('accCode').value = ''; accStep(2); resendCountdown('accResend');
   say('accMessage', `کد به ${me.email} ارسال شد و ۱۰ دقیقه معتبر است. پوشهٔ هرزنامه را هم ببینید.`, true);
   $('accCode').focus();
 }
@@ -1839,6 +1945,184 @@ $('accResend').onclick = async () => {
   try { await accRequest(); } catch (e) { say('accMessage', errText(e)); }
 };
 $('accBack').onclick = () => { acc = null; $('accValue').value = ''; $('accValue2').value = ''; me ? openProfile(me.username) : goTimeline(); };
+
+/* ---------- صفحات ورود/ثبت‌نام: مرحله، بازگشت، چشم رمز، چیپ‌های رمز، کد ۶ خانه، ویجت Cloudflare ---------- */
+const AUTH_STEPS = {signupPage: [1, 3], verifyPage: [2, 3], profileSetupPage: [3, 3], loginPage: [1, 2], loginCodePage: [2, 2], forgotPage: [1, 3], resetCodePage: [2, 3], resetNewPage: [3, 3]};
+const AUTH_BACK = {verifyPage: 'signupPage', loginCodePage: 'loginPage', forgotPage: 'loginPage', resetCodePage: 'forgotPage', resetNewPage: 'resetCodePage'};
+Object.entries(AUTH_STEPS).forEach(([id, [n, of]]) => {
+  const pnl = $(id).querySelector('.panel');
+  const st = document.createElement('div'); st.className = 'steps'; st.setAttribute('aria-hidden', 'true');
+  for (let i = 1; i <= of; i++) { const d = document.createElement('i'); if (i === n) d.className = 'on'; else if (i < n) d.className = 'done'; st.appendChild(d); }
+  pnl.prepend(st);
+  pnl.querySelectorAll(':scope > .text-button[data-go]').forEach(b => { if (b.dataset.go === AUTH_BACK[id]) b.classList.add('auth-hide'); });
+  pnl.querySelectorAll('.field > input').forEach(inp => { if (!inp.getAttribute('placeholder')) inp.setAttribute('placeholder', ' '); });
+});
+// «فراموشی رمز» زیر فیلد رمز ورود
+(() => {
+  const old = $('loginPage').querySelector(':scope .panel > .text-button[data-go=forgotPage]'); if (!old) return;
+  old.remove();
+  const f = document.createElement('button'); f.type = 'button'; f.className = 'forgot-link'; f.textContent = 'رمز را فراموش کرده‌اید؟';
+  f.onclick = () => show('forgotPage');
+  $('loginPassword').closest('.field').after(f);
+})();
+$('authBack').onclick = () => { const id = pages.find(p => p.classList.contains('active'))?.id; if (AUTH_BACK[id]) show(AUTH_BACK[id]); };
+// دکمهٔ چشم برای نمایش/پنهان کردن رمز
+const EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.5 10.5 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4.1M6.6 6.6A17 17 0 0 0 2 12s3.6 7 10 7a10 10 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
+['password', 'confirmPassword', 'loginPassword', 'newPassword', 'newPassword2'].forEach(id => {
+  const inp = $(id), fld = inp.closest('.field'); fld.classList.add('has-eye');
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'eye'; b.innerHTML = EYE; b.setAttribute('aria-label', 'نمایش رمز');
+  b.addEventListener('pointerdown', e => e.preventDefault());
+  b.onclick = e => { e.preventDefault(); const on = inp.type === 'password'; inp.type = on ? 'text' : 'password'; b.innerHTML = on ? EYE_OFF : EYE; b.classList.toggle('on', on); };
+  inp.after(b);
+});
+// چیپ‌های قوانین رمز که همزمان تیک می‌خورند
+const PW_RULES = [['۸ تا ۱۵ کاراکتر', p => p.length >= 8 && p.length <= 15 && /^[\x21-\x7E]+$/.test(p)], ['حرف کوچک', p => /[a-z]/.test(p)], ['حرف بزرگ', p => /[A-Z]/.test(p)], ['عدد', p => /[0-9]/.test(p)], ['نماد', p => /[^A-Za-z0-9]/.test(p)]];
+['password', 'newPassword'].forEach(id => {
+  const inp = $(id), box = document.createElement('div'); box.className = 'pw-chips';
+  box.innerHTML = PW_RULES.map(r => '<b>' + r[0] + '</b>').join('');
+  inp.closest('.field').appendChild(box);
+  const paint = () => { const v = inp.value; box.classList.toggle('typed', !!v); [...box.children].forEach((c, i) => c.classList.toggle('ok', PW_RULES[i][1](v))); };
+  inp.addEventListener('input', paint); paint();
+});
+// کد ۶ رقمی: ۶ خانه، Paste، ارسال خودکار
+['verificationCode', 'loginCode', 'resetCode'].forEach(id => {
+  const inp = $(id), fld = inp.closest('.field'); fld.classList.add('otp-field');
+  const box = document.createElement('div'); box.className = 'otp';
+  box.innerHTML = '<i></i>'.repeat(6); fld.insertBefore(box, inp); box.appendChild(inp);
+  const cells = [...box.querySelectorAll('i')];
+  const paint = () => {
+    const v = inp.value, foc = document.activeElement === inp;
+    cells.forEach((c, i) => { c.textContent = v[i] || ''; c.classList.toggle('fill', !!v[i]); c.classList.toggle('cur', foc && i === Math.min(v.length, 5)); });
+  };
+  inp.addEventListener('input', () => { paint(); if (inp.value.length === 6) inp.form.requestSubmit(); });
+  ['focus', 'blur'].forEach(e => inp.addEventListener(e, paint));
+  new MutationObserver(paint).observe(inp, {attributes: true});
+  inp._otpPaint = paint; paint();
+});
+// شمارش معکوس «ارسال دوبارهٔ کد»
+const resendT = {};
+function resendCountdown(id = 'resendCode') {
+  const b = $(id), base = 'ارسال دوبارهٔ کد'; let n = 60; clearInterval(resendT[id]);
+  b.disabled = true; b.classList.add('cooling'); b.textContent = tr(base) + ' (' + n + ')';
+  resendT[id] = setInterval(() => { n--; if (n <= 0) { clearInterval(resendT[id]); b.disabled = false; b.classList.remove('cooling'); b.textContent = tr(base); } else b.textContent = tr(base) + ' (' + n + ')'; }, 1000);
+}
+$('resendCode').addEventListener('click', () => setTimeout(resendCountdown, 0));
+// ویجت Cloudflare: اگر کادر از ۳۰۰ پیکسل باریک‌تر بود، کوچک‌تر نمایش داده شود
+const tsFit = () => document.querySelectorAll('.ts-box').forEach(b => {
+  const w = b.clientWidth, inner = b.firstElementChild; if (!w || !inner) return;
+  const k = Math.min(1, w / 300); inner.style.transform = k < 1 ? 'scale(' + k + ')' : '';
+  inner.style.width = k < 1 ? '300px' : '100%'; b.style.height = k < 1 ? (65 * k + 'px') : '';
+});
+addEventListener('resize', tsFit); setTimeout(tsFit, 0); setTimeout(tsFit, 1500);
+const _show = show;
+show = function (id) {
+  _show(id);
+  const auth = id in AUTH_STEPS; document.body.classList.toggle('auth', auth);
+  $('authBack').hidden = !AUTH_BACK[id];
+  if (auth) { setTimeout(tsFit, 0); const c = $(id).querySelector('.otp-field input'); if (c) { c.value = ''; c._otpPaint(); } }
+  if (id === 'verifyPage') resendCountdown();
+};
+document.body.classList.toggle('auth', $('signupPage').classList.contains('active'));
+
+/* ---------- @یوزرنیم و #هشتگ در متن پست و چت ← لینک ---------- */
+const TOK_RE = /(^|\s)(@[A-Za-z0-9]+|#[\p{L}\p{N}\p{M}_\u200c]+)/gu;
+function linkify(el, text) {
+  el.textContent = ''; let last = 0, m; TOK_RE.lastIndex = 0;
+  while ((m = TOK_RE.exec(text))) {
+    const st = m.index + m[1].length;
+    if (st > last) el.append(text.slice(last, st));
+    const a = document.createElement('a'); a.className = 'tok'; a.textContent = m[2]; a.dataset.tok = m[2]; a.dir = 'auto'; a.setAttribute('role', 'link');
+    el.append(a); last = st + m[2].length;
+  }
+  if (last < text.length) el.append(text.slice(last));
+}
+let tokBack = null, chatFriend = null;
+const _openChat = openChat;
+openChat = function (f) { chatFriend = f; return _openChat(f); };
+let searchFrom = null;   // صفحه‌ای که جست‌وجو از آن شروع شد؛ با زدن دکمهٔ جست‌وجو روی نتایج به همان برمی‌گردیم
+function rememberFrom() {
+  if ($('chatPage').classList.contains('active') && chatFriend) return {page: 'chat', f: chatFriend};
+  if ($('profilePage').classList.contains('active')) return {page: 'profile', u: $('pUser').textContent.replace(/^@/, '')};
+  return {page: 'timeline', top: $('tlScroll') ? $('tlScroll').scrollTop : 0};
+}
+function searchFor(q) {
+  if (!document.querySelector('.tl-top').classList.contains('searching') || !$('timelinePage').classList.contains('active')) searchFrom = rememberFrom();
+  closeCardPop();
+  query = q; $('searchInput').value = q;
+  document.querySelector('.tl-top').classList.add('searching');
+  $('searchInput').placeholder = 'جست‌وجو در «' + (scope === 'friends' ? 'دوستان' : 'همه') + '»';
+  if ($('timelinePage').classList.contains('active')) loadFeed(true); else goTimeline();
+}
+async function openTok(tok) {
+  const k = tok[0], v = tok.slice(1).toLowerCase();
+  if (k === '#') return searchFor('#' + v);
+  const from = $('chatPage').classList.contains('active') && chatFriend ? {page: 'chatPage', f: chatFriend} : null;
+  try {
+    await api('/user?username=' + encodeURIComponent(v));
+    closeCardPop(); tokBack = from; await openProfile(v);
+  } catch (e) {
+    if (e.status === 401) return logoutLocal();
+    searchFor('@' + v);
+  }
+}
+// لمس لینک به کارت نمی‌رسد: نه پاپ‌آپ، نه دابل‌تپ، نه نگه‌داشتن
+['pointerdown', 'pointerup', 'mousedown', 'touchstart', 'touchend', 'dblclick', 'contextmenu'].forEach(n => document.addEventListener(n, e => {
+  if (e.target.closest && e.target.closest('.tok')) e.stopPropagation();
+}, true));
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('.tok'); if (!t) return;
+  e.preventDefault(); e.stopPropagation(); openTok(t.dataset.tok);
+}, true);
+// بازگشت از پروفایلی که از چت باز شده ← همان چت
+document.querySelector('#profilePage .back-btn[data-go="timelinePage"]').addEventListener('click', e => {
+  if (!tokBack) return; const b = tokBack; tokBack = null;
+  e.stopImmediatePropagation(); openChat(b.f);
+}, true);
+
+// شروع جست‌وجوی دستی از تایم‌لاین: جای اسکرول ذخیره شود
+$('searchButton').addEventListener('click', () => { if (!document.querySelector('.tl-top').classList.contains('searching')) searchFrom = rememberFrom(); }, true);
+const cleanQ = () => Array.from($('searchInput').value.replace(/\s+/g, ' ').trim()).slice(0, MAX).join('');
+function closeSearch() {
+  const f = searchFrom; searchFrom = null;
+  setSearching(false);
+  if (!f || f.page === 'timeline') {
+    const top = f ? f.top : 0;
+    const t0 = Date.now(), wait = () => { const sc = $('tlScroll'); if (sc && sc.scrollHeight > top + sc.clientHeight - 2) sc.scrollTop = top; else if (Date.now() - t0 < 3000) setTimeout(wait, 80); };
+    setTimeout(wait, 80);
+  } else if (f.page === 'chat') openChat(f.f);
+  else if (f.page === 'profile') openProfile(f.u);
+}
+// دکمهٔ جست‌وجو: اگر نتیجهٔ همین متن روی صفحه است ← بستن و برگشت؛ وگرنه جست‌وجو
+$('searchGo').onclick = () => { if (query && cleanQ() === query && document.activeElement !== $('searchInput')) closeSearch(); else runSearch(); };
+
+/* ---------- نوتیفیکیشن چت در اپ اندروید (Firebase) ---------- */
+// فقط داخل اپ اندروید (پل Android) کار می‌کند؛ در مرورگر هیچ اثری ندارد
+var pushSent = '', pushWant = '';
+function pushApp() { return window.Android && typeof window.Android.pushToken === 'function' ? window.Android : null; }
+function pushTok() { const A = pushApp(); if (!A) return ''; try { return A.pushToken() || ''; } catch { return ''; } }
+function pushSync() {
+  const t = pushTok(); if (!me || !t || t === pushSent) return;
+  pushSent = t; send('/push/register', {token: t}).catch(() => { pushSent = ''; });
+}
+window.onPushToken = pushSync;
+// صفحه به اپ می‌گوید کدام چت باز است تا برای همان نوتیفیکیشن نیاید
+function pushChatState(id) {
+  const A = pushApp(); if (!A || !A.chatOpen) return;
+  try { A.chatOpen(id === 'chatPage' && chat.user ? chat.user : ''); } catch {}
+}
+// لمس نوتیفیکیشن → باز شدن همان چت
+window.openChatPush = u => {
+  if (!/^[A-Za-z0-9]{1,16}$/.test(u || '')) return;
+  if (!me) { pushWant = u; return; }
+  pushWant = ''; try { const A = pushApp(); A && A.takeChat && A.takeChat(); } catch {}
+  openChat({username: u});
+};
+function pushPending() {
+  let u = pushWant; pushWant = '';
+  if (!u) { const A = pushApp(); try { u = A && A.takeChat ? A.takeChat() : ''; } catch { u = ''; } }
+  if (u) setTimeout(() => window.openChatPush(u), 0);
+}
 
 (async () => {
   try { const d = await api('/me'); me = d.user; goTimeline(); } catch { show('signupPage'); }
