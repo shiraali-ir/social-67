@@ -485,6 +485,47 @@ body.lang-en .forgot-link{margin:-2px auto 4px 18px}
 .forgot-link{color:var(--link);text-decoration:none;border-radius:6px}
 .text-button:disabled,body.auth .panel>.text-button:disabled{opacity:.35;cursor:default;pointer-events:none}
 .forgot-link:active{background:color-mix(in srgb,var(--link) 14%,transparent)}
+
+/* ===== تنظیمات و زیرصفحه‌ها به سبک ورود/ثبت‌نام (۲۰۲۶-۱۰-۲۲) ===== */
+#editBack,#accBack{display:none!important}
+body.auth #editProfilePage .panel>.btn,body.auth #accountPage .panel .btn{width:100%}
+body.auth .panel .field:has(>textarea)>span{display:block;text-align:center;font-size:12px;font-weight:500;color:var(--muted);margin:0 0 6px}
+body.auth .panel .field>textarea{text-align:center;width:100%}
+body.auth .panel .counter{text-align:center;margin:5px 0 0!important}
+#accValueField.no-eye .eye{display:none}
+#accValueField.no-eye>input{padding-left:20px!important;padding-right:20px!important}
+#accValueField.no-eye>span{padding-left:20px!important;padding-right:20px!important}
+#accValueField:not(.pw) .pw-chips{display:none!important}
+#accValueField.pw>.hint{display:none!important}
+body.auth #accountPage .panel>.text-button[hidden]{display:none}
+#editProfilePage .profile-heading{flex-direction:column;gap:6px;margin:4px 0 8px;justify-content:center;align-items:center}
+#editProfilePage .avatar.large{width:92px;height:92px;flex-basis:auto;font-size:56px;border:1px solid var(--border);box-shadow:var(--shadow)}
+#editProfilePage .profile-heading strong{font-size:12px;color:var(--muted);font-weight:500}
+#editProfilePage .avatar-grid{max-height:150px;grid-template-columns:repeat(6,1fr);gap:7px;scrollbar-width:none}
+#editProfilePage .avatar-grid::-webkit-scrollbar{display:none}
+/* برگهٔ تنظیمات */
+#settingsSheet .sheet{scrollbar-width:none;padding-left:14px;padding-right:14px}
+#settingsSheet .sheet::-webkit-scrollbar{display:none}
+#settingsSheet .sheet h2{text-align:center;font-size:20px;font-weight:900;margin:0 0 6px}
+#settingsSheet .opt-label{text-align:center;font-size:12px;font-weight:500;color:var(--muted);margin:16px 0 8px}
+#settingsSheet .opts{background:var(--card);background:color-mix(in srgb,var(--card) 90%,transparent);border:1px solid var(--border);border-radius:30px;padding:6px;gap:6px}
+#settingsSheet .opts.themes{padding:10px;gap:8px}
+#settingsSheet .opts.themes .opt{border-radius:22px;padding:8px 6px 9px;font-size:12px;font-weight:500;text-align:center}
+#settingsSheet .opts.themes .sw{height:34px;border-radius:999px;margin-bottom:6px}
+#settingsSheet .opts:not(.themes) .opt{height:46px;padding:0 8px;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:500}
+#settingsSheet .opts:not(.themes) .opt.on{background:var(--text);color:var(--bg);box-shadow:none;font-weight:700}
+#settingsSheet .opts:not(.themes) .opt .g{width:26px;height:16px;margin:0;gap:2px}
+#settingsSheet .opts:not(.themes) .opt .g i{border-radius:3px}
+#settingsSheet .opts:not(.themes) .opt.on .g i{background:var(--bg);border-color:var(--bg)}
+#settingsSheet .opts:not(.themes) .opt .lg{height:auto;margin:0;border:0;background:none;font-size:14px}
+#settingsSheet .set-actions{gap:8px;margin-top:6px}
+#settingsSheet .set-actions .acc-label{margin:16px 0 0}
+#settingsSheet .set-actions .btn{height:52px;padding:0 16px;border-radius:999px;font-size:15px;font-weight:500;text-align:center}
+#settingsSheet .set-actions .btn.secondary{background:var(--card);background:color-mix(in srgb,var(--card) 90%,transparent);border:1px solid var(--border);color:var(--text)}
+#settingsSheet .btn.logout-btn{margin-top:14px;font-weight:700}
+#accountPage .pw-chips{justify-content:center}
+body.auth #accountPage .panel .field>.hint{text-align:center}
+#settingsSheet [hidden]{display:none!important}
 </style>
 <script>try{if(localStorage.getItem('s67_in'))document.documentElement.classList.add('s67-in');setTimeout(function(){document.documentElement.classList.remove('s67-in')},2500)}catch(e){}</script>
 <style>html.s67-in body{visibility:hidden}</style>
@@ -711,7 +752,7 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
   <p class="subtitle" id="accSub"></p>
   <form id="accForm" novalidate>
     <div class="acc-step" id="accStep1">
-      <label class="field"><span id="accLabel"></span>
+      <label class="field" id="accValueField"><span id="accLabel"></span>
         <input id="accValue" autocomplete="off" autocapitalize="none" spellcheck="false">
         <div class="hint" id="accHint"></div></label>
       <label class="field" id="accValue2Field"><span>تکرار رمز جدید</span>
@@ -771,9 +812,6 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
     </div>
     <div class="set-actions">
       <div class="opt-label acc-label">حساب کاربری</div>
-      <!-- موقت: عیب‌یابی نوتیف، فقط در اپ اندروید؛ پس از رفع مشکل حذف شود -->
-      <button class="btn secondary" type="button" id="pushTestBtn" hidden>تست نوتیفیکیشن</button>
-      <div class="message" id="pushTestMsg" hidden></div>
       <button class="btn secondary" type="button" id="settingsEdit">ویرایش پروفایل</button>
       <button class="btn secondary" type="button" data-acc="username">تغییر نام کاربری</button>
       <button class="btn secondary" type="button" data-acc="email">تغییر ایمیل</button>
@@ -2101,6 +2139,52 @@ vCenter();
 document.body.classList.toggle('auth', $('signupPage').classList.contains('active'));
 document.body.classList.toggle('wm-on', $('signupPage').classList.contains('active'));
 
+
+/* ---------- تنظیمات و زیرصفحه‌ها به سبک ورود/ثبت‌نام ---------- */
+const SET_PAGES = {editProfilePage: 'editBack', accountPage: 'accBack'};
+['editProfilePage', 'accountPage'].forEach(id => $(id).querySelectorAll('.field > input').forEach(inp => { if (!inp.getAttribute('placeholder')) inp.setAttribute('placeholder', ' '); }));
+(() => {
+  ['accValue', 'accValue2'].forEach(id => {
+    const inp = $(id), fld = inp.closest('.field'); fld.classList.add('has-eye');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'eye'; b.innerHTML = EYE; b.setAttribute('aria-label', 'نمایش رمز');
+    b.addEventListener('pointerdown', e => e.preventDefault());
+    b.onclick = e => { e.preventDefault(); const on = inp.type === 'password'; inp.type = on ? 'text' : 'password'; b.innerHTML = on ? EYE_OFF : EYE; b.classList.toggle('on', on); };
+    inp.after(b); inp._eye = b;
+  });
+  const inp = $('accValue'), box = document.createElement('div'); box.className = 'pw-chips';
+  box.innerHTML = PW_RULES.map(r => '<b>' + r[0] + '</b>').join('');
+  inp.closest('.field').appendChild(box);
+  const paint = () => { const v = inp.value; box.classList.toggle('typed', !!v); [...box.children].forEach((c, i) => c.classList.toggle('ok', PW_RULES[i][1](v))); };
+  inp.addEventListener('input', paint); inp._chips = paint;
+  const inp2 = $('accCode'), fld = inp2.closest('.field'); fld.classList.add('otp-field');
+  const ob = document.createElement('div'); ob.className = 'otp'; ob.innerHTML = '<i></i>'.repeat(6); fld.insertBefore(ob, inp2); ob.appendChild(inp2);
+  const cells = [...ob.querySelectorAll('i')];
+  const p2 = () => { const v = inp2.value, foc = document.activeElement === inp2; cells.forEach((c, i) => { c.textContent = v[i] || ''; c.classList.toggle('fill', !!v[i]); c.classList.toggle('cur', foc && i === Math.min(v.length, 5)); }); };
+  inp2.addEventListener('input', () => { p2(); if (inp2.value.length === 6) inp2.form.requestSubmit(); });
+  ['focus', 'blur'].forEach(e => inp2.addEventListener(e, p2));
+  new MutationObserver(p2).observe(inp2, {attributes: true});
+  inp2._otpPaint = p2; p2();
+  const _oa = openAccount;
+  openAccount = function (kind) {
+    _oa(kind);
+    const pw = kind === 'password', f = $('accValueField');
+    f.classList.toggle('pw', pw); f.classList.toggle('no-eye', !pw);
+    ['accValue', 'accValue2'].forEach(id => { const b = $(id)._eye; b.innerHTML = EYE; b.classList.remove('on'); });
+    $('accValue2').type = 'password'; inp._chips(); p2();
+  };
+  document.querySelectorAll('[data-acc]').forEach(b => b.onclick = () => me && openAccount(b.dataset.acc));
+  const _as = accStep;
+  accStep = function (n) { _as(n); if (n === 2) { inp2.value = ''; p2(); setTimeout(() => inp2.focus(), 50); } };
+})();
+const _show2 = show;
+show = function (id) {
+  _show2(id);
+  if (id in SET_PAGES) {
+    document.body.classList.add('auth'); document.body.classList.remove('no-head', 'wm-on');
+    $('authBack').hidden = false; vCenter();
+  }
+};
+$('authBack').addEventListener('click', () => { const id = pages.find(p => p.classList.contains('active'))?.id; if (SET_PAGES[id]) $(SET_PAGES[id]).click(); });
 /* ---------- @یوزرنیم و #هشتگ در متن پست و چت ← لینک ---------- */
 const TOK_RE = /(^|\s)(@[A-Za-z0-9]+|#[\p{L}\p{N}\p{M}_\u200c]+)/gu;
 function linkify(el, text) {
@@ -2177,31 +2261,15 @@ $('searchGo').onclick = () => { if (query && cleanQ() === query && document.acti
 var pushSent = '', pushWant = '';
 function pushApp() { return window.Android && typeof window.Android.pushToken === 'function' ? window.Android : null; }
 function pushTok() { const A = pushApp(); if (!A) return ''; try { return A.pushToken() || ''; } catch { return ''; } }
+// کلیدهای اعلان گوشی (۱ چت، ۲ تایم‌لاین دوستان، ۴ همه)؛ اپ قدیمی = فقط چت
+function pushPrefs() { const A = pushApp(); try { return A && A.pushPrefs ? A.pushPrefs() : 1; } catch { return 1; } }
 function pushSync() {
-  const t = pushTok(); if (!me || !t || t === pushSent) return;
-  pushSent = t; send('/push/register', {token: t}).catch(() => { pushSent = ''; });
+  const t = pushTok(); if (!me || !t) return;
+  const pf = pushPrefs(), k = t + '|' + pf; if (k === pushSent) return;
+  pushSent = k; send('/push/register', {token: t, prefs: pf}).catch(() => { pushSent = ''; });
 }
 window.onPushToken = pushSync;
 
-/* موقت: تست نوتیفیکیشن (عیب‌یابی)؛ پس از رفع مشکل حذف شود */
-(function () {
-  const btn = $('pushTestBtn'), msg = $('pushTestMsg');
-  if (!btn || !pushApp()) return;
-  btn.hidden = false;
-  const out = (t, ok) => { msg.hidden = false; msg.textContent = t; msg.className = 'message ' + (ok ? 'ok' : 'bad'); };
-  btn.onclick = async () => {
-    const t = pushTok();
-    if (!t) { out('این گوشی توکن ندارد (اجازهٔ نوتیف یا سرویس گوگل)', false); return; }
-    btn.disabled = true; out('در حال ارسال…', true);
-    try { await send('/push/test', {token: t}); pushSent = t; out('ارسال شد ✓ اگر نوتیف نیامد، مشکل از گوشی یا اینترنت است', true); }
-    catch (e) {
-      const d = e.data || {};
-      const m = {no_token: 'توکن نامعتبر', register_failed: 'ثبت گوشی ناموفق', no_fcm_key: 'کلید FCM در Worker نیست', fcm_auth_failed: 'کلید گوگل (FCM_SA) کار نمی‌کند', fcm_rejected: 'گوگل رد کرد', wait: 'لطفاً ۳۰ ثانیه صبر کنید', unauthorized: 'دوباره وارد شوید'}[e.message];
-      out((m || ('خطا: ' + (e.message || 'شبکه'))) + (d.status ? ' ' + d.status : '') + (d.code ? ' ' + d.code : '') + (d.detail ? ' ' + d.detail : ''), false);
-    }
-    btn.disabled = false;
-  };
-})();
 // صفحه به اپ می‌گوید کدام چت باز است تا برای همان نوتیفیکیشن نیاید
 function pushChatState(id) {
   const A = pushApp(); if (!A || !A.chatOpen) return;
@@ -2214,7 +2282,17 @@ window.openChatPush = u => {
   pushWant = ''; try { const A = pushApp(); A && A.takeChat && A.takeChat(); } catch {}
   openChat({username: u});
 };
+// لمس اعلان پست → تایم‌لاین، همان تب (دوستان یا همه)
+window.openTabPush = t => {
+  if (t !== 'friends' && t !== 'all') return;
+  try { const A = pushApp(); A && A.takeTab && A.takeTab(); } catch {}
+  if (!me) return;
+  const b = document.querySelector('.tab[data-scope="' + t + '"]');
+  if ($('timelinePage').classList.contains('active') && scope === t) { loadFeed(true); return; }
+  show('timelinePage'); if (b) b.click();
+};
 function pushPending() {
+  try { const A = pushApp(), t = A && A.takeTab ? A.takeTab() : ''; if (t) setTimeout(() => window.openTabPush(t), 0); } catch {}
   let u = pushWant; pushWant = '';
   if (!u) { const A = pushApp(); try { u = A && A.takeChat ? A.takeChat() : ''; } catch { u = ''; } }
   if (u) setTimeout(() => window.openChatPush(u), 0);
