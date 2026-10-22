@@ -771,6 +771,9 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
     </div>
     <div class="set-actions">
       <div class="opt-label acc-label">حساب کاربری</div>
+      <!-- موقت: عیب‌یابی نوتیف، فقط در اپ اندروید؛ پس از رفع مشکل حذف شود -->
+      <button class="btn secondary" type="button" id="pushTestBtn" hidden>تست نوتیفیکیشن</button>
+      <div class="message" id="pushTestMsg" hidden></div>
       <button class="btn secondary" type="button" id="settingsEdit">ویرایش پروفایل</button>
       <button class="btn secondary" type="button" data-acc="username">تغییر نام کاربری</button>
       <button class="btn secondary" type="button" data-acc="email">تغییر ایمیل</button>
@@ -2179,6 +2182,26 @@ function pushSync() {
   pushSent = t; send('/push/register', {token: t}).catch(() => { pushSent = ''; });
 }
 window.onPushToken = pushSync;
+
+/* موقت: تست نوتیفیکیشن (عیب‌یابی)؛ پس از رفع مشکل حذف شود */
+(function () {
+  const btn = $('pushTestBtn'), msg = $('pushTestMsg');
+  if (!btn || !pushApp()) return;
+  btn.hidden = false;
+  const out = (t, ok) => { msg.hidden = false; msg.textContent = t; msg.className = 'message ' + (ok ? 'ok' : 'bad'); };
+  btn.onclick = async () => {
+    const t = pushTok();
+    if (!t) { out('این گوشی توکن ندارد (اجازهٔ نوتیف یا سرویس گوگل)', false); return; }
+    btn.disabled = true; out('در حال ارسال…', true);
+    try { await send('/push/test', {token: t}); pushSent = t; out('ارسال شد ✓ اگر نوتیف نیامد، مشکل از گوشی یا اینترنت است', true); }
+    catch (e) {
+      const d = e.data || {};
+      const m = {no_token: 'توکن نامعتبر', register_failed: 'ثبت گوشی ناموفق', no_fcm_key: 'کلید FCM در Worker نیست', fcm_auth_failed: 'کلید گوگل (FCM_SA) کار نمی‌کند', fcm_rejected: 'گوگل رد کرد', wait: 'لطفاً ۳۰ ثانیه صبر کنید', unauthorized: 'دوباره وارد شوید'}[e.message];
+      out((m || ('خطا: ' + (e.message || 'شبکه'))) + (d.status ? ' ' + d.status : '') + (d.code ? ' ' + d.code : '') + (d.detail ? ' ' + d.detail : ''), false);
+    }
+    btn.disabled = false;
+  };
+})();
 // صفحه به اپ می‌گوید کدام چت باز است تا برای همان نوتیفیکیشن نیاید
 function pushChatState(id) {
   const A = pushApp(); if (!A || !A.chatOpen) return;
