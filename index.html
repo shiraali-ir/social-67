@@ -526,6 +526,51 @@ body.auth #accountPage .panel>.text-button[hidden]{display:none}
 #accountPage .pw-chips{justify-content:center}
 body.auth #accountPage .panel .field>.hint{text-align:center}
 #settingsSheet [hidden]{display:none!important}
+/* کادر نوشتن پست: اندازه و تم مثل کارت بازشدهٔ پست؛ فاصله از کیبورد = فاصله از چپ و راست */
+#composeSheet{background:rgba(0,0,0,.45)}
+#postForm.sheet{--gap:4vw;--ps:min(92vw,calc(100dvh - var(--kb,0px) - 2 * var(--gap) - env(safe-area-inset-top)));width:var(--ps);height:var(--ps);max-width:none;max-height:none;box-sizing:border-box;left:0;right:0;top:auto;bottom:calc(var(--kb,0px) + var(--gap));margin:0 auto;padding:calc(var(--ps) * .06);border-radius:calc(var(--ps) * .09);border:1px solid var(--border);background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;overflow:hidden;opacity:0;transform:scale(.94);transition:transform .18s,opacity .18s}
+#composeSheet.open #postForm.sheet{opacity:1;transform:none}
+@media (min-width:760px){#postForm.sheet{--gap:calc((100vw - var(--ps)) / 2);--ps:min(560px,92vw,92vh);top:50%;bottom:auto;transform:translateY(-50%) scale(.94)}#composeSheet.open #postForm.sheet{transform:translateY(-50%)}}
+/* دکمهٔ ارسال و شمارنده: مرکزشان روی مرکز دایرهٔ گوشهٔ کادر */
+#postForm.sheet{position:absolute}
+#postForm .sheet-foot{position:absolute;inset:auto 0 0 0;height:0;padding:0;border:0;margin:0}
+#postForm .send-btn,#postForm #postCount{position:absolute;bottom:calc(var(--ps) * .09 - 27px)}
+#postForm .sheet-foot>:first-child{right:calc(var(--ps) * .09 - 27px)}
+#postForm .sheet-foot>:last-child{left:calc(var(--ps) * .09 - 27px)}
+/* تنظیمات: صفحهٔ کامل به‌جای کادر پایین؛ دکمهٔ بازگشت به پروفایل بالا */
+#settingsSheet{background:var(--bg);transition:opacity .18s}
+#settingsSheet .sheet{position:absolute;inset:0;max-width:none;max-height:none;height:100%;margin:0;border:0;border-radius:0;box-shadow:none;background:var(--bg);transform:none;opacity:1;padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;box-sizing:border-box}
+#settingsSheet .sheet>*{max-width:560px;margin-inline:auto}
+#settingsSheet .grip{display:none}
+#settingsSheet .set-top{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;margin-bottom:6px}
+#settingsSheet .set-top h2{grid-column:2;grid-row:1;margin:0}
+#settingsSheet .set-top .back-btn{grid-column:3;grid-row:1;margin:0}
+@media (max-width:520px){#settingsSheet .sheet{padding-left:12px;padding-right:12px}}
+@media (min-width:760px){#settingsSheet .sheet{top:0;transform:none}#settingsSheet.open .sheet{transform:none}}
+/* آیکون چیدمان: ۱ کارت = ۱ مربع، ۲ کارت = ۴ مربع، ۳ کارت = ۹ مربع */
+#settingsSheet .opts:not(.themes) .opt .g{width:22px;height:22px;gap:2px}
+#settingsSheet .opts:not(.themes) .opt[data-cols="2"] .g{grid-template-rows:1fr 1fr}
+#settingsSheet .opts:not(.themes) .opt[data-cols="3"] .g{grid-template-rows:1fr 1fr 1fr}
+#settingsSheet .opts:not(.themes) .opt[data-cols="3"] .g i{border-radius:1.5px}
+/* دانلود اپلیکیشن: صفحهٔ کامل مثل تنظیمات؛ فلش بالا ← تنظیمات */
+#downloadSheet{background:var(--bg);transition:opacity .18s}
+#downloadSheet .sheet{position:absolute;inset:0;max-width:none;max-height:none;height:100%;margin:0;border:0;border-radius:0;box-shadow:none;background:var(--bg);transform:none;opacity:1;padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;box-sizing:border-box}
+#downloadSheet .sheet>*{max-width:560px;margin-inline:auto}
+#downloadSheet .grip{display:none}
+#downloadSheet .set-top{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;margin-bottom:6px}
+#downloadSheet .set-top h2{grid-column:2;grid-row:1;margin:0;text-align:center;font-size:20px;font-weight:900}
+#downloadSheet .set-top .back-btn{grid-column:3;grid-row:1;margin:0}
+@media (max-width:520px){#downloadSheet .sheet{padding-left:12px;padding-right:12px}}
+@media (min-width:760px){#downloadSheet .sheet,#downloadSheet.open .sheet{top:0;transform:none}}
+/* ویرایش پروفایل و تغییر نام کاربری/ایمیل/رمز: ظاهر صفحهٔ تنظیمات */
+body.setpage header,body.setpage #authBack{display:none!important}
+body.setpage .app{max-width:none;padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));background:var(--bg)}
+body.setpage .page.active{justify-content:flex-start}
+body.setpage .page.active>.panel{max-width:560px;margin:0 auto;padding:0;border:0;border-radius:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+body.setpage .set-top{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;margin-bottom:6px}
+body.setpage .set-top h1{grid-column:2;grid-row:1;margin:0!important;font-size:20px!important;font-weight:900;text-align:center}
+body.setpage .set-top .back-btn{grid-column:3;grid-row:1;margin:0}
+@media (max-width:520px){body.setpage .app{padding-left:12px;padding-right:12px}}
 </style>
 <script>try{if(localStorage.getItem('s67_in'))document.documentElement.classList.add('s67-in');setTimeout(function(){document.documentElement.classList.remove('s67-in')},2500)}catch(e){}</script>
 <style>html.s67-in body{visibility:hidden}</style>
@@ -542,6 +587,29 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
 .tok:active{background-image:none!important;box-shadow:none!important;transform:none}
 /* شمارندهٔ پست: وسط دایرهٔ فرضی هم‌اندازهٔ دکمهٔ ارسال، قرینه در سمت چپ */
 #postCount{flex:0 0 54px;width:54px;height:54px;display:grid;place-items:center;text-align:center;direction:ltr;white-space:nowrap}
+/* چت: هر دو حباب مثل حباب دریافتی (پس‌زمینه، حاشیه، سایه)؛ فقط متن پیام‌های خودم کم‌رنگ‌تر */
+#chatList .bub.them,#chatList .bub.me{background:var(--card);color:var(--text);border:1px solid color-mix(in srgb,var(--text) 12%,transparent);box-shadow:0 3px 14px rgba(0,0,0,.10);border-radius:999px;-webkit-backdrop-filter:none;backdrop-filter:none}
+body.dark #chatList .bub.them,body.dark #chatList .bub.me{background:color-mix(in srgb,var(--text) 12%,var(--bg));box-shadow:0 3px 14px rgba(0,0,0,.35)}
+#chatList .bub.me{color:color-mix(in srgb,var(--text) 55%,transparent)}
+#chatList .bub.me .tok{color:inherit;text-decoration:underline}
+#chatList .bub.sq{border-radius:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1/1;box-sizing:border-box}
+/* چت: طراحی شیشه‌ای مشابه Hark */
+#chatList .bub.me{background:color-mix(in srgb,var(--card) 55%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);border:1px solid color-mix(in srgb,#fff 55%,transparent);box-shadow:0 8px 30px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.5)}
+body.dark #chatList .bub.me{background:color-mix(in srgb,var(--text) 14%,transparent);border-color:color-mix(in srgb,#fff 14%,transparent);box-shadow:0 8px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+#chatPage .chat-bar{border-top:0;padding:0;margin:10px auto calc(12px + env(safe-area-inset-bottom));display:flex;align-items:flex-end;gap:8px;background:color-mix(in srgb,var(--card) 62%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);border:1px solid color-mix(in srgb,#fff 55%,transparent);border-radius:30px;box-shadow:0 8px 30px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.5);box-sizing:border-box;padding:6px}
+body.dark #chatPage .chat-bar{background:color-mix(in srgb,var(--text) 14%,transparent);border-color:color-mix(in srgb,#fff 14%,transparent);box-shadow:0 8px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+#chatPage .chat-in{border:0;background:transparent;border-radius:0;min-height:46px;padding:0 14px 0 6px}
+#chatPage #chatText{font-size:17px}
+#chatPage #chatSend{width:46px;height:46px;flex:0 0 46px;border-radius:50%}
+/* چت: اندازه و چیدمان مشابه Hark */
+#chatList{gap:14px}
+#chatList .bub:not(.emo){max-width:74%;padding:16px 22px;border-radius:30px;font-weight:400;line-height:1.55;text-align:start;white-space:pre-wrap;overflow-wrap:anywhere;font-size:17px!important;width:auto!important;height:auto!important;aspect-ratio:auto;display:block}
+#chatPage .chat-head{border-bottom:0;padding:6px;margin-bottom:6px;border-radius:30px;background:color-mix(in srgb,var(--card) 62%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);border:1px solid color-mix(in srgb,#fff 55%,transparent);box-shadow:0 8px 30px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.5)}
+body.dark #chatPage .chat-head{background:color-mix(in srgb,var(--text) 14%,transparent);border-color:color-mix(in srgb,#fff 14%,transparent);box-shadow:0 8px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+#chatPage .chat-head .avatar{width:46px;height:46px;flex:0 0 46px;border:0;background:color-mix(in srgb,var(--text) 8%,transparent)}
+#chatPage .chat-head .cn{font-size:17px}
+#chatPage .chat-head .cu{font-size:12px}
+#chatPage .chat-head .back-btn{width:46px;height:46px;border-radius:50%;border:0;background:color-mix(in srgb,var(--text) 8%,transparent)}
 </style>
 </head>
 <body>
@@ -785,8 +853,7 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
 <!-- تنظیمات -->
 <div class="sheet-wrap" id="settingsSheet" aria-hidden="true">
   <div class="sheet" role="dialog" aria-label="تنظیمات">
-    <div class="grip"></div>
-    <h2>تنظیمات</h2>
+    <div class="set-top"><h2>تنظیمات</h2><button class="round-btn back-btn" id="settingsBack" type="button" aria-label="بازگشت به پروفایل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button></div>
     <div class="opt-label">تم</div>
     <div class="opts themes">
       <button class="opt" type="button" data-theme="light"><span class="sw w"></span>سفید</button>
@@ -802,8 +869,8 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
     <div class="opt-label">تعداد کارت‌ها در هر ردیف</div>
     <div class="opts">
       <button class="opt" type="button" data-cols="1"><span class="g" style="grid-template-columns:1fr"><i></i></span>۱ کارت</button>
-      <button class="opt" type="button" data-cols="2"><span class="g" style="grid-template-columns:1fr 1fr"><i></i><i></i></span>۲ کارت</button>
-      <button class="opt" type="button" data-cols="3"><span class="g" style="grid-template-columns:1fr 1fr 1fr"><i></i><i></i><i></i></span>۳ کارت</button>
+      <button class="opt" type="button" data-cols="2"><span class="g" style="grid-template-columns:1fr 1fr"><i></i><i></i><i></i><i></i></span>۲ کارت</button>
+      <button class="opt" type="button" data-cols="3"><span class="g" style="grid-template-columns:1fr 1fr 1fr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>۳ کارت</button>
     </div>
     <div class="opt-label">زبان</div>
     <div class="opts" data-i18n-skip>
@@ -825,11 +892,10 @@ body.dark :is(button,a,[role="button"],[role="tab"],label.opt,.fcard,.post-card[
 <!-- دانلود اپلیکیشن -->
 <div class="sheet-wrap" id="downloadSheet" aria-hidden="true">
   <div class="sheet" role="dialog" aria-label="دانلود اپلیکیشن">
-    <div class="grip"></div>
-    <h2 data-en="Download app">دانلود اپلیکیشن</h2>
+    <div class="set-top"><h2 data-en="Download app">دانلود اپلیکیشن</h2><button class="round-btn back-btn" id="downloadBack" type="button" aria-label="بازگشت به تنظیمات"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button></div>
     <p class="dl-sub" data-en="Choose the version for your device.">نسخهٔ دستگاه خود را انتخاب کنید.</p>
     <div class="dl-list">
-      <a class="dl-item" data-os="android" href="downloads/Social67.apk" download><span class="dl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 17.5a8.4 8.4 0 0 1 16.8 0Z" fill="currentColor"/><path d="M7.2 9.6 5.4 6.6M16.8 9.6l1.8-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8.6" cy="14" r="1.1" fill="var(--field)"/><circle cx="15.4" cy="14" r="1.1" fill="var(--field)"/></svg></span><span class="dl-main"><span class="dl-name"><span class="dl-nm" data-en="Android">اندروید</span><span class="dl-badge" hidden data-en="Your device">دستگاه شما</span></span><span class="dl-size" data-en="APK · 150 KB">۱۵۰ کیلوبایت · APK</span></span><span class="dl-get"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10.5 5 5 5-5"/><path d="M5 20h14"/></svg></span><span class="dl-note" data-en="Open the file after downloading and allow installing from unknown sources.">بعد از دانلود، فایل را باز کنید و «نصب از منابع ناشناس» را اجازه دهید.</span></a>
+      <a class="dl-item" data-os="android" href="downloads/Social67.apk" download><span class="dl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 17.5a8.4 8.4 0 0 1 16.8 0Z" fill="currentColor"/><path d="M7.2 9.6 5.4 6.6M16.8 9.6l1.8-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8.6" cy="14" r="1.1" fill="var(--field)"/><circle cx="15.4" cy="14" r="1.1" fill="var(--field)"/></svg></span><span class="dl-main"><span class="dl-name"><span class="dl-nm" data-en="Android">اندروید</span><span class="dl-badge" hidden data-en="Your device">دستگاه شما</span></span><span class="dl-size" data-en="APK · 1.8 MB">۱٫۸ مگابایت · APK</span></span><span class="dl-get"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10.5 5 5 5-5"/><path d="M5 20h14"/></svg></span><span class="dl-note" data-en="Open the file after downloading and allow installing from unknown sources.">بعد از دانلود، فایل را باز کنید و «نصب از منابع ناشناس» را اجازه دهید.</span></a>
       <button class="dl-item" type="button" data-os="ios" id="iosItem" aria-expanded="false" aria-controls="iosGuide"><span class="dl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.7c0-2.4 2-3.5 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.1.8 1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.7 1.3-2.7s-2.5-1-2.5-3.9ZM14 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4Z"/></svg></span><span class="dl-main"><span class="dl-name"><span class="dl-nm" data-en="iOS">iOS</span><span class="dl-badge" hidden data-en="Your device">دستگاه شما</span></span><span class="dl-size" data-en="No file · Add to Home Screen">بدون فایل · افزودن به صفحهٔ اصلی</span></span><span class="dl-get"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span><span class="dl-note" data-en="Tap to see how.">برای دیدن راهنما بزنید.</span></button>
       <div class="dl-guide" id="iosGuide" hidden>
 <div data-en="&lt;ol&gt;&lt;li&gt;Open this site in &lt;b&gt;Safari&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;Share&lt;/b&gt; button &lt;svg class=&quot;ico-inline&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M12 3v12&quot;/&gt;&lt;path d=&quot;m8 7 4-4 4 4&quot;/&gt;&lt;path d=&quot;M6 11H5v10h14V11h-1&quot;/&gt;&lt;/svg&gt;.&lt;/li&gt;&lt;li&gt;Choose &lt;b&gt;“Add to Home Screen”&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap &lt;b&gt;Add&lt;/b&gt;.&lt;/li&gt;&lt;/ol&gt;"><ol><li>سایت را در <b>Safari</b> باز کنید.</li><li>دکمهٔ <b>اشتراک‌گذاری</b> <svg class="ico-inline" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M6 11H5v10h14V11h-1"/></svg> را بزنید.</li><li>گزینهٔ <b>«<bdi>Add to Home Screen</bdi>»</b> را بزنید.</li><li><b>Add</b> را بزنید.</li></ol></div>
@@ -1757,6 +1823,7 @@ function openEdit() {
   }).catch(() => {});
 }
 $('settingsButton').onclick = () => openSheet('settingsSheet');
+$('settingsBack').onclick = () => closeSheet('settingsSheet');
 
 /* ---------- دانلود اپلیکیشن ---------- */
 function detectOS() {
@@ -1840,6 +1907,7 @@ function fitBubble(b) {
   let fs = Math.min(40, box / w);
   fs = Math.max(15, Math.min(fs, 46 - lines.length * 6));
   b.style.fontSize = fs.toFixed(1) + 'px';
+  if (b.classList.contains('sq')) { b.style.width = b.style.height = ''; requestAnimationFrame(() => { const m = Math.max(b.offsetWidth, b.offsetHeight); b.style.width = b.style.height = m + 'px'; }); }
 }
 /* ایموجی متحرک گوگل (Noto Animated Emoji، CC BY 4.0) برای پیامی که فقط یک ایموجی است؛ فایل‌ها در پوشهٔ emoji/ */
 const EMO = new Set('1f192 1f193 1f195 1f197 1f198 1f199 1f300 1f304 1f305 1f307 1f308 1f30a 1f30b 1f30c 1f30d 1f30e 1f30f 1f31a 1f31b 1f31c 1f31d 1f31e 1f31f 1f321_fe0f 1f327_fe0f 1f329_fe0f 1f32a_fe0f 1f32c_fe0f 1f32d 1f32e 1f32f 1f331 1f332 1f335 1f337 1f338 1f339 1f33c 1f33d 1f33f 1f340 1f341 1f342 1f343 1f344 1f345 1f347 1f348 1f349 1f34a 1f34b 1f34d 1f34e 1f350 1f352 1f353 1f354 1f355 1f357 1f35c 1f35d 1f35e 1f361 1f362 1f366 1f368 1f369 1f36a 1f373 1f375 1f377 1f379 1f37b 1f37c 1f37d_fe0f 1f37e 1f37f 1f381 1f382 1f386 1f388 1f389 1f38a 1f393 1f39e_fe0f 1f39f_fe0f 1f3a0 1f3a1 1f3a2 1f3a3 1f3ac 1f3ad 1f3af 1f3b0 1f3b1 1f3b2 1f3b3 1f3b6 1f3b7 1f3b8 1f3ba 1f3bb 1f3be 1f3bf 1f3c0 1f3c1 1f3c6 1f3c9 1f3cd_fe0f 1f3ce_fe0f 1f3cf 1f3d1 1f3d2 1f3d3 1f3d5_fe0f 1f3da_fe0f 1f3de_fe0f 1f3e0 1f3f3_fe0f 1f3f4 1f3f8 1f400 1f402 1f405 1f407 1f409 1f40a 1f40c 1f40d 1f40e 1f410 1f412 1f413 1f415 1f415_200d_1f9ba 1f416 1f419 1f41b 1f41c 1f41d 1f41e 1f41f 1f421 1f422 1f423 1f424 1f425 1f426 1f426_200d_1f525 1f426_200d_2b1b 1f427 1f429 1f42c 1f42e 1f433 1f438 1f43a 1f43b 1f43c 1f43e 1f43f_fe0f 1f440 1f441_fe0f 1f442 1f442_1f3fb 1f442_1f3fc 1f442_1f3fd 1f442_1f3fe 1f442_1f3ff 1f443 1f443_1f3fb 1f443_1f3fc 1f443_1f3fd 1f443_1f3fe 1f443_1f3ff 1f446 1f446_1f3fb 1f446_1f3fc 1f446_1f3fd 1f446_1f3fe 1f446_1f3ff 1f447 1f447_1f3fb 1f447_1f3fc 1f447_1f3fd 1f447_1f3fe 1f447_1f3ff 1f448 1f448_1f3fb 1f448_1f3fc 1f448_1f3fd 1f448_1f3fe 1f448_1f3ff 1f449 1f449_1f3fb 1f449_1f3fc 1f449_1f3fd 1f449_1f3fe 1f449_1f3ff 1f44a 1f44a_1f3fb 1f44a_1f3fc 1f44a_1f3fd 1f44a_1f3fe 1f44a_1f3ff 1f44b 1f44b_1f3fb 1f44b_1f3fc 1f44b_1f3fd 1f44b_1f3fe 1f44b_1f3ff 1f44c 1f44c_1f3fb 1f44c_1f3fc 1f44c_1f3fd 1f44c_1f3fe 1f44c_1f3ff 1f44d 1f44d_1f3fb 1f44d_1f3fc 1f44d_1f3fd 1f44d_1f3fe 1f44d_1f3ff 1f44e 1f44e_1f3fb 1f44e_1f3fc 1f44e_1f3fd 1f44e_1f3fe 1f44e_1f3ff 1f44f 1f44f_1f3fb 1f44f_1f3fc 1f44f_1f3fd 1f44f_1f3fe 1f44f_1f3ff 1f450 1f450_1f3fb 1f450_1f3fc 1f450_1f3fd 1f450_1f3fe 1f450_1f3ff 1f451 1f45f 1f460 1f463 1f479 1f47b 1f47d 1f47e 1f47f 1f480 1f483 1f483_1f3fb 1f483_1f3fc 1f483_1f3fd 1f483_1f3fe 1f483_1f3ff 1f485 1f485_1f3fb 1f485_1f3fc 1f485_1f3fd 1f485_1f3fe 1f485_1f3ff 1f48b 1f48c 1f48d 1f48e 1f490 1f493 1f494 1f495 1f496 1f497 1f498 1f499 1f49a 1f49b 1f49c 1f49d 1f49e 1f49f 1f4a1 1f4a3 1f4a5 1f4a7 1f4a9 1f4aa 1f4aa_1f3fb 1f4aa_1f3fc 1f4aa_1f3fd 1f4aa_1f3fe 1f4aa_1f3ff 1f4ac 1f4af 1f4b8 1f4bb 1f4bf 1f4c8 1f4c9 1f4ca 1f4da 1f4df 1f4e3 1f4e6 1f4f4 1f4f7 1f4f8 1f4fa 1f50b 1f50c 1f50e 1f512 1f514 1f525 1f52e 1f54a_fe0f 1f573_fe0f 1f577_fe0f 1f587_fe0f 1f590_1f3fb 1f590_1f3fc 1f590_1f3fd 1f590_1f3fe 1f590_1f3ff 1f590_fe0f 1f595 1f595_1f3fb 1f595_1f3fc 1f595_1f3fd 1f595_1f3fe 1f595_1f3ff 1f596 1f596_1f3fb 1f596_1f3fc 1f596_1f3fd 1f596_1f3fe 1f596_1f3ff 1f5a4 1f5a8_fe0f 1f5d1_fe0f 1f5e3_fe0f 1f5ef_fe0f 1f5f3_fe0f 1f5ff 1f600 1f601 1f602 1f603 1f604 1f605 1f606 1f607 1f608 1f609 1f60a 1f60b 1f60c 1f60d 1f60e 1f60f 1f610 1f611 1f612 1f613 1f614 1f615 1f616 1f617 1f618 1f619 1f61a 1f61b 1f61c 1f61d 1f61e 1f61f 1f620 1f621 1f622 1f623 1f624 1f625 1f626 1f627 1f628 1f629 1f62a 1f62b 1f62c 1f62d 1f62e 1f62e_200d_1f4a8 1f62f 1f630 1f631 1f632 1f633 1f634 1f635 1f635_200d_1f4ab 1f636 1f636_200d_1f32b_fe0f 1f637 1f638 1f639 1f63a 1f63b 1f63c 1f63d 1f63e 1f63f 1f640 1f641 1f642 1f642_200d_2194_fe0f 1f642_200d_2195_fe0f 1f643 1f644 1f648 1f649 1f64a 1f64c 1f64c_1f3fb 1f64c_1f3fc 1f64c_1f3fd 1f64c_1f3fe 1f64c_1f3ff 1f64f 1f64f_1f3fb 1f64f_1f3fc 1f64f_1f3fd 1f64f_1f3fe 1f64f_1f3ff 1f680 1f682 1f68c 1f695 1f697 1f69a 1f69c 1f6a6 1f6a7 1f6a8 1f6a9 1f6ae 1f6b2 1f6ce_fe0f 1f6d1 1f6d2 1f6d8 1f6df 1f6e0_fe0f 1f6eb 1f6ec 1f6f6 1f6f8 1f6f9 1f6fc 1f90c 1f90c_1f3fb 1f90c_1f3fc 1f90c_1f3fd 1f90c_1f3fe 1f90c_1f3ff 1f90d 1f90e 1f90f 1f90f_1f3fb 1f90f_1f3fc 1f90f_1f3fd 1f90f_1f3fe 1f90f_1f3ff 1f910 1f911 1f912 1f913 1f914 1f915 1f916 1f917 1f918 1f918_1f3fb 1f918_1f3fc 1f918_1f3fd 1f918_1f3fe 1f918_1f3ff 1f919 1f919_1f3fb 1f919_1f3fc 1f919_1f3fd 1f919_1f3fe 1f919_1f3ff 1f91a 1f91a_1f3fb 1f91a_1f3fc 1f91a_1f3fd 1f91a_1f3fe 1f91a_1f3ff 1f91b 1f91b_1f3fb 1f91b_1f3fc 1f91b_1f3fd 1f91b_1f3fe 1f91b_1f3ff 1f91c 1f91c_1f3fb 1f91c_1f3fc 1f91c_1f3fd 1f91c_1f3fe 1f91c_1f3ff 1f91d 1f91d_1f3fb 1f91d_1f3fc 1f91d_1f3fd 1f91d_1f3fe 1f91d_1f3ff 1f91e 1f91e_1f3fb 1f91e_1f3fc 1f91e_1f3fd 1f91e_1f3fe 1f91e_1f3ff 1f91f 1f91f_1f3fb 1f91f_1f3fc 1f91f_1f3fd 1f91f_1f3fe 1f91f_1f3ff 1f920 1f921 1f922 1f923 1f924 1f925 1f927 1f928 1f929 1f92a 1f92b 1f92c 1f92d 1f92e 1f92f 1f932 1f932_1f3fb 1f932_1f3fc 1f932_1f3fd 1f932_1f3fe 1f932_1f3ff 1f933 1f933_1f3fb 1f933_1f3fc 1f933_1f3fd 1f933_1f3fe 1f933_1f3ff 1f940 1f941 1f942 1f947 1f948 1f949 1f94b 1f94d 1f94e 1f94f 1f951 1f952 1f953 1f954 1f955 1f957 1f95d 1f95e 1f962 1f966 1f967 1f968 1f96c 1f96d 1f970 1f971 1f972 1f973 1f974 1f975 1f976 1f978 1f979 1f97a 1f980 1f981 1f982 1f984 1f985 1f987 1f988 1f989 1f98a 1f98b 1f98d 1f98e 1f994 1f995 1f996 1f997 1f998 1f99a 1f99d 1f99e 1f99f 1f9a0 1f9a5 1f9a6 1f9a7 1f9a9 1f9ad 1f9ae 1f9b4 1f9b5 1f9b5_1f3fb 1f9b5_1f3fc 1f9b5_1f3fd 1f9b5_1f3fe 1f9b5_1f3ff 1f9b6 1f9b6_1f3fb 1f9b6_1f3fc 1f9b6_1f3fd 1f9b6_1f3fe 1f9b6_1f3ff 1f9bb 1f9bb_1f3fb 1f9bb_1f3fc 1f9bb_1f3fd 1f9bb_1f3fe 1f9bb_1f3ff 1f9be 1f9bf 1f9c0 1f9c2 1f9c3 1f9c4 1f9c5 1f9c9 1f9cb 1f9d0 1f9e0 1f9e1 1f9e6 1f9f9 1fa70 1fa75 1fa76 1fa77 1fa78 1fa7a 1fa81 1fa82 1fa83 1fa84 1fa85 1fa87 1fa89 1fa8a 1fa8e 1fa8f 1fa90 1fa94 1fa95 1fa99 1faa4 1faa8 1faa9 1faab 1faad 1fab0 1fab1 1fab3 1fab7 1fabb 1fabc 1fabe 1fabf 1fac0 1fac2 1fac6 1fac8 1facd 1facf 1fad0 1fad1 1fad6 1fad7 1fad8 1fada 1fadb 1fadc 1fadf 1fae0 1fae1 1fae2 1fae3 1fae4 1fae5 1fae6 1fae7 1fae8 1fae9 1faea 1faef 1faf0 1faf0_1f3fb 1faf0_1f3fc 1faf0_1f3fd 1faf0_1f3fe 1faf0_1f3ff 1faf1 1faf1_1f3fb 1faf1_1f3fb_200d_1faf2_1f3fc 1faf1_1f3fb_200d_1faf2_1f3fd 1faf1_1f3fb_200d_1faf2_1f3fe 1faf1_1f3fb_200d_1faf2_1f3ff 1faf1_1f3fc 1faf1_1f3fc_200d_1faf2_1f3fb 1faf1_1f3fc_200d_1faf2_1f3fd 1faf1_1f3fc_200d_1faf2_1f3fe 1faf1_1f3fc_200d_1faf2_1f3ff 1faf1_1f3fd 1faf1_1f3fd_200d_1faf2_1f3fb 1faf1_1f3fd_200d_1faf2_1f3fc 1faf1_1f3fd_200d_1faf2_1f3fe 1faf1_1f3fd_200d_1faf2_1f3ff 1faf1_1f3fe 1faf1_1f3fe_200d_1faf2_1f3fb 1faf1_1f3fe_200d_1faf2_1f3fc 1faf1_1f3fe_200d_1faf2_1f3fd 1faf1_1f3fe_200d_1faf2_1f3ff 1faf1_1f3ff 1faf1_1f3ff_200d_1faf2_1f3fb 1faf1_1f3ff_200d_1faf2_1f3fc 1faf1_1f3ff_200d_1faf2_1f3fd 1faf1_1f3ff_200d_1faf2_1f3fe 1faf2 1faf2_1f3fb 1faf2_1f3fc 1faf2_1f3fd 1faf2_1f3fe 1faf2_1f3ff 1faf3 1faf3_1f3fb 1faf3_1f3fc 1faf3_1f3fd 1faf3_1f3fe 1faf3_1f3ff 1faf4 1faf4_1f3fb 1faf4_1f3fc 1faf4_1f3fd 1faf4_1f3fe 1faf4_1f3ff 1faf5 1faf5_1f3fb 1faf5_1f3fc 1faf5_1f3fd 1faf5_1f3fe 1faf5_1f3ff 1faf6 1faf6_1f3fb 1faf6_1f3fc 1faf6_1f3fd 1faf6_1f3fe 1faf6_1f3ff 1faf7 1faf7_1f3fb 1faf7_1f3fc 1faf7_1f3fd 1faf7_1f3fe 1faf7_1f3ff 1faf8 1faf8_1f3fb 1faf8_1f3fc 1faf8_1f3fd 1faf8_1f3fe 1faf8_1f3ff 203c_fe0f 2049_fe0f 2122_fe0f 231b 23f0 23f3 2601_fe0f 2602_fe0f 2603_fe0f 2604_fe0f 2615 261d_1f3fb 261d_1f3fc 261d_1f3fd 261d_1f3fe 261d_1f3ff 261d_fe0f 2622_fe0f 2623_fe0f 262e_fe0f 262f_fe0f 2639_fe0f 263a_fe0f 2648 2649 264a 264b 264c 264d 264e 264f 2650 2651 2652 2653 265f_fe0f 2660_fe0f 2665_fe0f 2668_fe0f 267e_fe0f 2693 2696_fe0f 2699_fe0f 26a0_fe0f 26a1 26bd 26be 26c4 26c5 26ce 26d3_fe0f 26d3_fe0f_200d_1f4a5 26f3 26f5 26f8_fe0f 26fd 2702_fe0f 2705 2708_fe0f 270a 270a_1f3fb 270a_1f3fc 270a_1f3fd 270a_1f3fe 270a_1f3ff 270b 270b_1f3fb 270b_1f3fc 270b_1f3fd 270b_1f3fe 270b_1f3ff 270c_1f3fb 270c_1f3fc 270c_1f3fd 270c_1f3fe 270c_1f3ff 270c_fe0f 270d_1f3fb 270d_1f3fc 270d_1f3fd 270d_1f3fe 270d_1f3ff 270d_fe0f 270f_fe0f 2728 2744_fe0f 274c 2753 2757 2763_fe0f 2764_fe0f 2764_fe0f_200d_1f525 2764_fe0f_200d_1fa79 2795 2b50'.split(' '));
@@ -1871,7 +1939,7 @@ function bubble(m) {
   const lines = cardLines(m.body);
   b.dir = /[\u0600-\u06FF]/.test(m.body) ? 'rtl' : 'ltr';
   b.replaceChildren(...lines.map(l => { const s = document.createElement('span'); linkify(s, l); if (/[A-Za-z]/.test(l) && !/[\u0600-\u06FF]/.test(l)) s.dir = 'ltr'; return s; }));
-  b._lines = lines; fitBubble(b);
+  b._lines = lines; if (lines.length > 1) b.classList.add('sq'); fitBubble(b);
   bindHoldCopy(b, () => m.body);
   return b;
 }
@@ -2185,6 +2253,21 @@ show = function (id) {
   }
 };
 $('authBack').addEventListener('click', () => { const id = pages.find(p => p.classList.contains('active'))?.id; if (SET_PAGES[id]) $(SET_PAGES[id]).click(); });
+/* زیرصفحه‌های تنظیمات: فلش بالا به صفحهٔ تنظیمات برمی‌گردد */
+let fromSettings = false;
+$('downloadBack').onclick = () => { closeSheet('downloadSheet'); openSheet('settingsSheet'); };
+$('settingsEdit').addEventListener('click', () => { fromSettings = true; }, true);
+document.querySelectorAll('[data-acc]').forEach(b => b.addEventListener('click', () => { fromSettings = true; }, true));
+['editProfilePage', 'accountPage'].forEach(id => {
+  const h = $(id).querySelector('.panel > h1'), top = document.createElement('div'); top.className = 'set-top';
+  h.before(top); top.appendChild(h);
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'round-btn back-btn'; b.setAttribute('aria-label', 'بازگشت به تنظیمات');
+  b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg>'; b.onclick = () => $('authBack').click(); top.appendChild(b);
+});
+const _show3 = show;
+show = function (id) { _show3(id); document.body.classList.toggle('setpage', id in SET_PAGES); };
+['editBack', 'accBack'].forEach(id => $(id).addEventListener('click', () => { if (fromSettings) { fromSettings = false; openSheet('settingsSheet'); } }));
+
 /* ---------- @یوزرنیم و #هشتگ در متن پست و چت ← لینک ---------- */
 const TOK_RE = /(^|\s)(@[A-Za-z0-9]+|#[\p{L}\p{N}\p{M}_\u200c]+)/gu;
 function linkify(el, text) {
