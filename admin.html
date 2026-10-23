@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#ffffff">
+<title>Page not found &middot; GitHub Pages</title>
+<style>
+@font-face{font-family:"Vazirmatn";src:url("/fonts/Vazirmatn-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("/fonts/Vazirmatn-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("/fonts/Vazirmatn-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{--bg:#fff;--text:#171717;--muted:#777;--border:#e8e8e8;--field:#fafafa;--ok:#198754;--bad:#d93025}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.app{max-width:560px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));min-height:100vh}
+.view{display:none}.view.on{display:block}
+/* تا وقتی /admin/me نگفته admin:true هیچ چیز پنل دیده نمی‌شود */
+.app,.exitfab.on{display:none}
+html.adm .app{display:block}html.adm .exitfab.on{display:flex}
+#nf{display:none;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:#1f2328;background:#fff;text-align:center;padding:90px 20px 40px;max-width:640px;margin:0 auto;line-height:1.5;direction:ltr}
+#nf.on{display:block}#nf h1{font-size:60px;font-weight:600;margin:0 0 6px;letter-spacing:-1px}#nf p{margin:0 0 14px;font-size:15px;color:#59636e}#nf p strong{color:#1f2328;font-size:18px}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 12px;min-height:44px}
+.hd h1{margin:0;font-size:20px;font-weight:700;display:flex;align-items:center;gap:8px}
+.badge{font-size:11px;background:var(--text);color:var(--bg);border-radius:10px;padding:2px 9px;font-weight:500}
+.rb{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--field);display:grid;place-items:center;padding:0;flex:none}
+.rb svg{width:22px;height:22px}
+a.rb{color:var(--text)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
+.st{position:relative;text-align:start;border:1px solid var(--border);background:var(--field);border-radius:18px;padding:12px 14px;transition:transform .12s,background .12s}
+.st:active{transform:scale(.97);background:#f0f0f0}
+.st b{font-size:26px;display:flex;align-items:center;gap:6px;font-weight:700;line-height:1.4}
+.st>span{font-size:12px;color:var(--muted)}
+.st .chev{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#b5b5b5;width:16px;height:16px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 12px;padding:0 16px}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex:none;border:1px solid var(--border);background:var(--field);border-radius:99px;font-size:13px;padding:7px 14px;color:#555;white-space:nowrap}
+.tb.on{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:700}
+.tb i{font-style:normal;display:inline-block;min-width:18px;margin-inline-start:4px;padding:0 5px;border-radius:9px;background:var(--bad);color:#fff;font-size:11px}
+.pane{display:none}.pane.on{display:block}
+.seg{display:flex;gap:4px;background:#f2f2f2;border-radius:14px;padding:4px;margin:0 0 10px}
+.seg button{flex:1;border:0;background:none;border-radius:11px;padding:7px 0;font-size:13px;color:#666}
+.seg button.on{background:#fff;color:var(--text);font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.it{display:flex;gap:10px;align-items:center;width:100%;text-align:start;margin:0 0 8px;padding:10px 12px;border:1px solid var(--border);border-radius:16px;background:var(--bg)}
+button.it:active{background:var(--field)}
+.av{width:40px;height:40px;border-radius:50%;background:#f1f1f1;border:1px solid var(--border);display:grid;place-items:center;font-size:22px;flex:none}
+.av.big{width:64px;height:64px;font-size:36px}
+.it .t{flex:1;min-width:0}
+.it .t b{font-size:14px;font-weight:700;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.it .t div{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .side{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:3px;font-size:11px;color:#999}
+.who{font-size:13px;line-height:1.7}
+.it .t .who{white-space:normal;color:var(--text)}.u{direction:ltr;unicode-bidi:isolate;font-weight:700}
+.new{width:8px;height:8px;border-radius:50%;background:var(--bad)}
+.box{margin:0 0 10px;padding:10px 12px;border:1px solid var(--border);border-radius:16px;background:var(--field);font-size:14px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+.lb{font-size:12px;color:var(--muted);margin:14px 4px 6px}
+.muted{color:var(--muted);font-size:12px}
+.shots{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.shot{width:72px;height:110px;border-radius:10px;border:1px solid var(--border);background:#eef1f5 center/cover no-repeat;padding:0;display:grid;place-items:center;font-size:11px;color:var(--muted)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0}
+.ac{border:1px solid var(--border);border-radius:14px;padding:11px 6px;text-align:center;font-size:13px;background:var(--bg)}
+.ac:active{background:var(--field)}
+.ac.on{background:#fff4f3;border-color:#f3c3be;color:var(--bad)}
+.ac.w{grid-column:1/3}
+.ac.red{background:var(--bad);color:#fff;border-color:var(--bad);font-weight:700}
+.ac.dark{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:700}
+.ac:disabled{opacity:.45}
+input.f,textarea.f{display:block;width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:14px;background:var(--field);outline:none;font-size:14px}
+input.f:focus,textarea.f:focus{border-color:var(--muted)}
+.row{display:flex;gap:8px;align-items:center}
+.row>.f{flex:1}
+.chip{border:1px solid var(--border);background:var(--field);border-radius:99px;padding:5px 11px;font-size:12px;color:#666;flex:none}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.x{width:30px;height:30px;border-radius:50%;border:0;background:var(--field);color:var(--muted);flex:none;padding:0}
+.btn-s{flex:none;border:0;border-radius:14px;padding:10px 16px;background:var(--text);color:var(--bg);font-weight:700;font-size:13px}
+.btn-s.light{background:var(--field);color:var(--text);border:1px solid var(--border);font-weight:500}
+.btn-s.red{background:#fff4f3;color:var(--bad);border:1px solid #f3c3be;font-weight:500}
+.word{display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--border);border-radius:14px;margin:0 0 6px}
+.word b{flex:1;font-weight:500;font-size:14px;word-break:break-all}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border:1px solid var(--border);border-radius:16px;margin:0 0 8px}
+.sw .t b{display:block;font-size:14px}.sw .t span{font-size:12px;color:var(--muted)}
+.tg{width:50px;height:30px;border-radius:15px;border:0;background:#ddd;position:relative;flex:none;padding:0;transition:background .15s}
+.tg::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:right .15s}
+.tg.on{background:var(--bad)}.tg.on::after{right:23px}
+.empty{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
+.msg{font-size:13px;min-height:1.6em;margin:6px 4px;color:var(--muted)}.msg.bad{color:var(--bad)}.msg.ok{color:var(--ok)}
+.gate{text-align:center;padding:60px 10px;line-height:2}
+.gate a{color:var(--text);font-weight:700}
+.post{border:1px solid var(--border);border-radius:14px;padding:10px 12px;margin:0 0 6px;display:flex;gap:8px;align-items:flex-start}
+.post .t{flex:1;font-size:14px;line-height:1.8;white-space:pre-wrap;word-break:break-word}
+.post .t small{display:block;color:var(--muted);font-size:11px}
+.state{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.state span{font-size:11px;padding:3px 9px;border-radius:99px;background:#fff4f3;color:var(--bad);border:1px solid #f3c3be}
+.state span.okk{background:#eef8f2;color:var(--ok);border-color:#bfe3cd}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.sheet-dim{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:20;display:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:var(--bg);border-radius:26px 26px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.18);padding:16px 18px calc(22px + env(safe-area-inset-bottom));z-index:21;display:none;max-height:85vh;overflow:auto}
+.sheet.on,.sheet-dim.on{display:block}
+.sheet h2{font-size:17px;margin:0 0 4px}
+.ck{display:flex;align-items:center;gap:10px;font-size:14px;margin:12px 0;border:0;background:none;padding:0;width:100%;text-align:start}
+.ck i{width:22px;height:22px;border-radius:7px;background:#fff;border:1.5px solid #bbb;font-style:normal;display:grid;place-items:center;font-size:13px;color:#fff;flex:none}
+.ck.on i{background:var(--text);border-color:var(--text)}
+.sel{display:flex;gap:6px;margin:10px 0 12px}.sel button{flex:1;border:1px solid var(--border);background:var(--bg);border-radius:12px;padding:9px 0;font-size:13px}
+.sel button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+div.light{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:40;display:none;place-items:center;padding:16px}
+div.light.on{display:grid}.light img{max-width:100%;max-height:100%;border-radius:8px}
+/* حالت مدیریت */
+.app{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+.exitfab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:15;border:1px solid #f3c3be;background:#fff4f3;color:var(--bad);border-radius:99px;padding:12px 22px;font-weight:700;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.12);display:none;align-items:center;gap:8px;white-space:nowrap}
+.exitfab.on{display:flex}.exitfab svg{width:18px;height:18px}
+.mode{max-width:420px;margin:24px auto 0;padding:22px 18px;border:1px solid var(--border);border-radius:30px;background:var(--field)}
+.mode h1{text-align:center;font-size:20px;margin:0 0 6px}
+.mode .muted{text-align:center;line-height:1.9;margin:0 0 14px}
+.mode .f{margin:0 0 10px;height:50px;border-radius:18px;text-align:center;background:var(--bg)}
+.mode .code{font-size:26px;letter-spacing:10px;direction:ltr;font-weight:700}
+.mode .go{width:100%;height:50px;border:0;border-radius:99px;background:var(--text);color:var(--bg);font-weight:700;font-size:15px;margin-top:4px}
+.mode .go:disabled{opacity:.5}
+.mode .lnk{display:block;margin:12px auto 0;border:0;background:none;color:var(--muted);font-size:13px}
+.mode .ts{min-height:65px;margin:0 0 10px;display:flex;justify-content:center}
+.mode .msg{text-align:center}
+.it .side .mk{margin-top:2px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div id="nf"><h1>404</h1><p><strong>File not found</strong></p><p>The site configured at this address does not contain the requested file.</p><p>If this is your site, make sure that the filename case matches the URL as well as any file permissions.<br>For root URLs (like <code>http://example.com/</code>) you must provide an <code>index.html</code> file.</p></div>
+<div class="app">
+
+<!-- دروازهٔ ورود / خطا -->
+<section class="view" id="vGate"><div class="gate" id="gateText"></div></section>
+
+<!-- ورود به حالت مدیریت: شناسه + رمز + کد ایمیلی، هر بار -->
+<section class="view" id="vMode">
+  <div class="mode">
+    <h1>ورود به حالت مدیریت</h1>
+    <div id="mStep1">
+      <div class="muted">برای امنیت، هر بار باید دوباره وارد شوید: ایمیل یا یوزرنیم و رمز همین حساب، بعد کد ۶ رقمی که به ایمیل شما فرستاده می‌شود.</div>
+      <input class="f ltr" id="mIdent" dir="ltr" placeholder="ایمیل یا یوزرنیم" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <input class="f ltr" id="mPass" dir="ltr" type="password" placeholder="رمز عبور" autocomplete="off">
+      <div class="ts" id="tsMode"></div>
+      <button class="go" id="mSend" type="button">ارسال کد به ایمیل</button>
+    </div>
+    <div id="mStep2" hidden>
+      <div class="muted" id="mSent">کد به ایمیل شما فرستاده شد.</div>
+      <input class="f code" id="mCode" inputmode="numeric" maxlength="6" placeholder="––––––" autocomplete="one-time-code">
+      <button class="go" id="mVerify" type="button">ورود</button>
+      <button class="lnk" id="mRestart" type="button">کد نرسید؟ از اول</button>
+    </div>
+    <div class="msg" id="mMsg"></div>
+    <button class="lnk" id="mLeave" type="button">بازگشت به سایت</button>
+  </div>
+</section>
+
+<!-- داشبورد -->
+<section class="view" id="vHome">
+  <div class="hd"><h1>پنل مدیریت <span class="badge" id="roleBadge">ادمین</span></h1></div>
+  <div class="stats">
+    <button class="st" type="button" id="tileOnline"><b><span class="dot"></span><span id="nOnline">–</span></b><span>آنلاین (۵ دقیقهٔ اخیر)</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button>
+    <button class="st" type="button" id="tileToday"><b id="nToday">–</b><span>فعال امروز</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tb on" data-p="pReports">گزارش‌ها<i id="nOpen" hidden></i></button>
+    <button class="tb" data-p="pUsers">کاربران</button>
+    <button class="tb" data-p="pFilter">فیلتر کلمات</button>
+    <button class="tb" data-p="pBans">مسدودها</button>
+    <button class="tb" data-p="pAdmins">ادمین‌ها</button>
+    <button class="tb" data-p="pEmerg">اضطراری</button>
+    <button class="tb" data-p="pLog">لاگ</button>
+  </div>
+
+  <div class="pane on" id="pReports">
+    <div class="seg" id="repSeg"><button class="on" data-s="open">باز</button><button data-s="all">همه</button></div>
+    <div id="repList"></div>
+  </div>
+
+  <div class="pane" id="pUsers">
+    <input class="f ltr" id="userQ" placeholder="جست‌وجوی یوزرنیم (خالی = همه)…" autocomplete="off" autocapitalize="off" spellcheck="false" dir="ltr">
+    <div style="height:10px"></div>
+    <div id="userList"></div>
+    <button class="btn-s light" id="userMore" type="button" style="display:block;margin:6px auto" hidden>بیشتر</button>
+  </div>
+
+  <div class="pane" id="pFilter">
+    <div class="row"><input class="f" id="fWord" placeholder="کلمه…" autocomplete="off"><button class="chip on" id="fcPost" type="button">پست</button><button class="chip" id="fcUser" type="button">یوزرنیم</button><button class="btn-s" id="fAdd" type="button">ثبت</button></div>
+    <div class="msg" id="fMsg"></div>
+    <input class="f" id="fSearch" placeholder="جست‌وجو در کلمه‌ها…" autocomplete="off">
+    <div style="height:10px"></div>
+    <div id="fList"></div>
+  </div>
+
+  <div class="pane" id="pBans">
+    <div class="lb">یوزرنیم‌های مسدود</div>
+    <input class="f ltr" id="bSearchU" placeholder="جست‌وجو…" dir="ltr" autocomplete="off">
+    <div style="height:8px"></div><div id="bListU"></div>
+    <div class="lb">ایمیل‌های مسدود</div>
+    <input class="f ltr" id="bSearchE" placeholder="جست‌وجو…" dir="ltr" autocomplete="off">
+    <div style="height:8px"></div><div id="bListE"></div>
+    <div class="muted" style="margin:10px 4px;line-height:1.8">رفع بلاک فقط آن یوزرنیم یا ایمیل را برای استفادهٔ دوباره آزاد می‌کند؛ حساب حذف‌شده برنمی‌گردد.</div>
+  </div>
+
+  <div class="pane" id="pAdmins">
+    <div class="lb">مالک و مدیرها</div>
+    <div id="adminList"></div>
+    <div id="adminAdd" hidden>
+      <div class="lb">مدیر کردن با یوزرنیم (فقط مالک) — یا از برگهٔ «کاربران» دکمهٔ «مدیر کن»</div>
+      <div class="row"><input class="f ltr" id="adminName" placeholder="یوزرنیم" dir="ltr" autocomplete="off" autocapitalize="off"><button class="btn-s" id="adminAddBtn" type="button">افزودن</button></div>
+    </div>
+    <div class="msg" id="adminMsg"></div>
+  </div>
+
+  <div class="pane" id="pEmerg">
+    <div class="sw"><div class="t"><b>بستن ثبت‌نام جدید</b><span>هیچ حساب تازه‌ای ساخته نمی‌شود.</span></div><button class="tg" id="swSignup" type="button" aria-label="بستن ثبت‌نام"></button></div>
+    <div class="sw"><div class="t"><b>بستن پست‌گذاری</b><span>فقط کاربران؛ ربات‌ها به پست گذاشتن ادامه می‌دهند.</span></div><button class="tg" id="swPost" type="button" aria-label="بستن پست‌گذاری"></button></div>
+    <div class="sw"><div class="t"><b>سقف ساخت حساب از هر IP</b><span>در هر روز (به وقت تهران)</span></div><div class="row" style="flex:none"><input class="f ltr" id="ipLimit" type="number" min="1" max="50" style="width:70px;text-align:center"><button class="btn-s" id="ipSave" type="button">ذخیره</button></div></div>
+    <div class="msg" id="emMsg"></div>
+  </div>
+
+  <div class="pane" id="pLog"><div id="logList"></div></div>
+</section>
+
+<!-- فهرست آنلاین / فعال امروز -->
+<section class="view" id="vActive">
+  <div class="hd"><h1 id="actTitle">آنلاین</h1><button class="rb back" type="button" aria-label="بازگشت"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button></div>
+  <div id="actList"></div>
+</section>
+
+<!-- جزئیات گزارش -->
+<section class="view" id="vReport">
+  <div class="hd"><h1>گزارش</h1><button class="rb back" type="button" aria-label="بازگشت"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button></div>
+  <div id="repBody"></div>
+</section>
+
+<!-- جزئیات کاربر -->
+<section class="view" id="vUser">
+  <div class="hd"><h1>کاربر</h1><button class="rb back" type="button" aria-label="بازگشت"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5 3.5 12l7.5 7.5"/><path d="M4 12h12.5"/></svg></button></div>
+  <div id="userBody"></div>
+</section>
+</div>
+
+<button class="exitfab" id="exitFab" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5"/><path d="M5 12h11"/></svg>خروج از مدیریت</button>
+<div class="sheet-dim" id="dim"></div>
+<div class="sheet" id="sheet"></div>
+<div class="light" id="light"><img alt="اسکرین‌شات"></div>
+
+<script>
+(() => {
+'use strict';
+const API = 'https://social67.shiraali.ir';
+const $ = id => document.getElementById(id);
+const FA = '۰۱۲۳۴۵۶۷۸۹';
+const fa = v => String(v).replace(/\d/g, d => FA[d]);
+let ME = null, NOW_SKEW = 0, modeOn = false;
+const nowS = () => Math.floor(Date.now() / 1000) + NOW_SKEW;
+const ERR = {
+  unauthorized: 'نشست شما تمام شده؛ دوباره وارد شوید.', forbidden: 'دسترسی ندارید.',
+  admin_reauth: 'برای امنیت، از سایت اصلی خارج شوید و دوباره وارد شوید.', suspended: 'حساب شما موقتاً معلق است.',
+  forbidden_owner: 'هیچ اقدامی روی مالک سایت مجاز نیست.', forbidden_admin: 'فقط مالک می‌تواند روی ادمین‌ها اقدام کند.',
+  cannot_act_self: 'روی حساب خودتان نمی‌توانید اقدام کنید.', owner_only: 'فقط مالک سایت می‌تواند این کار را انجام دهد.',
+  user_not_found: 'کاربر پیدا نشد.', post_not_found: 'پست پیدا نشد؛ شاید قبلاً حذف شده.', report_not_found: 'گزارش پیدا نشد.',
+  invalid_username: 'یوزرنیم باید ۳ تا ۹ کاراکتر و فقط حروف کوچک انگلیسی و عدد باشد.', username_unavailable: 'این یوزرنیم آزاد نیست یا رزرو/مسدود است.',
+  username_filtered: 'این یوزرنیم مجاز نیست.', same_value: 'تغییری داده نشد.', text_too_long: 'نام نمایشی حداکثر ۶۷ کاراکتر است.',
+  invalid_target: 'این کاربر را نمی‌شود ادمین کرد.', invalid_word: 'کلمه را بنویسید و حداقل یکی از «پست» یا «یوزرنیم» را انتخاب کنید.',
+  filter_full: 'فهرست پر است (حداکثر ۵۰۰ کلمه).', invalid_value: 'عدد باید بین ۱ تا ۵۰ باشد.', not_found: 'پیدا نشد.',
+  image_expired: 'عکس منقضی شده است.', rate_limited: 'تعداد درخواست‌ها زیاد است؛ کمی صبر کنید.',
+  admin_mode_required: 'حالت مدیریت تمام شده؛ دوباره وارد شوید.', invalid_credentials: 'ایمیل/یوزرنیم یا رمز عبور درست نیست.',
+  invalid_verification_code: 'کد درست نیست.', verification_code_expired: 'کد منقضی شده؛ از اول کد بگیرید.',
+  admin_mode_locked: 'به‌خاطر تلاش‌های ناموفق، حالت مدیریت این حساب ۱ ساعت قفل شد.', email_rate_limited: 'درخواست کد زیاد بود؛ چند دقیقه بعد دوباره امتحان کنید.',
+  turnstile_failed: 'بررسی امنیتی انجام نشد؛ دوباره تلاش کنید.', email_send_failed: 'ارسال ایمیل انجام نشد؛ کمی بعد دوباره تلاش کنید.',
+  invalid_json: 'درخواست نامعتبر است.'
+};
+const errText = e => ERR[e.message] || 'انجام نشد؛ دوباره تلاش کنید.';
+async function api(path, data) {
+  const opt = {credentials: 'include'};
+  if (data !== undefined) { opt.method = 'POST'; opt.headers = {'Content-Type': 'application/json'}; opt.body = JSON.stringify(data); }
+  const r = await fetch(API + path, opt);
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok || d.ok === false) {
+    const e = new Error(d.error || 'request_failed'); e.status = r.status; e.data = d;
+    if (['unauthorized', 'admin_reauth', 'forbidden', 'suspended'].includes(e.message) && path !== '/admin/me') gate(e);
+    else if (e.message === 'admin_mode_required') { modeOn = false; showMode('حالت مدیریت تمام شده؛ دوباره وارد شوید.'); }
+    throw e;
+  }
+  if (d.now) NOW_SKEW = d.now - Math.floor(Date.now() / 1000);
+  return d;
+}
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k === 'class') el.className = v; else if (k === 'on') el.onclick = v; else if (k === 'text') el.textContent = v; else el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const k of kids.flat()) if (k != null && k !== false) el.append(k.nodeType ? k : String(k));
+  return el;
+}
+const uSpan = name => h('span', {class: 'u', text: '@' + name});
+function when(t) {
+  const s = nowS() - t;
+  if (s < 60) return 'همین حالا';
+  if (s < 3600) return fa(Math.floor(s / 60)) + ' دقیقه پیش';
+  if (s < 86400) return fa(Math.floor(s / 3600)) + ' ساعت پیش';
+  return dt(t);
+}
+const day = t => new Date(t * 1000).toLocaleDateString('fa-IR', {timeZone: 'Asia/Tehran'});
+const whenShort = t => nowS() - t < 86400 ? when(t) : day(t);
+const dt = t => { const d = new Date(t * 1000), z = {timeZone: 'Asia/Tehran'}; return d.toLocaleDateString('fa-IR', z) + '، ساعت ' + d.toLocaleTimeString('fa-IR', {...z, hour: '2-digit', minute: '2-digit', hourCycle: 'h23'}); };
+const say = (id, text, ok) => { const el = $(id); el.textContent = text || ''; el.className = 'msg' + (text ? (ok ? ' ok' : ' bad') : ''); };
+
+/* ---------- دروازه ---------- */
+// کاربر واردنشده / غیرادمین / معلق / هر خطای پیش از تأیید ادمین: صفحهٔ خنثای «404» (هیچ اثری از پنل)
+function notFound() {
+  modeOn = false; ME = null; $('exitFab').classList.remove('on'); clearPanel();
+  const r = document.documentElement; r.classList.remove('adm'); r.lang = 'en'; r.removeAttribute('dir');
+  document.title = 'Page not found \u00b7 GitHub Pages';
+  views.forEach(v => v.classList.remove('on'));
+  $('nf').classList.add('on');
+}
+function showAdminShell() {
+  const r = document.documentElement; r.classList.add('adm'); r.lang = 'fa'; r.dir = 'rtl';
+  document.title = 'پنل مدیریت · Social 67';
+  $('nf').classList.remove('on');
+}
+function gate(e) {
+  const known = !!(ME && ME.admin);
+  if (!known || ['unauthorized', 'forbidden', 'suspended'].includes(e.message)) return notFound();
+  const g = $('gateText'); g.replaceChildren();
+  modeOn = false; $('exitFab').classList.remove('on'); clearPanel();
+  if (e.message === 'admin_reauth') g.append('برای امنیت، ورود شما باید در ۷ روز اخیر انجام شده باشد.', h('br'), 'از سایت خارج شوید و دوباره وارد شوید.');
+  else g.append('اتصال برقرار نشد.', h('br'), h('a', {href: '#', on: ev => { ev.preventDefault(); boot(); }, text: 'تلاش دوباره'}));
+  views.forEach(v => v.classList.toggle('on', v.id === 'vGate')); closeSheet();
+}
+
+/* ---------- ناوبری (دکمهٔ بازگشت مرورگر/گوشی هم کار می‌کند) ---------- */
+const views = [...document.querySelectorAll('.view')];
+const stack = [];
+function showView(id, push = true) {
+  views.forEach(v => v.classList.toggle('on', v.id === id));
+  if (push) { stack.push(id); history.pushState({v: id, n: stack.length}, ''); }
+  scrollTo(0, 0);
+}
+function goHome() { stack.length = 0; showView('vHome', false); refreshHome(); }
+addEventListener('popstate', () => {
+  closeSheet(); $('light').classList.remove('on');
+  if (!modeOn) return;
+  stack.pop();
+  const id = stack[stack.length - 1];
+  if (!id) return goHome();
+  showView(id, false);
+  if (id === 'vReport' && curReport) openReport(curReport, false);
+  if (id === 'vUser' && curUser) openUser(curUser, false);
+});
+document.querySelectorAll('.back').forEach(b => b.onclick = () => history.back());
+
+/* ---------- برگه (bottom sheet) ---------- */
+function openSheet(...kids) { const s = $('sheet'); s.replaceChildren(...kids); s.classList.add('on'); $('dim').classList.add('on'); }
+function closeSheet() { $('sheet').classList.remove('on'); $('dim').classList.remove('on'); }
+$('dim').onclick = closeSheet;
+$('light').onclick = () => $('light').classList.remove('on');
+
+/* ---------- داشبورد ---------- */
+async function refreshHome() {
+  try {
+    const s = await api('/admin/stats');
+    $('nOnline').textContent = fa(s.online); $('nToday').textContent = fa(s.active_today);
+    const n = $('nOpen'); n.hidden = !s.open_reports; n.textContent = fa(s.open_reports);
+    paintSettings(s.settings);
+  } catch {}
+  const p = document.querySelector('.pane.on').id;
+  if (p === 'pReports') loadReports();
+}
+document.querySelectorAll('#tabs .tb').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#tabs .tb').forEach(x => x.classList.toggle('on', x === b));
+  b.scrollIntoView({inline: 'nearest', block: 'nearest'});
+  document.querySelectorAll('.pane').forEach(x => x.classList.toggle('on', x.id === b.dataset.p));
+  ({pReports: loadReports, pUsers: () => loadUsers(), pFilter: loadFilters, pBans: loadBans, pAdmins: loadAdmins, pLog: loadLog, pEmerg: loadSettings}[b.dataset.p] || (() => {}))();
+});
+
+/* آنلاین / فعال امروز */
+async function openActive(scope) {
+  $('actTitle').textContent = scope === 'today' ? 'فعال امروز' : 'آنلاین';
+  const L = $('actList'); L.replaceChildren(h('div', {class: 'empty', text: 'در حال بارگذاری…'}));
+  showView('vActive');
+  try {
+    const d = await api('/admin/active?scope=' + scope);
+    L.replaceChildren();
+    if (!d.users.length) return L.append(h('div', {class: 'empty', text: 'کسی نیست.'}));
+    d.users.forEach(u => L.append(h('button', {class: 'it', type: 'button', on: () => openUser(u.username)},
+      h('div', {class: 'av', text: u.avatar_id || '🙂'}),
+      h('div', {class: 't'}, h('b', {class: 'ltr', text: '@' + u.username}), h('div', {text: u.display_name || ''})),
+      h('div', {class: 'side'}, whenShort(u.last_active_at)))));
+  } catch (e) { L.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+}
+$('tileOnline').onclick = () => openActive('online');
+$('tileToday').onclick = () => openActive('today');
+
+/* ---------- گزارش‌ها ---------- */
+let repStatus = 'open', curReport = null;
+document.querySelectorAll('#repSeg button').forEach(b => b.onclick = () => {
+  repStatus = b.dataset.s; document.querySelectorAll('#repSeg button').forEach(x => x.classList.toggle('on', x === b)); loadReports();
+});
+const reportLine = r => h('div', {class: 'who'}, uSpan(r.reporter_username), ' روی پروفایل ', uSpan(r.target_username), ' گزارش داد');
+async function loadReports() {
+  const L = $('repList');
+  try {
+    const d = await api('/admin/reports?status=' + repStatus);
+    L.replaceChildren();
+    if (!d.reports.length) return L.append(h('div', {class: 'empty', text: repStatus === 'open' ? 'گزارش بازی نیست.' : 'گزارشی نیست.'}));
+    d.reports.forEach(r => L.append(h('button', {class: 'it', type: 'button', on: () => openReport(r.id)},
+      h('div', {class: 'av', text: r.target_avatar || '🚫'}),
+      h('div', {class: 't'}, reportLine(r), h('div', {text: r.excerpt})),
+      h('div', {class: 'side'}, r.status === 'open' ? h('div', {class: 'new'}) : h('span', {text: r.status === 'dismissed' ? 'رد شد' : 'اقدام شد'}),
+        h('span', {text: whenShort(r.created_at)}), r.images ? h('span', {text: '🖼 ' + fa(r.images)}) : null, r.prior ? h('span', {text: fa(r.prior) + ' قبلی'}) : null))));
+  } catch (e) { L.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+}
+async function openReport(id, push = true) {
+  curReport = id;
+  const B = $('repBody'); if (push) { B.replaceChildren(h('div', {class: 'empty', text: 'در حال بارگذاری…'})); showView('vReport'); }
+  let r;
+  try { r = (await api('/admin/report/' + id)).report; } catch (e) { return B.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+  const gone = !r.target_now;
+  const head = h('div', {class: 'it'},
+    h('div', {class: 'av', text: gone ? '🚫' : (r.target_avatar || '🙂')}),
+    h('div', {class: 't'}, h('b', {text: gone ? 'حساب حذف/بلاک شده' : (r.target_name || r.target_now)}),
+      h('div', {class: 'ltr', style: 'text-align:right', text: '@' + r.target_username + (r.target_now && r.target_now !== r.target_username ? '  →  @' + r.target_now : '')})),
+    !gone ? h('button', {class: 'btn-s light', type: 'button', on: () => openUser(r.target_now), text: 'کاربر'}) : null);
+  const meta = h('div', {class: 'box', style: 'background:var(--bg)'}, reportLine(r),
+    h('div', {class: 'muted', text: dt(r.created_at) + (r.prior ? ' · ' + fa(r.prior) + ' گزارش قبلی روی این کاربر' : ' · گزارش قبلی ندارد')}),
+    h('div', {class: 'muted', text: r.status === 'open' ? 'وضعیت: باز' : (r.status === 'dismissed' ? 'وضعیت: رد شد' : 'وضعیت: اقدام شد') + (r.handled_by_username ? ' توسط @' + r.handled_by_username : '') + (r.handled_at ? ' · ' + dt(r.handled_at) : '')}));
+  const shots = h('div', {class: 'shots'});
+  for (let n = 0; n < r.images; n++) {
+    const b = h('button', {class: 'shot', type: 'button', text: '…'});
+    shots.append(b);
+    fetch(API + '/admin/report/' + r.id + '/img/' + n, {credentials: 'include'}).then(x => x.ok ? x.blob() : Promise.reject())
+      .then(bl => { const u = URL.createObjectURL(bl); b.textContent = ''; b.style.backgroundImage = 'url("' + u + '")'; b.onclick = () => { $('light').querySelector('img').src = u; $('light').classList.add('on'); }; })
+      .catch(() => { b.textContent = 'منقضی'; });
+  }
+  const top = h('div', {class: 'acts'},
+    r.status === 'open' ? h('button', {class: 'ac', type: 'button', on: async () => { try { await api('/admin/report/' + r.id, {action: 'dismiss'}); openReport(r.id, false); refreshHome(); } catch (e) { alert(errText(e)); } }, text: 'رد گزارش'})
+      : h('button', {class: 'ac', type: 'button', on: async () => { try { await api('/admin/report/' + r.id, {action: 'reopen'}); openReport(r.id, false); } catch (e) { alert(errText(e)); } }, text: 'باز کردن دوباره'}),
+    h('button', {class: 'ac' + (r.keep ? ' on' : ''), type: 'button', on: async () => { try { await api('/admin/report/' + r.id, {action: 'keep', on: !r.keep}); openReport(r.id, false); } catch (e) { alert(errText(e)); } }, text: r.keep ? 'نگه‌داشته می‌شود ✓' : 'نگه‌داشتن گزارش'}));
+  const kids = [head, meta, h('div', {class: 'lb', text: 'شرح مشکل'}), h('div', {class: 'box', text: r.body}), r.images ? h('div', {class: 'lb', text: 'اسکرین‌شات‌ها'}) : null, r.images ? shots : null, top];
+  if (!gone) {
+    if (r.can_act) kids.push(h('div', {class: 'lb', text: 'اقدام روی @' + r.target_now}), actionGrid({username: r.target_now, mod: r.target_mod}, r.id, () => openReport(r.id, false)));
+    else kids.push(h('div', {class: 'muted', style: 'margin:10px 4px', text: r.target_role === 'owner' ? 'روی مالک سایت اقدامی ممکن نیست.' : 'روی ادمین‌ها فقط مالک می‌تواند اقدام کند.'}));
+  }
+  kids.push(h('div', {class: 'muted', style: 'margin:12px 4px', text: 'گزارش‌ها ۳۰ روز نگه داشته می‌شوند؛ «نگه‌داشتن» فقط متن گزارش را نگه می‌دارد و عکس‌ها بعد از ۳۰ روز پاک می‌شوند.'}));
+  B.replaceChildren(...kids);
+}
+
+/* ---------- دکمه‌های اقدام (مشترک گزارش و کاربر) ---------- */
+function actionGrid(u, reportId, after) {
+  const m = u.mod || {};
+  const rid = reportId ? {report_id: reportId} : {};
+  const act = async (data, okMsg) => { try { await api('/admin/user/' + encodeURIComponent(u.username), {...data, ...rid}); closeSheet(); if (okMsg) toast(okMsg); after && after(); refreshHome(); } catch (e) { alert(errText(e)); } };
+  const susp = m.suspended_until ? 'ساسپند فعال · تغییر' : 'ساسپند موقت';
+  return h('div', {class: 'acts'},
+    h('button', {class: 'ac', type: 'button', on: () => postsSheet(u.username, reportId, after), text: 'حذف یک پست'}),
+    h('button', {class: 'ac' + (m.no_post ? ' on' : ''), type: 'button', on: () => act({action: 'no_post', on: !m.no_post}), text: m.no_post ? 'باز کردن پست‌گذاری' : 'بستن پست‌گذاری'}),
+    h('button', {class: 'ac' + (m.no_chat ? ' on' : ''), type: 'button', on: () => act({action: 'no_chat', on: !m.no_chat}), text: m.no_chat ? 'باز کردن چت' : 'بستن چت'}),
+    h('button', {class: 'ac' + (m.suspended_until ? ' on' : ''), type: 'button', on: () => suspendSheet(u, act), text: susp}),
+    h('button', {class: 'ac w', type: 'button', on: () => renameSheet(u, rid, after), text: 'تغییر نام/یوزرنیم'}),
+    h('button', {class: 'ac w red', type: 'button', on: () => blockSheet(u, rid), text: 'بلاک دائمی'}));
+}
+function toast(t) { const el = h('div', {class: 'msg ok', style: 'position:fixed;left:16px;right:16px;bottom:24px;z-index:50;background:#171717;color:#fff;padding:12px 16px;border-radius:14px;text-align:center', text: t}); document.body.append(el); setTimeout(() => el.remove(), 1800); }
+async function postsSheet(username, reportId, after) {
+  const list = h('div', {}, h('div', {class: 'empty', text: 'در حال بارگذاری…'}));
+  openSheet(h('h2', {text: 'حذف یک پست از @' + username}), h('div', {class: 'muted', style: 'margin-bottom:10px', text: 'پست‌های اخیر (حداکثر ۳۰)'}), list);
+  try {
+    const d = await api('/admin/user/' + encodeURIComponent(username));
+    list.replaceChildren();
+    if (!d.posts.length) return list.append(h('div', {class: 'empty', text: 'پستی ندارد.'}));
+    d.posts.forEach(p => list.append(postRow(p, reportId, () => { after && after(); })));
+  } catch (e) { list.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+}
+function postRow(p, reportId, after) {
+  const row = h('div', {class: 'post'}, h('div', {class: 't', text: p.body}, h('small', {text: dt(p.created_at)})));
+  row.append(h('button', {class: 'x', type: 'button', 'aria-label': 'حذف پست', text: '✕', on: async () => {
+    if (!confirm('این پست برای همیشه حذف شود؟')) return;
+    try { await api('/admin/post/delete', {id: p.id, ...(reportId ? {report_id: reportId} : {})}); row.remove(); toast('پست حذف شد.'); after && after(); } catch (e) { alert(errText(e)); }
+  }}));
+  return row;
+}
+function suspendSheet(u, act) {
+  let days = 1;
+  const sel = h('div', {class: 'sel'}, ...[1, 7, 30].map(d => h('button', {type: 'button', class: d === 1 ? 'on' : '', text: fa(d) + ' روز', on: ev => { days = d; [...sel.children].forEach(x => x.classList.toggle('on', x === ev.currentTarget)); }})));
+  openSheet(h('h2', {text: 'ساسپند موقت @' + u.username}),
+    h('div', {class: 'muted', text: 'در این مدت کاربر نمی‌تواند وارد شود یا از سایت استفاده کند.'}), sel,
+    h('button', {class: 'ac dark', style: 'width:100%;padding:13px', type: 'button', text: 'تأیید ساسپند', on: () => act({action: 'suspend', days}, 'ساسپند شد.')}),
+    u.mod && u.mod.suspended_until ? h('button', {class: 'ac', style: 'width:100%;padding:13px;margin-top:8px', type: 'button', text: 'رفع ساسپند', on: () => act({action: 'suspend', days: 0}, 'ساسپند برداشته شد.')}) : null);
+}
+function renameSheet(u, rid, after) {
+  let oldMode = 'free';
+  const dn = h('input', {class: 'f', placeholder: 'نام نمایشی جدید (اختیاری)', maxlength: '67'});
+  const un = h('input', {class: 'f ltr', dir: 'ltr', placeholder: 'یوزرنیم جدید (اختیاری)', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'});
+  const sel = h('div', {class: 'sel'},
+    h('button', {type: 'button', class: 'on', text: 'یوزرنیم قبلی آزاد شود', on: ev => { oldMode = 'free'; [...sel.children].forEach(x => x.classList.toggle('on', x === ev.currentTarget)); }}),
+    h('button', {type: 'button', text: 'یوزرنیم قبلی بسته شود', on: ev => { oldMode = 'ban'; [...sel.children].forEach(x => x.classList.toggle('on', x === ev.currentTarget)); }}));
+  const msg = h('div', {class: 'msg'});
+  openSheet(h('h2', {text: 'تغییر نام/یوزرنیم @' + u.username}), h('div', {style: 'height:10px'}), dn, h('div', {style: 'height:8px'}), un, sel, msg,
+    h('button', {class: 'ac dark', style: 'width:100%;padding:13px', type: 'button', text: 'ذخیره', on: async () => {
+      const data = {action: 'rename', old_username: oldMode, ...rid};
+      if (dn.value.trim()) data.display_name = dn.value.trim();
+      if (un.value.trim()) data.username = un.value.trim().toLowerCase();
+      if (!data.display_name && !data.username) { msg.textContent = 'نام یا یوزرنیم جدید را بنویسید.'; msg.className = 'msg bad'; return; }
+      try {
+        const d = await api('/admin/user/' + encodeURIComponent(u.username), data);
+        closeSheet(); toast('ذخیره شد.');
+        if (curUser === u.username && d.user) { curUser = d.user.username; openUser(curUser, false); } else after && after();
+      } catch (e) { msg.textContent = errText(e); msg.className = 'msg bad'; }
+    }}));
+}
+function blockSheet(u, rid) {
+  const st = {email: true, name: true};
+  const ck = (k, label) => { const b = h('button', {class: 'ck on', type: 'button'}, h('i', {text: '✓'}), label); b.onclick = () => { st[k] = !st[k]; b.classList.toggle('on', st[k]); }; return b; };
+  openSheet(h('h2', {text: 'بلاک دائمی @' + u.username}),
+    h('div', {class: 'muted', style: 'line-height:1.9', text: 'همهٔ داده‌های این حساب (پست‌ها، پیام‌ها، دوستی‌ها، پروفایل و نشست‌ها) برای همیشه حذف می‌شود. این کار برگشت‌پذیر نیست.'}),
+    ck('email', 'بستن ایمیل (ثبت‌نام دوباره ممنوع)'), ck('name', 'بستن یوزرنیم ' + u.username),
+    h('button', {class: 'ac red', style: 'width:100%;padding:13px;margin-top:6px', type: 'button', text: 'تأیید بلاک', on: async () => {
+      if (!confirm('بلاک دائمی @' + u.username + '؟ همهٔ داده‌ها حذف می‌شود.')) return;
+      try { await api('/admin/user/' + encodeURIComponent(u.username), {action: 'block', ban_email: st.email, ban_username: st.name, ...rid}); closeSheet(); toast('بلاک شد.'); curUser = null; history.back(); refreshHome(); }
+      catch (e) { alert(errText(e)); }
+    }}));
+}
+
+/* ---------- کاربران ---------- */
+let curUser = null, qTimer = null, uOffset = 0;
+const ROLE_FA = {owner: 'مالک', admin: 'مدیر'};
+// فقط مالک: مدیر کردن / حذف از مدیریت (سرور هم فقط برای مالک اجازه می‌دهد)
+async function setAdmin(username, add, after) {
+  if (!confirm(add ? '@' + username + ' مدیر شود؟ با اپ مدیریت، رمز و کد ایمیلی خودش به پنل دسترسی پیدا می‌کند.' : '@' + username + ' از مدیریت حذف شود؟ دسترسی‌اش همین الان قطع می‌شود.')) return;
+  try { await api('/admin/admins', {action: add ? 'add' : 'remove', username}); toast(add ? 'مدیر شد.' : 'از مدیریت حذف شد.'); after && after(); }
+  catch (e) { alert(errText(e)); }
+}
+function adminBtn(u, after) {
+  if (!ME || !ME.owner || u.is_bot || u.is_me || u.role === 'owner') return null;
+  return u.role === 'admin'
+    ? h('button', {class: 'btn-s red', type: 'button', text: 'حذف از مدیریت', on: ev => { ev.stopPropagation(); setAdmin(u.username, false, after); }})
+    : h('button', {class: 'btn-s light', type: 'button', text: 'مدیر کن', on: ev => { ev.stopPropagation(); setAdmin(u.username, true, after); }});
+}
+function userRow(u) {
+  const role = ROLE_FA[u.role];
+  return h('div', {class: 'it', role: 'button', tabindex: '0', style: 'cursor:pointer', on: () => openUser(u.username)},
+    h('div', {class: 'av', text: u.avatar_id || '🙂'}),
+    h('div', {class: 't'}, h('b', {class: 'ltr', style: 'text-align:right', text: '@' + u.username}), h('div', {text: (u.display_name || '') + (u.is_bot ? ' · ربات' : '')})),
+    h('div', {class: 'side'}, role ? h('span', {class: 'badge', text: role}) : null, u.last_active_at ? h('span', {text: whenShort(u.last_active_at)}) : null),
+    adminBtn(u, loadUsers));
+}
+async function loadUsers(append = false) {
+  const q = $('userQ').value.trim().toLowerCase().replace(/^@/, '');
+  const L = $('userList'), more = $('userMore');
+  if (!append) uOffset = 0;
+  try {
+    const d = await api('/admin/user?' + (q ? 'q=' + encodeURIComponent(q) : 'offset=' + uOffset));
+    if (!append) L.replaceChildren();
+    if (!d.users.length && !append) L.append(h('div', {class: 'empty', text: 'کاربری پیدا نشد.'}));
+    d.users.forEach(u => L.append(userRow(u)));
+    uOffset += d.users.length; more.hidden = !!q || !d.more;
+  } catch (e) { if (!append) L.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+}
+$('userQ').addEventListener('input', () => { clearTimeout(qTimer); qTimer = setTimeout(() => loadUsers(), 300); });
+$('userMore').onclick = () => loadUsers(true);
+async function openUser(username, push = true) {
+  curUser = username;
+  const B = $('userBody'); if (push) { B.replaceChildren(h('div', {class: 'empty', text: 'در حال بارگذاری…'})); showView('vUser'); }
+  let d;
+  try { d = await api('/admin/user/' + encodeURIComponent(username)); } catch (e) { return B.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+  const u = d.user, m = u.mod;
+  const role = ROLE_FA[u.role];
+  const state = h('div', {class: 'state'},
+    role ? h('span', {class: 'okk', text: role}) : null, u.is_bot ? h('span', {class: 'okk', text: 'ربات'}) : null,
+    m.no_post ? h('span', {text: 'پست‌گذاری بسته'}) : null, m.no_chat ? h('span', {text: 'چت بسته'}) : null,
+    m.suspended_until ? h('span', {text: 'ساسپند تا ' + dt(m.suspended_until)}) : null,
+    u.reports ? h('span', {text: fa(u.reports) + ' گزارش'}) : null);
+  const kids = [
+    h('div', {class: 'it', style: 'border:0;padding:4px 0'}, h('div', {class: 'av big', text: u.avatar_id || '🙂'}),
+      h('div', {class: 't'}, h('b', {style: 'font-size:17px', text: u.display_name}), h('div', {class: 'ltr', style: 'text-align:right', text: '@' + u.username}),
+        h('div', {text: 'عضویت: ' + day(u.created_at)}), u.last_active_at ? h('div', {text: 'آخرین فعالیت: ' + when(u.last_active_at)}) : null)),
+    state, u.bio ? h('div', {class: 'box', text: u.bio}) : null];
+  const ab = adminBtn(u, () => openUser(u.username, false));
+  if (ab) { ab.style.cssText = 'width:100%;padding:13px;margin:0 0 10px'; kids.push(ab); }
+  if (u.can_act) kids.push(actionGrid(u, null, () => openUser(u.username, false)));
+  else kids.push(h('div', {class: 'muted', style: 'margin:6px 4px', text: u.is_me ? 'این حساب خودتان است.' : u.role === 'owner' ? 'روی مالک سایت اقدامی ممکن نیست.' : 'روی ادمین‌ها فقط مالک می‌تواند اقدام کند.'}));
+  kids.push(h('div', {class: 'lb', text: 'پست‌های اخیر'}));
+  if (!d.posts.length) kids.push(h('div', {class: 'empty', text: 'پستی ندارد.'}));
+  d.posts.forEach(p => kids.push(u.can_act ? postRow(p, null, null) : h('div', {class: 'post'}, h('div', {class: 't', text: p.body}, h('small', {text: dt(p.created_at)})))));
+  B.replaceChildren(...kids);
+}
+
+/* ---------- فیلتر کلمات ---------- */
+let filters = {post: [], username: []}, fPick = {post: true, username: false};
+$('fcPost').onclick = () => { fPick.post = !fPick.post; $('fcPost').classList.toggle('on', fPick.post); };
+$('fcUser').onclick = () => { fPick.username = !fPick.username; $('fcUser').classList.toggle('on', fPick.username); };
+async function loadFilters() { try { filters = (await api('/admin/filters')).filters; drawFilters(); } catch (e) { say('fMsg', errText(e)); } }
+function drawFilters() {
+  const q = $('fSearch').value.trim().toLowerCase();
+  const words = [...new Set([...filters.post, ...filters.username])].filter(w => !q || w.includes(q)).sort((a, b) => a.localeCompare(b, 'fa'));
+  const L = $('fList'); L.replaceChildren();
+  if (!words.length) return L.append(h('div', {class: 'empty', text: q ? 'پیدا نشد.' : 'فهرست خالی است.'}));
+  words.forEach(w => {
+    const inP = filters.post.includes(w), inU = filters.username.includes(w);
+    const set = async (p, u) => { try { filters = (await api('/admin/filters', (p || u) ? {word: w, post: p, username: u} : {action: 'remove', word: w})).filters; drawFilters(); } catch (e) { say('fMsg', errText(e)); } };
+    L.append(h('div', {class: 'word'}, h('b', {text: w}),
+      h('button', {class: 'chip' + (inP ? ' on' : ''), type: 'button', text: 'پست', on: () => set(!inP, inU)}),
+      h('button', {class: 'chip' + (inU ? ' on' : ''), type: 'button', text: 'یوزرنیم', on: () => set(inP, !inU)}),
+      h('button', {class: 'x', type: 'button', 'aria-label': 'حذف', text: '✕', on: () => { if (confirm('«' + w + '» از فیلتر حذف شود؟')) set(false, false); }})));
+  });
+}
+$('fSearch').addEventListener('input', drawFilters);
+$('fAdd').onclick = async () => {
+  const w = $('fWord').value.trim().toLowerCase();
+  if (!w || (!fPick.post && !fPick.username)) return say('fMsg', ERR.invalid_word);
+  try { filters = (await api('/admin/filters', {word: w, post: fPick.post || filters.post.includes(w), username: fPick.username || filters.username.includes(w)})).filters; $('fWord').value = ''; say('fMsg', 'ثبت شد.', true); drawFilters(); }
+  catch (e) { say('fMsg', errText(e)); }
+};
+$('fWord').addEventListener('keydown', e => { if (e.key === 'Enter') $('fAdd').click(); });
+
+/* ---------- مسدودها ---------- */
+let bans = {usernames: [], emails: []};
+async function loadBans() { try { bans = await api('/admin/bans'); drawBans(); } catch {} }
+function drawBans() {
+  [['bListU', 'bSearchU', bans.usernames, 'username'], ['bListE', 'bSearchE', bans.emails, 'email']].forEach(([lid, sid, list, kind]) => {
+    const q = $(sid).value.trim().toLowerCase(), L = $(lid); L.replaceChildren();
+    const rows = list.filter(x => !q || x.value.includes(q)).sort((a, b) => a.value.localeCompare(b.value, 'fa'));
+    if (!rows.length) return L.append(h('div', {class: 'empty', style: 'padding:14px 0', text: q ? 'پیدا نشد.' : 'خالی است.'}));
+    rows.forEach(x => L.append(h('div', {class: 'word'}, h('b', {class: 'ltr', style: 'text-align:right', text: x.value}), h('span', {class: 'muted', text: day(x.created_at)}),
+      h('button', {class: 'btn-s red', type: 'button', text: 'رفع بلاک', on: async () => {
+        if (!confirm('«' + x.value + '» از فهرست مسدودها برداشته شود؟ فقط همین مقدار آزاد می‌شود و حساب برنمی‌گردد.')) return;
+        try { await api('/admin/bans', {action: 'remove', kind, value: x.value}); toast('رفع بلاک شد.'); loadBans(); } catch (e) { alert(errText(e)); }
+      }}))));
+  });
+}
+$('bSearchU').addEventListener('input', drawBans); $('bSearchE').addEventListener('input', drawBans);
+
+/* ---------- ادمین‌ها ---------- */
+async function loadAdmins() {
+  const L = $('adminList');
+  try {
+    const d = await api('/admin/admins');
+    L.replaceChildren();
+    if (d.owner) L.append(h('div', {class: 'it'}, h('div', {class: 'av', text: d.owner.avatar_id || '🙂'}), h('div', {class: 't'}, h('b', {class: 'ltr', style: 'text-align:right', text: '@' + d.owner.username}), h('div', {text: d.owner.display_name})), h('span', {class: 'badge', text: 'مالک'})));
+    else L.append(h('div', {class: 'muted', style: 'margin:0 4px 8px', text: 'حساب مالک (OWNER_EMAIL) هنوز ساخته نشده یا پیدا نشد.'}));
+    if (!d.admins.length) L.append(h('div', {class: 'empty', style: 'padding:14px 0', text: 'ادمینی تعریف نشده.'}));
+    d.admins.forEach(a => L.append(h('div', {class: 'it'}, h('div', {class: 'av', text: a.avatar_id || '🙂'}),
+      h('div', {class: 't'}, h('b', {class: 'ltr', style: 'text-align:right', text: '@' + a.username}), h('div', {text: (a.display_name || '') + ' · مدیر از ' + dt(a.added_at) + (a.added_by ? ' · توسط @' + a.added_by : '')})),
+      ME.owner ? h('button', {class: 'btn-s red', type: 'button', text: 'حذف از مدیریت', on: async () => {
+        if (!confirm('@' + a.username + ' از مدیریت حذف شود؟ دسترسی‌اش همین الان قطع می‌شود.')) return;
+        try { await api('/admin/admins', {action: 'remove', username: a.username}); loadAdmins(); } catch (e) { say('adminMsg', errText(e)); }
+      }}) : null)));
+    $('adminAdd').hidden = !ME.owner;
+  } catch (e) { L.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+}
+$('adminAddBtn').onclick = async () => {
+  const n = $('adminName').value.trim().toLowerCase().replace(/^@/, ''); if (!n) return;
+  try { await api('/admin/admins', {action: 'add', username: n}); $('adminName').value = ''; say('adminMsg', 'مدیر شد.', true); loadAdmins(); } catch (e) { say('adminMsg', errText(e)); }
+};
+
+/* ---------- اضطراری ---------- */
+let settings = {};
+function paintSettings(s) {
+  if (!s) return; settings = s;
+  $('swSignup').classList.toggle('on', !!s.signups_closed); $('swPost').classList.toggle('on', !!s.posting_closed);
+  if (document.activeElement !== $('ipLimit')) $('ipLimit').value = s.signup_per_ip;
+}
+async function loadSettings() { try { paintSettings((await api('/admin/settings')).settings); } catch {} }
+async function setSetting(data) { try { paintSettings((await api('/admin/settings', data)).settings); say('emMsg', 'ذخیره شد.', true); } catch (e) { say('emMsg', errText(e)); } }
+$('swSignup').onclick = () => { const v = !settings.signups_closed; if (confirm(v ? 'ثبت‌نام جدید برای همه بسته شود؟' : 'ثبت‌نام دوباره باز شود؟')) setSetting({signups_closed: v}); };
+$('swPost').onclick = () => { const v = !settings.posting_closed; if (confirm(v ? 'پست‌گذاری برای همهٔ کاربران بسته شود؟' : 'پست‌گذاری دوباره باز شود؟')) setSetting({posting_closed: v}); };
+$('ipSave').onclick = () => { const n = parseInt($('ipLimit').value, 10); if (!(n >= 1 && n <= 50)) return say('emMsg', ERR.invalid_value); setSetting({signup_per_ip: n}); };
+
+/* ---------- لاگ ---------- */
+const ACTIONS = {delete_post: 'پست را حذف کرد', no_post_on: 'پست‌گذاری را بست', no_post_off: 'پست‌گذاری را باز کرد', no_chat_on: 'چت را بست', no_chat_off: 'چت را باز کرد',
+  suspend: 'ساسپند کرد', unsuspend: 'ساسپند را برداشت', block: 'بلاک دائمی کرد', rename: 'نام/یوزرنیم را تغییر داد', add_admin: 'ادمین کرد', remove_admin: 'از ادمینی برداشت',
+  dismiss_report: 'گزارش را رد کرد', reopen_report: 'گزارش را دوباره باز کرد', keep_report: 'گزارش را نگه داشت', unkeep_report: 'نگه‌داشتن گزارش را برداشت',
+  signups_closed_on: 'ثبت‌نام را بست', signups_closed_off: 'ثبت‌نام را باز کرد', posting_closed_on: 'پست‌گذاری همه را بست', posting_closed_off: 'پست‌گذاری همه را باز کرد',
+  signup_per_ip: 'سقف ثبت‌نام هر IP را تغییر داد', filter: 'فیلتر کلمات را تغییر داد', unban_username: 'رفع بلاک یوزرنیم', unban_email: 'رفع بلاک ایمیل', admin_mode_on: 'وارد حالت مدیریت شد'};
+async function loadLog() {
+  const L = $('logList');
+  try {
+    const d = await api('/admin/log');
+    L.replaceChildren();
+    if (!d.log.length) return L.append(h('div', {class: 'empty', text: 'هنوز اقدامی ثبت نشده.'}));
+    d.log.forEach(x => L.append(h('div', {class: 'box', style: 'font-size:12.5px;background:var(--bg)'},
+      uSpan(x.admin_username), ' · ', ACTIONS[x.action] || x.action, x.target_username ? [' · ', uSpan(x.target_username)] : null,
+      x.detail ? h('div', {class: 'muted', text: x.detail}) : null, h('div', {class: 'muted', text: dt(x.created_at)}))));
+  } catch (e) { L.replaceChildren(h('div', {class: 'empty', text: errText(e)})); }
+}
+
+/* ---------- حالت مدیریت: ورود (شناسه + رمز + کد)، خروج، خروج خودکار ---------- */
+const TURNSTILE_SITE_KEY = '0x4AAAAAAFZ561QShBA6Mxo1';
+const IDLE_MS = 15 * 60 * 1000;
+let tsP = null, tsId = null, tsTok = '', lastAct = Date.now(), lastHideExit = 0;
+function tsLoad() {
+  if (!tsP) tsP = new Promise(res => { const sc = document.createElement('script'); sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; sc.async = true; sc.onload = res; sc.onerror = () => res(); document.head.append(sc); });
+  return tsP.then(() => {
+    if (!window.turnstile || tsId !== null) return;
+    tsId = turnstile.render('#tsMode', {sitekey: TURNSTILE_SITE_KEY, theme: 'light', language: 'fa', size: 'flexible', callback: t => { tsTok = t; }, 'expired-callback': () => { tsTok = ''; }, 'error-callback': () => { tsTok = ''; }});
+  });
+}
+const tsReset = () => { tsTok = ''; try { if (tsId !== null) turnstile.reset(tsId); } catch {} };
+// پاک کردن همهٔ داده‌های نمایش‌داده‌شده تا بعد از خروج چیزی در صفحه نماند
+function clearPanel() {
+  closeSheet(); $('light').classList.remove('on');
+  ['repList', 'userList', 'adminList', 'logList', 'fList', 'bListU', 'bListE', 'actList', 'repBody', 'userBody'].forEach(id => $(id).replaceChildren());
+  ['nOnline', 'nToday'].forEach(id => { $(id).textContent = '–'; }); $('nOpen').hidden = true;
+  curUser = null; curReport = null; stack.length = 0;
+}
+function modeStep(n) { $('mStep1').hidden = n !== 1; $('mStep2').hidden = n !== 2; }
+function showMode(text) {
+  modeOn = false; $('exitFab').classList.remove('on'); clearPanel();
+  modeStep(1); $('mPass').value = ''; $('mCode').value = '';
+  say('mMsg', text || '');
+  views.forEach(v => v.classList.toggle('on', v.id === 'vMode'));
+  tsLoad();
+}
+function enterPanel() {
+  modeOn = true; lastAct = Date.now(); $('exitFab').classList.add('on');
+  $('roleBadge').textContent = ME.owner ? 'مالک' : 'مدیر';
+  history.replaceState({v: 'vHome'}, '');
+  goHome();
+}
+$('mSend').onclick = async () => {
+  const identifier = $('mIdent').value.trim(), password = $('mPass').value;
+  if (!identifier || !password) return say('mMsg', 'ایمیل یا یوزرنیم و رمز را بنویسید.');
+  if (!tsTok) return say('mMsg', 'چند لحظه صبر کنید تا بررسی امنیتی کامل شود.');
+  $('mSend').disabled = true; say('mMsg', 'در حال بررسی…', true);
+  try {
+    const d = await api('/admin/mode/request', {identifier, password, turnstile_token: tsTok});
+    $('mPass').value = ''; $('mSent').textContent = 'کد ۶ رقمی به ' + (d.email || 'ایمیل شما') + ' فرستاده شد (۱۰ دقیقه اعتبار دارد).';
+    modeStep(2); say('mMsg', ''); setTimeout(() => $('mCode').focus(), 50);
+  } catch (e) {
+    const left = e.data && e.data.tries_left;
+    say('mMsg', errText(e) + (left && left < 5 ? ' (' + fa(left) + ' تلاش دیگر تا قفل)' : ''));
+  } finally { $('mSend').disabled = false; tsReset(); }
+};
+$('mVerify').onclick = async () => {
+  const code = $('mCode').value.replace(/\D/g, '');
+  if (code.length !== 6) return say('mMsg', 'کد ۶ رقمی را وارد کنید.');
+  $('mVerify').disabled = true;
+  try {
+    await api('/admin/mode/verify', {code});
+    $('mCode').value = ''; say('mMsg', '');
+    ME = await api('/admin/me');
+    if (!ME.mode) return showMode('ورود انجام نشد؛ دوباره تلاش کنید.');
+    enterPanel();
+  } catch (e) {
+    const left = e.data && e.data.tries_left;
+    say('mMsg', errText(e) + (left && left < 5 ? ' (' + fa(left) + ' تلاش دیگر تا قفل)' : ''));
+    if (['verification_code_expired', 'admin_mode_locked'].includes(e.message)) { modeStep(1); $('mCode').value = ''; }
+  } finally { $('mVerify').disabled = false; }
+};
+$('mCode').addEventListener('input', () => { const v = $('mCode').value.replace(/\D/g, '').slice(0, 6); $('mCode').value = v; if (v.length === 6) $('mVerify').click(); });
+$('mPass').addEventListener('keydown', e => { if (e.key === 'Enter') $('mSend').click(); });
+$('mRestart').onclick = () => { modeStep(1); $('mCode').value = ''; say('mMsg', ''); };
+// خروج سمت سرور؛ keepalive و بدون Content-Type تا حتی هنگام بسته شدن صفحه هم برسد (بدون preflight)
+function exitServer() { try { return fetch(API + '/admin/mode/exit', {method: 'POST', credentials: 'include', keepalive: true}).catch(() => {}); } catch { return Promise.resolve(); } }
+function leave() {
+  if (window.Android && typeof window.Android.exitAdmin === 'function') window.Android.exitAdmin();
+  else location.href = '/';
+}
+async function exitAdmin() {
+  modeOn = false; $('exitFab').classList.remove('on'); clearPanel();
+  await Promise.race([exitServer(), new Promise(r => setTimeout(r, 1500))]);
+  leave();
+}
+$('exitFab').onclick = exitAdmin;
+$('mLeave').onclick = () => { exitServer(); leave(); };
+// خروج خودکار: ۱۵ دقیقه بی‌کاری
+['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(ev => addEventListener(ev, () => { lastAct = Date.now(); }, {passive: true, capture: true}));
+setInterval(() => { if (modeOn && Date.now() - lastAct > IDLE_MS) { exitServer(); showMode('به‌خاطر ۱۵ دقیقه بی‌کاری از حالت مدیریت خارج شدید.'); } }, 15000);
+// خروج خودکار: رفتن صفحه/اپ به پس‌زمینه
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && modeOn) { exitServer(); lastHideExit = Date.now(); showMode('از حالت مدیریت خارج شدید.'); }
+});
+addEventListener('pagehide', () => { if (modeOn) exitServer(); });
+// اپ مدیریت هنگام رفتن به پس‌زمینه این را صدا می‌زند: 'exit' = برگرد به سایت؛ 'stay' = وسط ورود است (مثلاً رفته کد را از ایمیل بخواند)
+window.s67AdminBg = () => {
+  if (modeOn || Date.now() - lastHideExit < 5000) { if (modeOn) { exitServer(); showMode(''); } return 'exit'; }
+  return 'stay';
+};
+window.s67AdminExit = () => { const was = modeOn; modeOn = false; clearPanel(); exitServer(); return was ? 'exited' : 'none'; };
+
+/* ---------- شروع ---------- */
+async function boot() {
+  views.forEach(v => v.classList.remove('on'));
+  let d;
+  try { d = await api('/admin/me'); }
+  catch (e) {
+    // admin_reauth فقط بعد از تأیید ادمین بودن برمی‌گردد؛ بقیه = 404
+    if (e.message === 'admin_reauth') { ME = {admin: true}; showAdminShell(); return gate(e); }
+    return notFound();
+  }
+  if (!d || !d.admin) return notFound();
+  ME = d; showAdminShell();
+  if (!ME.mode) return showMode('');
+  enterPanel();
+}
+// تازه‌سازی آمار فقط وقتی کاربر واقعاً فعال است (تا بی‌کاری سمت سرور هم شمرده شود)
+setInterval(() => { if (modeOn && $('vHome').classList.contains('on') && !document.hidden && Date.now() - lastAct < 120000) refreshHome(); }, 60000);
+boot();
+})();
+</script>
+</body>
+</html>
